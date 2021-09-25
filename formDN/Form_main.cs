@@ -6,12 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.LookAndFeel;
 
 namespace formDN
 {
-    public partial class Form_main : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public Form_main()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -27,8 +28,15 @@ namespace formDN
             return null;
         }
 
+        public void skins()
+        {
+            DevExpress.LookAndFeel.DefaultLookAndFeel themes = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            themes.LookAndFeel.SkinName = "Summer 2008";
+        }
+
         private void Form_main_Load(object sender, EventArgs e)
         {
+          skins();
             if (Program.mGroup.Equals("CHINHANH") || Program.mGroup.Equals("CONGTY"))
             {
                 themTaiKhoan.Enabled = true;
@@ -48,10 +56,105 @@ namespace formDN
             }
             else
             {
-                frmNhanVien fNV = new frmNhanVien();
-                fNV.MdiParent = this;
-                fNV.Show();
+                frmNhanVien frm = new frmNhanVien();
+                frm.MdiParent = this;
+                frm.Show();
             }
+        }
+
+        private void btn_dangNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(frmDangNhap));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                frmDangNhap frm = new frmDangNhap();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btn_vatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(frmVatTu));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                frmVatTu frm = new frmVatTu();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btn_kho_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(frmKho));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                frmKho frm = new frmKho();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btn_phieuNhap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(frmPhieuNhap));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                frmPhieuNhap frm = new frmPhieuNhap();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btn_phieuXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(frmPhieuXuat));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                frmPhieuXuat frm = new frmPhieuXuat();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btn_DDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(frmDonDatHang));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                frmDonDatHang frm = new frmDonDatHang();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void ribbonControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

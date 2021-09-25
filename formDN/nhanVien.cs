@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -90,7 +91,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                XtraMessageBox.Show(ex.Message);
             }
         }
         private void loadUndo()
@@ -102,14 +103,6 @@ namespace formDN
             else btnUndo.Enabled = false;
         }
 
-        private void DisableForm()
-        {
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = false;
-            btnGhi.Enabled = btnReload.Enabled = true; 
-            txtCN.Enabled = cmbCN.Enabled = false;
-            btnCCN.Enabled = false;
-        }
-
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             vitri = bdsNV.Position;// luu lai vi tri
@@ -119,7 +112,10 @@ namespace formDN
             txtNgaySinh.EditValue = "";
 
             btnUndo.Enabled = false;
-            DisableForm();
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = false;
+            btnGhi.Enabled = btnReload.Enabled = true;
+            txtCN.Enabled = cmbCN.Enabled = false;
+            btnCCN.Enabled = false;
             nhanVienGridControl.Enabled = false;
         }
 
@@ -151,7 +147,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Loi reload" + ex.Message, "",MessageBoxButtons.OK);
+                XtraMessageBox.Show("Loi reload" + ex.Message, "",MessageBoxButtons.OK);
                 return;
             }
 
@@ -163,20 +159,20 @@ namespace formDN
             int manv = 0;
             if (trangthaixoa == 1)
             {
-                MessageBox.Show("Nhân viên này đã nghỉ làm hoặc chuyển chi nhánh. Vui lòng chọn nhân viên khác !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Nhân viên này đã nghỉ làm hoặc chuyển chi nhánh. Vui lòng chọn nhân viên khác !", "", MessageBoxButtons.OK);
                 return;
             }
             else if (bdsPN.Count + bdsPX.Count + bdsDH.Count > 0)
             {
-                MessageBox.Show("Không thể xóa nhân viên này vì đã lập phiếu", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Không thể xóa nhân viên này vì đã lập phiếu", "", MessageBoxButtons.OK);
                 return;
             }
             else if (cmb_MANV.Text.Trim() == Program.username)
             {
-                MessageBox.Show("Bạn không thể xóa chính mình !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Bạn không thể xóa chính mình !", "", MessageBoxButtons.OK);
                 return;
             }
-            if (MessageBox.Show("Bạn có thực sự muốn xoá nhân viên này? ","Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (XtraMessageBox.Show("Bạn có thực sự muốn xoá nhân viên này? ","Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -188,7 +184,7 @@ namespace formDN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi xoá nhân viên . Bạn hãy xoá lại\n" + ex.Message, "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi xoá nhân viên . Bạn hãy xoá lại\n" + ex.Message, "", MessageBoxButtons.OK);
                     this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet1.NhanVien);
                     bdsNV.Position = bdsNV.Find("MANV", manv);
                     return;
@@ -214,37 +210,37 @@ namespace formDN
             txtDiaChi.Text = chuanhoa(txtDiaChi.Text);
             if (txtHo.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Họ nhân viên không được thiếu !", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Họ nhân viên không được thiếu !", string.Empty, MessageBoxButtons.OK);
                 txtHo.Focus();
                 return;
             }
             if (txtTen.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Tên nhân viên không được thiếu !", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Tên nhân viên không được thiếu !", string.Empty, MessageBoxButtons.OK);
                 txtTen.Focus();
                 return;
             }
             if (txtDiaChi.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Địa chỉ không được thiếu !", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Địa chỉ không được thiếu !", string.Empty, MessageBoxButtons.OK);
                 txtDiaChi.Focus();
                 return;
             }
             if (txtNgaySinh.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Ngày sinh không được thiếu !", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Ngày sinh không được thiếu !", string.Empty, MessageBoxButtons.OK);
                 txtNgaySinh.Focus();
                 return;
             }
             if (DateTime.Now.Year - txtNgaySinh.DateTime.Year < 20)
             {
-                MessageBox.Show("Ngày sinh không hợp lệ !", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Ngày sinh không hợp lệ !", string.Empty, MessageBoxButtons.OK);
                 txtNgaySinh.Focus();
                 return;
             }
             if (txtLuong.Value < 4000000)
             {
-                MessageBox.Show("Vui lòng nhập lương lớn hơn 4.000.000", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Vui lòng nhập lương lớn hơn 4.000.000", "", MessageBoxButtons.OK);
                 txtLuong.Focus();
                 return;
             }
@@ -257,14 +253,14 @@ namespace formDN
                 //Lưu vô CSDl
                 this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.nhanVienTableAdapter.Update(this.qLVT_DATHANGDataSet1.NhanVien);
-               /* MessageBox.Show("Ghi thành công !", "", MessageBoxButtons.OK);
+               /* XtraMessageBox.Show("Ghi thành công !", "", MessageBoxButtons.OK);
                 stackundo.Push(query);
                 LoadTable();
                 loadUndo();*/
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi ghi nhân viên.\n" + ex.Message,"",MessageBoxButtons.OK);
+                XtraMessageBox.Show("Lỗi ghi nhân viên.\n" + ex.Message,"",MessageBoxButtons.OK);
                 return;
             }
             nhanVienGridControl.Enabled = true;
@@ -293,7 +289,7 @@ namespace formDN
             }
 
             if (Program.KetNoi() == 0)
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
             else
             {
                 //LoadTable();
@@ -318,7 +314,7 @@ namespace formDN
         {
             if (groupBox1.Enabled)
             {
-                if (MessageBox.Show("Dữ liệu Form Nhân Viên vẫn chưa lưu vào Database! \nBạn có chắn chắn muốn thoát?", "Thông báo",
+                if (XtraMessageBox.Show("Dữ liệu Form Nhân Viên vẫn chưa lưu vào Database! \nBạn có chắn chắn muốn thoát?", "Thông báo",
                             MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     this.Close();

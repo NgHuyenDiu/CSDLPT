@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using DevExpress.XtraEditors;
 
 namespace formDN
 {
-    public partial class Form_dangNhap : Form
+    public partial class frmDangNhap : Form
     {
-        public Form_dangNhap()
+        public frmDangNhap()
         {
             InitializeComponent();
 
@@ -33,7 +34,7 @@ namespace formDN
 
               catch (Exception e)
               {
-                  MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nSai tài khoản hoặc Sai mật khẩu.\n ", "", MessageBoxButtons.OK);
+                  XtraMessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nSai tài khoản hoặc Sai mật khẩu.\n ", "", MessageBoxButtons.OK);
                   return 0;
               }
           }
@@ -87,7 +88,7 @@ namespace formDN
 
             if (textBox_taiKhoan.Text.Trim() == "" || textBox_matKhau.Text.Trim() == "")
             {
-                MessageBox.Show("Login name và mật mã không được trống", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Login name và mật mã không được trống", "", MessageBoxButtons.OK);
                 return;
             }
 
@@ -108,27 +109,26 @@ namespace formDN
 
             if (Program.myReader.GetString(0) == "0")
             {
-                MessageBox.Show("Đăng nhập thất bại !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Đăng nhập thất bại !", "", MessageBoxButtons.OK);
                 return;
             }
             Program.username = Program.myReader.GetString(0);     // Lay user name, đọc cột đầu tiên
             if (Convert.IsDBNull(Program.username))
             {
-                MessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
                 return;
             }
             Program.mHoten = Program.myReader.GetString(1);
             Program.mGroup = Program.myReader.GetString(2);
             Program.myReader.Close();
             Program.conn.Close();
-            MessageBox.Show("Nhân viên - Nhóm : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
-            Form_main f = new Form_main();
-            f.Show();
+            XtraMessageBox.Show("Nhân viên - Nhóm : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
+      
             this.Hide();
-            f.FormClosed += (o, w) => this.Show();
-            f.MANV.Text = "Mã nhân viên : " + Program.username;
-            f.HOTEN.Text = "Họ tên : " + Program.mHoten;
-            f.NHOM.Text = "Nhóm : " + Program.mGroup;
+            Program.fMain.FormClosed += (o, w) => this.Show();
+            Program.fMain.MANV.Text = "Mã nhân viên : " + Program.username;
+            Program.fMain.HOTEN.Text = "Họ tên : " + Program.mHoten;
+            Program.fMain.NHOM.Text = "Nhóm : " + Program.mGroup;
         }
 
       

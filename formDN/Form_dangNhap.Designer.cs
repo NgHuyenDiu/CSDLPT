@@ -1,7 +1,7 @@
 ﻿
 namespace formDN
 {
-    partial class Form_dangNhap
+    partial class frmDangNhap
     {
         /// <summary>
         /// Required designer variable.
@@ -131,11 +131,11 @@ namespace formDN
             this.comboBox_CN.TabIndex = 9;
             this.comboBox_CN.SelectedIndexChanged += new System.EventHandler(this.comboBox_CN_SelectedIndexChanged_1);
             // 
-            // Form_dangNhap
+            // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 391);
+            this.ClientSize = new System.Drawing.Size(772, 365);
             this.Controls.Add(this.comboBox_CN);
             this.Controls.Add(this.checkBox_matKhau);
             this.Controls.Add(this.button_thoat);
@@ -145,8 +145,8 @@ namespace formDN
             this.Controls.Add(this.label_matKhau);
             this.Controls.Add(this.label_taiKhoan);
             this.Controls.Add(this.label1);
-            this.Name = "Form_dangNhap";
-            this.Text = "Form2";
+            this.Name = "frmDangNhap";
+            this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.Form_dangNhap_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

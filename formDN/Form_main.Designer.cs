@@ -1,7 +1,7 @@
 ﻿
 namespace formDN
 {
-    partial class Form_main
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,10 @@ namespace formDN
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_main));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.themTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
-            this.btn_dangXuat = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_dangNhap = new DevExpress.XtraBars.BarButtonItem();
             this.btn_nhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.btn_vatTu = new DevExpress.XtraBars.BarButtonItem();
             this.btn_kho = new DevExpress.XtraBars.BarButtonItem();
@@ -46,9 +46,11 @@ namespace formDN
             this.btn_bangKeVatTu = new DevExpress.XtraBars.BarButtonItem();
             this.btn_tongHopPhieuXuat = new DevExpress.XtraBars.BarButtonItem();
             this.btn_inDSHDNV = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.heThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup14 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup15 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageQuanLy = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -80,7 +82,7 @@ namespace formDN
             this.ribbonControl1.ExpandCollapseItem,
             this.ribbonControl1.SearchEditItem,
             this.themTaiKhoan,
-            this.btn_dangXuat,
+            this.btn_dangNhap,
             this.btn_nhanVien,
             this.btn_vatTu,
             this.btn_kho,
@@ -92,16 +94,18 @@ namespace formDN
             this.inDSDDH,
             this.btn_bangKeVatTu,
             this.btn_tongHopPhieuXuat,
-            this.btn_inDSHDNV});
+            this.btn_inDSHDNV,
+            this.btnDangXuat});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.ribbonControl1.MaxItemId = 40;
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.ribbonControl1.MaxItemId = 41;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.heThong,
             this.ribbonPageQuanLy,
             this.ribbonPage1});
             this.ribbonControl1.Size = new System.Drawing.Size(1157, 193);
+            this.ribbonControl1.Click += new System.EventHandler(this.ribbonControl1_Click);
             // 
             // themTaiKhoan
             // 
@@ -111,13 +115,14 @@ namespace formDN
             this.themTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("themTaiKhoan.ImageOptions.LargeImage")));
             this.themTaiKhoan.Name = "themTaiKhoan";
             // 
-            // btn_dangXuat
+            // btn_dangNhap
             // 
-            this.btn_dangXuat.Caption = "Đăng xuất";
-            this.btn_dangXuat.Id = 27;
-            this.btn_dangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.Image")));
-            this.btn_dangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.LargeImage")));
-            this.btn_dangXuat.Name = "btn_dangXuat";
+            this.btn_dangNhap.Caption = "Đăng nhập";
+            this.btn_dangNhap.Id = 27;
+            this.btn_dangNhap.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_dangNhap.ImageOptions.Image")));
+            this.btn_dangNhap.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_dangNhap.ImageOptions.LargeImage")));
+            this.btn_dangNhap.Name = "btn_dangNhap";
+            this.btn_dangNhap.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_dangNhap_ItemClick);
             // 
             // btn_nhanVien
             // 
@@ -135,6 +140,7 @@ namespace formDN
             this.btn_vatTu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_vatTu.ImageOptions.Image")));
             this.btn_vatTu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_vatTu.ImageOptions.LargeImage")));
             this.btn_vatTu.Name = "btn_vatTu";
+            this.btn_vatTu.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_vatTu_ItemClick);
             // 
             // btn_kho
             // 
@@ -143,6 +149,7 @@ namespace formDN
             this.btn_kho.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_kho.ImageOptions.Image")));
             this.btn_kho.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_kho.ImageOptions.LargeImage")));
             this.btn_kho.Name = "btn_kho";
+            this.btn_kho.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_kho_ItemClick);
             // 
             // btn_DDH
             // 
@@ -151,6 +158,7 @@ namespace formDN
             this.btn_DDH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DDH.ImageOptions.Image")));
             this.btn_DDH.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_DDH.ImageOptions.LargeImage")));
             this.btn_DDH.Name = "btn_DDH";
+            this.btn_DDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_DDH_ItemClick);
             // 
             // btn_phieuNhap
             // 
@@ -159,6 +167,7 @@ namespace formDN
             this.btn_phieuNhap.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_phieuNhap.ImageOptions.Image")));
             this.btn_phieuNhap.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_phieuNhap.ImageOptions.LargeImage")));
             this.btn_phieuNhap.Name = "btn_phieuNhap";
+            this.btn_phieuNhap.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_phieuNhap_ItemClick);
             // 
             // btn_phieuXuat
             // 
@@ -167,6 +176,7 @@ namespace formDN
             this.btn_phieuXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_phieuXuat.ImageOptions.Image")));
             this.btn_phieuXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_phieuXuat.ImageOptions.LargeImage")));
             this.btn_phieuXuat.Name = "btn_phieuXuat";
+            this.btn_phieuXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_phieuXuat_ItemClick);
             // 
             // btn_inDSNV
             // 
@@ -216,11 +226,20 @@ namespace formDN
             this.btn_inDSHDNV.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_inDSHDNV.ImageOptions.LargeImage")));
             this.btn_inDSHDNV.Name = "btn_inDSHDNV";
             // 
+            // btnDangXuat
+            // 
+            this.btnDangXuat.Caption = "Đăng xuất";
+            this.btnDangXuat.Id = 40;
+            this.btnDangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDangXuat.ImageOptions.Image")));
+            this.btnDangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDangXuat.ImageOptions.LargeImage")));
+            this.btnDangXuat.Name = "btnDangXuat";
+            // 
             // heThong
             // 
             this.heThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup14});
+            this.ribbonPageGroup14,
+            this.ribbonPageGroup15});
             this.heThong.Name = "heThong";
             this.heThong.Text = "Hệ thống";
             // 
@@ -231,8 +250,13 @@ namespace formDN
             // 
             // ribbonPageGroup14
             // 
-            this.ribbonPageGroup14.ItemLinks.Add(this.btn_dangXuat);
+            this.ribbonPageGroup14.ItemLinks.Add(this.btn_dangNhap);
             this.ribbonPageGroup14.Name = "ribbonPageGroup14";
+            // 
+            // ribbonPageGroup15
+            // 
+            this.ribbonPageGroup15.ItemLinks.Add(this.btnDangXuat);
+            this.ribbonPageGroup15.Name = "ribbonPageGroup15";
             // 
             // ribbonPageQuanLy
             // 
@@ -353,7 +377,7 @@ namespace formDN
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // Form_main
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -362,10 +386,11 @@ namespace formDN
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbonControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Form_main";
+            this.Name = "frmMain";
             this.Ribbon = this.ribbonControl1;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý vật tư";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
@@ -402,7 +427,7 @@ namespace formDN
         public System.Windows.Forms.ToolStripStatusLabel HOTEN;
         public System.Windows.Forms.ToolStripStatusLabel NHOM;
         private DevExpress.XtraBars.BarButtonItem themTaiKhoan;
-        private DevExpress.XtraBars.BarButtonItem btn_dangXuat;
+        private DevExpress.XtraBars.BarButtonItem btn_dangNhap;
         private DevExpress.XtraBars.BarButtonItem btn_nhanVien;
         private DevExpress.XtraBars.BarButtonItem btn_vatTu;
         private DevExpress.XtraBars.BarButtonItem btn_kho;
@@ -415,6 +440,8 @@ namespace formDN
         private DevExpress.XtraBars.BarButtonItem btn_bangKeVatTu;
         private DevExpress.XtraBars.BarButtonItem btn_tongHopPhieuXuat;
         private DevExpress.XtraBars.BarButtonItem btn_inDSHDNV;
+        private DevExpress.XtraBars.BarButtonItem btnDangXuat;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
     }
 }
 

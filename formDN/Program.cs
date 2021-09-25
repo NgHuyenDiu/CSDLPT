@@ -32,7 +32,7 @@ namespace formDN
         public static String mHoten = "";
         public static int mChinhanh = 0;
         public static BindingSource bds_dspm = new BindingSource();  // giữ danh sách phân mảnh khi đăng nhập
-
+        public static frmMain fMain;
         public static int KetNoi()
         {
             if (Program.conn != null && Program.conn.State == ConnectionState.Open)
@@ -108,7 +108,8 @@ namespace formDN
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-             Application.Run(new Form_dangNhap());
+            fMain= new frmMain();
+            Application.Run(fMain);
         
         }
     }
