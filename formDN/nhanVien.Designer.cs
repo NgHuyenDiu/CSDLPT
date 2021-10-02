@@ -36,9 +36,9 @@ namespace formDN
             System.Windows.Forms.Label dIACHILabel;
             System.Windows.Forms.Label nGAYSINHLabel;
             System.Windows.Forms.Label mACNLabel;
-            System.Windows.Forms.Label trangThaiXoaLabel;
             System.Windows.Forms.Label lUONGLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNhanVien));
+            System.Windows.Forms.Label trangThaiXoaLabel1;
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -77,7 +77,6 @@ namespace formDN
             this.colTrangThaiXoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtLuong = new DevExpress.XtraEditors.SpinEdit();
-            this.trangthaixoa = new System.Windows.Forms.CheckBox();
             this.txtCN = new DevExpress.XtraEditors.TextEdit();
             this.txtNgaySinh = new DevExpress.XtraEditors.DateEdit();
             this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
@@ -88,14 +87,15 @@ namespace formDN
             this.bdsPX = new System.Windows.Forms.BindingSource(this.components);
             this.bdsDH = new System.Windows.Forms.BindingSource(this.components);
             this.bdsCN = new System.Windows.Forms.BindingSource(this.components);
+            this.trangThaiXoa = new DevExpress.XtraEditors.SpinEdit();
             mANVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
             nGAYSINHLabel = new System.Windows.Forms.Label();
             mACNLabel = new System.Windows.Forms.Label();
-            trangThaiXoaLabel = new System.Windows.Forms.Label();
             lUONGLabel = new System.Windows.Forms.Label();
+            trangThaiXoaLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet1)).BeginInit();
@@ -114,6 +114,7 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trangThaiXoa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mANVLabel
@@ -169,15 +170,6 @@ namespace formDN
             mACNLabel.Size = new System.Drawing.Size(63, 20);
             mACNLabel.TabIndex = 12;
             mACNLabel.Text = "MACN:";
-            // 
-            // trangThaiXoaLabel
-            // 
-            trangThaiXoaLabel.AutoSize = true;
-            trangThaiXoaLabel.Location = new System.Drawing.Point(712, 168);
-            trangThaiXoaLabel.Name = "trangThaiXoaLabel";
-            trangThaiXoaLabel.Size = new System.Drawing.Size(128, 20);
-            trangThaiXoaLabel.TabIndex = 14;
-            trangThaiXoaLabel.Text = "Trang Thai Xoa:";
             // 
             // lUONGLabel
             // 
@@ -291,6 +283,7 @@ namespace formDN
             this.btnCCN.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.Image")));
             this.btnCCN.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.LargeImage")));
             this.btnCCN.Name = "btnCCN";
+            this.btnCCN.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCCN_ItemClick);
             // 
             // btnThoat
             // 
@@ -326,7 +319,7 @@ namespace formDN
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 637);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 655);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.barDockControlBottom.Size = new System.Drawing.Size(1319, 20);
@@ -338,7 +331,7 @@ namespace formDN
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 607);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 625);
             // 
             // barDockControlRight
             // 
@@ -347,7 +340,7 @@ namespace formDN
             this.barDockControlRight.Location = new System.Drawing.Point(1319, 30);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 607);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 625);
             // 
             // panel1
             // 
@@ -427,10 +420,10 @@ namespace formDN
             // 
             this.nhanVienGridControl.DataSource = this.bdsNV;
             this.nhanVienGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nhanVienGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.nhanVienGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5);
             this.nhanVienGridControl.Location = new System.Drawing.Point(0, 97);
             this.nhanVienGridControl.MainView = this.gridView1;
-            this.nhanVienGridControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.nhanVienGridControl.Margin = new System.Windows.Forms.Padding(5);
             this.nhanVienGridControl.MenuManager = this.barManager1;
             this.nhanVienGridControl.Name = "nhanVienGridControl";
             this.nhanVienGridControl.Size = new System.Drawing.Size(1319, 344);
@@ -526,10 +519,10 @@ namespace formDN
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(trangThaiXoaLabel1);
+            this.groupBox1.Controls.Add(this.trangThaiXoa);
             this.groupBox1.Controls.Add(lUONGLabel);
             this.groupBox1.Controls.Add(this.txtLuong);
-            this.groupBox1.Controls.Add(trangThaiXoaLabel);
-            this.groupBox1.Controls.Add(this.trangthaixoa);
             this.groupBox1.Controls.Add(mACNLabel);
             this.groupBox1.Controls.Add(this.txtCN);
             this.groupBox1.Controls.Add(nGAYSINHLabel);
@@ -546,7 +539,7 @@ namespace formDN
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, 441);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1319, 196);
+            this.groupBox1.Size = new System.Drawing.Size(1319, 214);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -567,15 +560,6 @@ namespace formDN
             this.txtLuong.Size = new System.Drawing.Size(207, 24);
             this.txtLuong.TabIndex = 16;
             // 
-            // trangthaixoa
-            // 
-            this.trangthaixoa.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.bdsNV, "TrangThaiXoa", true));
-            this.trangthaixoa.Location = new System.Drawing.Point(846, 168);
-            this.trangthaixoa.Name = "trangthaixoa";
-            this.trangthaixoa.Size = new System.Drawing.Size(104, 24);
-            this.trangthaixoa.TabIndex = 15;
-            this.trangthaixoa.UseVisualStyleBackColor = true;
-            // 
             // txtCN
             // 
             this.txtCN.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNV, "MACN", true));
@@ -584,7 +568,6 @@ namespace formDN
             this.txtCN.Name = "txtCN";
             this.txtCN.Size = new System.Drawing.Size(179, 22);
             this.txtCN.TabIndex = 13;
-            this.txtCN.EditValueChanged += new System.EventHandler(this.txtCN_EditValueChanged);
             // 
             // txtNgaySinh
             // 
@@ -656,11 +639,36 @@ namespace formDN
             this.bdsCN.DataMember = "ChiNhanh";
             this.bdsCN.DataSource = this.qLVT_DATHANGDataSet1;
             // 
+            // trangThaiXoaLabel1
+            // 
+            trangThaiXoaLabel1.AutoSize = true;
+            trangThaiXoaLabel1.Location = new System.Drawing.Point(777, 169);
+            trangThaiXoaLabel1.Name = "trangThaiXoaLabel1";
+            trangThaiXoaLabel1.Size = new System.Drawing.Size(128, 20);
+            trangThaiXoaLabel1.TabIndex = 16;
+            trangThaiXoaLabel1.Text = "Trang Thai Xoa:";
+            // 
+            // trangThaiXoa
+            // 
+            this.trangThaiXoa.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsNV, "TrangThaiXoa", true));
+            this.trangThaiXoa.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.trangThaiXoa.Location = new System.Drawing.Point(911, 167);
+            this.trangThaiXoa.MenuManager = this.barManager1;
+            this.trangThaiXoa.Name = "trangThaiXoa";
+            this.trangThaiXoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.trangThaiXoa.Size = new System.Drawing.Size(125, 24);
+            this.trangThaiXoa.TabIndex = 17;
+            // 
             // frmNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1319, 657);
+            this.ClientSize = new System.Drawing.Size(1319, 675);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.nhanVienGridControl);
             this.Controls.Add(this.panel1);
@@ -694,6 +702,7 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trangThaiXoa.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -734,7 +743,6 @@ namespace formDN
         private DevExpress.XtraGrid.Columns.GridColumn colMACN;
         private DevExpress.XtraGrid.Columns.GridColumn colTrangThaiXoa;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox trangthaixoa;
         private DevExpress.XtraEditors.TextEdit txtCN;
         private DevExpress.XtraEditors.DateEdit txtNgaySinh;
         private DevExpress.XtraEditors.TextEdit txtDiaChi;
@@ -750,5 +758,6 @@ namespace formDN
         private QLVT_DATHANGDataSet1TableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
         private System.Windows.Forms.BindingSource bdsCN;
         private DevExpress.XtraEditors.SpinEdit txtLuong;
+        private DevExpress.XtraEditors.SpinEdit trangThaiXoa;
     }
 }

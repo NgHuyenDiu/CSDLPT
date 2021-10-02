@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ namespace formDN
     public partial class frmKho : Form
     {
         private string macn;
+        private int vitri;
+        private Stack<String> stackundo = new Stack<string>();
+        String query = "";
+
         public frmKho()
         {
             InitializeComponent();
@@ -24,6 +29,15 @@ namespace formDN
             this.bdsKho.EndEdit();
             this.tableAdapterManager.UpdateAll(this.qLVT_DATHANGDataSet1);
 
+        }
+
+        private void LoadUndo()
+        {
+            if (stackundo.Count != 0)
+            {
+                btnUndo.Enabled = true;
+            }
+            else btnUndo.Enabled = false;
         }
         private void LoadTable()
         {
@@ -71,12 +85,8 @@ namespace formDN
                     cmbCN.Enabled = false; txtCN.Enabled = false;
                     groupBox1.Enabled = false;
                 }
-               /* if (stackundo.Count != 0)
-                {
-                    btnUndo.Enabled = true;
-                }
-                else btnUndo.Enabled = false;*/
 
+                LoadUndo();
             }
             catch (Exception ex)
             {
@@ -92,5 +102,222 @@ namespace formDN
             cmbCN.SelectedIndex = Program.mChinhanh;
 
         }
+ 
+
+        private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            vitri = bdsKho.Position;
+            groupBox1.Enabled = true;
+            txtMK.Enabled = false;
+            query = String.Format("update Kho set TENKHO=N'{1}', DIACHI=N'{2}',MACN=N'{3}' where MAKHO=N'{0}'", txtMK.Text, txtTenKho.Text, txtDiaChi.Text, txtCN.Text);
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = false;
+            btnGhi.Enabled = btnThoat.Enabled = true;
+            
+            txtCN.Enabled = cmbCN.Enabled = false;
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (groupBox1.Enabled)
+            {
+                if(MessageBox.Show("Dữ liệu chưa được lưu vào data", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
+        private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            LoadTable();
+        }
+
+        private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            groupBox1.Enabled = true;
+            vitri = bdsKho.Position;
+            bdsKho.AddNew();
+            txtCN.Text = macn;
+            query = String.Format("delete from Kho where MAKHO = {0}", txtMK.Text);
+            txtMK.Enabled = true;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = false;
+            btnGhi.Enabled = btnThoat.Enabled = true;
+            txtCN.Enabled = cmbCN.Enabled = false;
+        }
+
+        private int kiemTraTonTai(String maKho)
+        {
+            int result = 1;
+            String lenh = String.Format("EXEC sp_timkho {0}", maKho);
+            using(SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlcmt = new SqlCommand(lenh, connection);
+                sqlcmt.CommandType = CommandType.Text;
+                try
+                {
+                    sqlcmt.ExecuteNonQuery();
+                }
+                catch
+                {
+                    result = 0;
+                }
+               
+            }
+            return result;
+        }
+        private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // KIEM TRA DAU VAO
+            txtMK.Text = txtMK.Text.Trim();
+            
+            if(txtMK.Text.Trim() == String.Empty)
+            {
+                MessageBox.Show("Mã kho không được để trống", "", MessageBoxButtons.OK);
+                txtMK.Focus();
+                return;
+            }
+            if (txtMK.Text.Length > 4)
+            {
+                MessageBox.Show("Mã kho không được quá 4 ký tự ", "", MessageBoxButtons.OK);
+                txtMK.Focus();
+                return;
+
+            }
+            else if(txtMK.Text.Contains(" "))
+            {
+                MessageBox.Show("Mã kho không được chứa khoảng trắng!", "", MessageBoxButtons.OK);
+                txtMK.Focus();
+                return;
+            }
+
+            if(txtMK.Enabled == true)
+            {
+                try
+                {
+                    if(kiemTraTonTai(txtMK.EditValue.ToString())==1)
+                    {
+                        MessageBox.Show("Mã kho không được trùng!", "", MessageBoxButtons.OK);
+                        txtMK.Focus();
+                        return;
+                    }
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
+            if (txtTenKho.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Tên kho không được thiếu !", "", MessageBoxButtons.OK);
+                txtTenKho.Focus();
+                return;
+            }
+            if (txtDiaChi.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Địa chỉ không được thiếu!", "", MessageBoxButtons.OK);
+                txtDiaChi.Focus();
+                return;
+            }
+            // luu
+            try
+            {
+                // luu dataset
+                bdsKho.EndEdit();
+                bdsKho.ResetCurrentItem();
+                // luu csdl
+                this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.khoTableAdapter.Update(this.qLVT_DATHANGDataSet1.Kho);
+                stackundo.Push(query);
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi ghi kho." + ex.Message);
+                return;
+            }
+            LoadTable();
+        }
+
+        private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            String lenh = stackundo.Pop();
+            using(SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlcmt = new SqlCommand(lenh, connection);
+                sqlcmt.CommandType = CommandType.Text;
+                try
+                {
+                    sqlcmt.ExecuteNonQuery();
+                    LoadTable();
+                }
+                catch
+                {
+                    MessageBox.Show(lenh);
+                }
+            }
+        }
+
+        private void cmbCN_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCN.SelectedValue.ToString() == "System.Data.DataRowView")
+                return;
+            Program.servername = cmbCN.SelectedValue.ToString();
+            if(cmbCN.SelectedIndex != Program.mChinhanh)
+            {
+                Program.mlogin = Program.remotelogin;
+                Program.password = Program.remotepassword;
+            }
+            else
+            {
+                Program.mlogin = Program.mloginDN;
+                Program.password = Program.passwordDN;
+            }
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Lỗi kết nối về chi nhánh mới");
+            }
+            else
+            {
+                LoadTable();
+            }
+        }
+
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            String maKho = "";
+            maKho = ((DataRowView)bdsKho[bdsKho.Position])["MAKHO"].ToString();
+            if(bdsPN.Count + bdsPX.Count + bdsDH.Count >0)
+            {
+                MessageBox.Show("Không thể xóa kho này vì đã lập phiếu", "", MessageBoxButtons.OK);
+                return;
+            }
+            else if(MessageBox.Show("Bạn có thật sự xoá kho này !", "", MessageBoxButtons.OKCancel)== DialogResult.OK)
+            {
+                try
+                {
+                    String tenKho= ((DataRowView)bdsKho[bdsKho.Position])["TENKHO"].ToString();
+                    String diaChi= ((DataRowView)bdsKho[bdsKho.Position])["DIACHI"].ToString();
+                    bdsKho.RemoveCurrent();
+                    this.khoTableAdapter.Connection.ConnectionString= Program.connstr;
+                    this.khoTableAdapter.Update(this.qLVT_DATHANGDataSet1.Kho);
+                    query = String.Format("INSERT INTO KHO (MAKHO, TENKHO,DIACHI,MACN) VALUES(N'{0}', N'{1}', N'{2}',N'{3}')", maKho, tenKho, diaChi, macn);
+                    stackundo.Push(query);
+                    LoadTable();
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa vật tư. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                    //Đặt con trỏ về vị trí hiện thời
+                    this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet1.Kho);
+                    bdsKho.Position = bdsKho.Find("MAKHO", maKho);
+                    return;
+                }
+            }
+        }
+
+ 
     }
 }

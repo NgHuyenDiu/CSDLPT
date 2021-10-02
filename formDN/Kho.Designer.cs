@@ -30,11 +30,11 @@ namespace formDN
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKho));
             System.Windows.Forms.Label mAKHOLabel;
             System.Windows.Forms.Label tENKHOLabel;
             System.Windows.Forms.Label dIACHILabel;
             System.Windows.Forms.Label mACNLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKho));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -64,10 +64,10 @@ namespace formDN
             this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMACN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtMK = new DevExpress.XtraEditors.TextEdit();
-            this.txtTenKho = new DevExpress.XtraEditors.TextEdit();
-            this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
             this.txtCN = new DevExpress.XtraEditors.TextEdit();
+            this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
+            this.txtTenKho = new DevExpress.XtraEditors.TextEdit();
+            this.txtMK = new DevExpress.XtraEditors.TextEdit();
             this.bdsCN = new System.Windows.Forms.BindingSource(this.components);
             this.chiNhanhTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.ChiNhanhTableAdapter();
             this.bdsDH = new System.Windows.Forms.BindingSource(this.components);
@@ -87,15 +87,51 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.khoGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMK.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTenKho.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTenKho.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMK.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPX)).BeginInit();
             this.SuspendLayout();
+            // 
+            // mAKHOLabel
+            // 
+            mAKHOLabel.AutoSize = true;
+            mAKHOLabel.Location = new System.Drawing.Point(262, 92);
+            mAKHOLabel.Name = "mAKHOLabel";
+            mAKHOLabel.Size = new System.Drawing.Size(62, 17);
+            mAKHOLabel.TabIndex = 0;
+            mAKHOLabel.Text = "MAKHO:";
+            // 
+            // tENKHOLabel
+            // 
+            tENKHOLabel.AutoSize = true;
+            tENKHOLabel.Location = new System.Drawing.Point(254, 145);
+            tENKHOLabel.Name = "tENKHOLabel";
+            tENKHOLabel.Size = new System.Drawing.Size(70, 17);
+            tENKHOLabel.TabIndex = 2;
+            tENKHOLabel.Text = "TENKHO:";
+            // 
+            // dIACHILabel
+            // 
+            dIACHILabel.AutoSize = true;
+            dIACHILabel.Location = new System.Drawing.Point(644, 94);
+            dIACHILabel.Name = "dIACHILabel";
+            dIACHILabel.Size = new System.Drawing.Size(56, 17);
+            dIACHILabel.TabIndex = 4;
+            dIACHILabel.Text = "DIACHI:";
+            // 
+            // mACNLabel
+            // 
+            mACNLabel.AutoSize = true;
+            mACNLabel.Location = new System.Drawing.Point(649, 147);
+            mACNLabel.Name = "mACNLabel";
+            mACNLabel.Size = new System.Drawing.Size(51, 17);
+            mACNLabel.TabIndex = 6;
+            mACNLabel.Text = "MACN:";
             // 
             // barManager1
             // 
@@ -133,7 +169,6 @@ namespace formDN
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnUndo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReload, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnCCN, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
@@ -146,6 +181,7 @@ namespace formDN
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnSua
             // 
@@ -154,6 +190,7 @@ namespace formDN
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
             this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
             this.btnSua.Name = "btnSua";
+            this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
             // 
             // btnXoa
             // 
@@ -162,6 +199,7 @@ namespace formDN
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnGhi
             // 
@@ -170,6 +208,7 @@ namespace formDN
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
+            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
             // btnUndo
             // 
@@ -178,6 +217,7 @@ namespace formDN
             this.btnUndo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.Image")));
             this.btnUndo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.LargeImage")));
             this.btnUndo.Name = "btnUndo";
+            this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
             // 
             // btnReload
             // 
@@ -186,6 +226,7 @@ namespace formDN
             this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
             this.btnReload.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.LargeImage")));
             this.btnReload.Name = "btnReload";
+            this.btnReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReload_ItemClick);
             // 
             // btnCCN
             // 
@@ -194,6 +235,7 @@ namespace formDN
             this.btnCCN.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.Image")));
             this.btnCCN.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.LargeImage")));
             this.btnCCN.Name = "btnCCN";
+            
             // 
             // btnThoat
             // 
@@ -202,6 +244,7 @@ namespace formDN
             this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
             this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
             this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -269,6 +312,7 @@ namespace formDN
             this.cmbCN.Name = "cmbCN";
             this.cmbCN.Size = new System.Drawing.Size(239, 28);
             this.cmbCN.TabIndex = 1;
+            this.cmbCN.SelectedIndexChanged += new System.EventHandler(this.cmbCN_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -388,50 +432,14 @@ namespace formDN
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // mAKHOLabel
+            // txtCN
             // 
-            mAKHOLabel.AutoSize = true;
-            mAKHOLabel.Location = new System.Drawing.Point(262, 92);
-            mAKHOLabel.Name = "mAKHOLabel";
-            mAKHOLabel.Size = new System.Drawing.Size(62, 17);
-            mAKHOLabel.TabIndex = 0;
-            mAKHOLabel.Text = "MAKHO:";
-            // 
-            // txtMK
-            // 
-            this.txtMK.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MAKHO", true));
-            this.txtMK.Location = new System.Drawing.Point(330, 89);
-            this.txtMK.MenuManager = this.barManager1;
-            this.txtMK.Name = "txtMK";
-            this.txtMK.Size = new System.Drawing.Size(125, 22);
-            this.txtMK.TabIndex = 1;
-            // 
-            // tENKHOLabel
-            // 
-            tENKHOLabel.AutoSize = true;
-            tENKHOLabel.Location = new System.Drawing.Point(254, 145);
-            tENKHOLabel.Name = "tENKHOLabel";
-            tENKHOLabel.Size = new System.Drawing.Size(70, 17);
-            tENKHOLabel.TabIndex = 2;
-            tENKHOLabel.Text = "TENKHO:";
-            // 
-            // txtTenKho
-            // 
-            this.txtTenKho.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "TENKHO", true));
-            this.txtTenKho.Location = new System.Drawing.Point(330, 142);
-            this.txtTenKho.MenuManager = this.barManager1;
-            this.txtTenKho.Name = "txtTenKho";
-            this.txtTenKho.Size = new System.Drawing.Size(216, 22);
-            this.txtTenKho.TabIndex = 3;
-            // 
-            // dIACHILabel
-            // 
-            dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(644, 94);
-            dIACHILabel.Name = "dIACHILabel";
-            dIACHILabel.Size = new System.Drawing.Size(56, 17);
-            dIACHILabel.TabIndex = 4;
-            dIACHILabel.Text = "DIACHI:";
+            this.txtCN.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MACN", true));
+            this.txtCN.Location = new System.Drawing.Point(706, 144);
+            this.txtCN.MenuManager = this.barManager1;
+            this.txtCN.Name = "txtCN";
+            this.txtCN.Size = new System.Drawing.Size(125, 22);
+            this.txtCN.TabIndex = 7;
             // 
             // txtDiaChi
             // 
@@ -442,23 +450,23 @@ namespace formDN
             this.txtDiaChi.Size = new System.Drawing.Size(412, 22);
             this.txtDiaChi.TabIndex = 5;
             // 
-            // mACNLabel
+            // txtTenKho
             // 
-            mACNLabel.AutoSize = true;
-            mACNLabel.Location = new System.Drawing.Point(649, 147);
-            mACNLabel.Name = "mACNLabel";
-            mACNLabel.Size = new System.Drawing.Size(51, 17);
-            mACNLabel.TabIndex = 6;
-            mACNLabel.Text = "MACN:";
+            this.txtTenKho.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "TENKHO", true));
+            this.txtTenKho.Location = new System.Drawing.Point(330, 142);
+            this.txtTenKho.MenuManager = this.barManager1;
+            this.txtTenKho.Name = "txtTenKho";
+            this.txtTenKho.Size = new System.Drawing.Size(216, 22);
+            this.txtTenKho.TabIndex = 3;
             // 
-            // txtCN
+            // txtMK
             // 
-            this.txtCN.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MACN", true));
-            this.txtCN.Location = new System.Drawing.Point(706, 144);
-            this.txtCN.MenuManager = this.barManager1;
-            this.txtCN.Name = "txtCN";
-            this.txtCN.Size = new System.Drawing.Size(125, 22);
-            this.txtCN.TabIndex = 7;
+            this.txtMK.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKho, "MAKHO", true));
+            this.txtMK.Location = new System.Drawing.Point(330, 89);
+            this.txtMK.MenuManager = this.barManager1;
+            this.txtMK.Name = "txtMK";
+            this.txtMK.Size = new System.Drawing.Size(125, 22);
+            this.txtMK.TabIndex = 1;
             // 
             // bdsCN
             // 
@@ -471,8 +479,8 @@ namespace formDN
             // 
             // bdsDH
             // 
-            this.bdsDH.DataMember = "DatHang";
-            this.bdsDH.DataSource = this.qLVT_DATHANGDataSet1;
+            this.bdsDH.DataMember = "FK_DatHang_Kho";
+            this.bdsDH.DataSource = this.bdsKho;
             // 
             // datHangTableAdapter
             // 
@@ -480,8 +488,8 @@ namespace formDN
             // 
             // bdsPN
             // 
-            this.bdsPN.DataMember = "PhieuNhap";
-            this.bdsPN.DataSource = this.qLVT_DATHANGDataSet1;
+            this.bdsPN.DataMember = "FK_PhieuNhap_Kho";
+            this.bdsPN.DataSource = this.bdsKho;
             // 
             // phieuNhapTableAdapter
             // 
@@ -489,8 +497,8 @@ namespace formDN
             // 
             // bdsPX
             // 
-            this.bdsPX.DataMember = "PhieuXuat";
-            this.bdsPX.DataSource = this.qLVT_DATHANGDataSet1;
+            this.bdsPX.DataMember = "FK_PhieuXuat_Kho";
+            this.bdsPX.DataSource = this.bdsKho;
             // 
             // phieuXuatTableAdapter
             // 
@@ -521,10 +529,10 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMK.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTenKho.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiaChi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTenKho.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMK.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsPN)).EndInit();

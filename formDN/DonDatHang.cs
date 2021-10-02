@@ -83,11 +83,14 @@ namespace formDN
             cmbCN.DisplayMember = "TENCN";
             cmbCN.ValueMember = "TENSERVER";
             cmbCN.SelectedIndex = Program.mChinhanh;
-            btnGhiCTDDH.Enabled = false;
+           // btnGhiCTDDH.Enabled = false;
             groupBox1.Enabled = false;
 
         }
 
-        
+        private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }
