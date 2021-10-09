@@ -44,13 +44,13 @@ namespace formDN
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnUndo = new DevExpress.XtraBars.BarButtonItem();
             this.btnReload = new DevExpress.XtraBars.BarButtonItem();
-            this.btnCCN = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnCCN = new DevExpress.XtraBars.BarButtonItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmbCN = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,25 +68,28 @@ namespace formDN
             this.colMAKHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bdsCTPX = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnThêmCTPX = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnThemCTPX = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGhiCTPX = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXoaCTPX = new System.Windows.Forms.ToolStripMenuItem();
             this.bdsVT = new System.Windows.Forms.BindingSource(this.components);
             this.vattuTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.VattuTableAdapter();
             this.bdsK = new System.Windows.Forms.BindingSource(this.components);
             this.khoTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.KhoTableAdapter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.mAKHOTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.mANVSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.hOTENKHTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.nGAYDateEdit = new DevExpress.XtraEditors.DateEdit();
-            this.mAPXTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.cTPXBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbKho = new System.Windows.Forms.ComboBox();
+            this.txtMANV = new DevExpress.XtraEditors.SpinEdit();
+            this.txtTENKH = new DevExpress.XtraEditors.TextEdit();
+            this.txtNgay = new DevExpress.XtraEditors.DateEdit();
+            this.txtMAPX = new DevExpress.XtraEditors.TextEdit();
             this.cTPXGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMAPX1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAVT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.dSVTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colSOLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDONGIA = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.dSVTTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.DSVTTableAdapter();
             mAPXLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             hOTENKHLabel = new System.Windows.Forms.Label();
@@ -103,61 +106,61 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.bdsVT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsK)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mAKHOTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mANVSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOTENKHTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cTPXBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTENKH.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNgay.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNgay.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMAPX.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSVTBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mAPXLabel
             // 
             mAPXLabel.AutoSize = true;
-            mAPXLabel.Location = new System.Drawing.Point(51, 54);
+            mAPXLabel.Location = new System.Drawing.Point(47, 52);
             mAPXLabel.Name = "mAPXLabel";
-            mAPXLabel.Size = new System.Drawing.Size(50, 17);
+            mAPXLabel.Size = new System.Drawing.Size(100, 17);
             mAPXLabel.TabIndex = 0;
-            mAPXLabel.Text = "MAPX:";
+            mAPXLabel.Text = "Mã phiếu xuất:";
             // 
             // nGAYLabel
             // 
             nGAYLabel.AutoSize = true;
-            nGAYLabel.Location = new System.Drawing.Point(51, 94);
+            nGAYLabel.Location = new System.Drawing.Point(102, 96);
             nGAYLabel.Name = "nGAYLabel";
-            nGAYLabel.Size = new System.Drawing.Size(51, 17);
+            nGAYLabel.Size = new System.Drawing.Size(45, 17);
             nGAYLabel.TabIndex = 2;
-            nGAYLabel.Text = "NGAY:";
+            nGAYLabel.Text = "Ngày:";
             // 
             // hOTENKHLabel
             // 
             hOTENKHLabel.AutoSize = true;
             hOTENKHLabel.Location = new System.Drawing.Point(22, 138);
             hOTENKHLabel.Name = "hOTENKHLabel";
-            hOTENKHLabel.Size = new System.Drawing.Size(80, 17);
+            hOTENKHLabel.Size = new System.Drawing.Size(132, 17);
             hOTENKHLabel.TabIndex = 4;
-            hOTENKHLabel.Text = "HOTENKH:";
+            hOTENKHLabel.Text = "Họ tên khách hàng:";
             // 
             // mANVLabel
             // 
             mANVLabel.AutoSize = true;
             mANVLabel.Location = new System.Drawing.Point(50, 183);
             mANVLabel.Name = "mANVLabel";
-            mANVLabel.Size = new System.Drawing.Size(51, 17);
+            mANVLabel.Size = new System.Drawing.Size(97, 17);
             mANVLabel.TabIndex = 6;
-            mANVLabel.Text = "MANV:";
+            mANVLabel.Text = "Mã nhân viên:";
             // 
             // mAKHOLabel
             // 
             mAKHOLabel.AutoSize = true;
-            mAKHOLabel.Location = new System.Drawing.Point(40, 232);
+            mAKHOLabel.Location = new System.Drawing.Point(89, 230);
             mAKHOLabel.Name = "mAKHOLabel";
-            mAKHOLabel.Size = new System.Drawing.Size(62, 17);
+            mAKHOLabel.Size = new System.Drawing.Size(58, 17);
             mAKHOLabel.TabIndex = 8;
-            mAKHOLabel.Text = "MAKHO:";
+            mAKHOLabel.Text = "Mã kho:";
             // 
             // barManager1
             // 
@@ -207,6 +210,7 @@ namespace formDN
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnSua
             // 
@@ -224,6 +228,7 @@ namespace formDN
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnGhi
             // 
@@ -232,6 +237,7 @@ namespace formDN
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
+            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
             // btnUndo
             // 
@@ -240,6 +246,7 @@ namespace formDN
             this.btnUndo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.Image")));
             this.btnUndo.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUndo.ImageOptions.LargeImage")));
             this.btnUndo.Name = "btnUndo";
+            this.btnUndo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUndo_ItemClick);
             // 
             // btnReload
             // 
@@ -248,14 +255,7 @@ namespace formDN
             this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
             this.btnReload.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.LargeImage")));
             this.btnReload.Name = "btnReload";
-            // 
-            // btnCCN
-            // 
-            this.btnCCN.Caption = "Chuyển chi nhánh";
-            this.btnCCN.Id = 6;
-            this.btnCCN.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.Image")));
-            this.btnCCN.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.LargeImage")));
-            this.btnCCN.Name = "btnCCN";
+            this.btnReload.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReload_ItemClick);
             // 
             // btnThoat
             // 
@@ -264,6 +264,7 @@ namespace formDN
             this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
             this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
             this.btnThoat.Name = "btnThoat";
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -313,6 +314,14 @@ namespace formDN
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 711);
             // 
+            // btnCCN
+            // 
+            this.btnCCN.Caption = "Chuyển chi nhánh";
+            this.btnCCN.Id = 6;
+            this.btnCCN.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.Image")));
+            this.btnCCN.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCCN.ImageOptions.LargeImage")));
+            this.btnCCN.Name = "btnCCN";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.cmbCN);
@@ -331,6 +340,7 @@ namespace formDN
             this.cmbCN.Name = "cmbCN";
             this.cmbCN.Size = new System.Drawing.Size(239, 28);
             this.cmbCN.TabIndex = 1;
+            this.cmbCN.SelectedIndexChanged += new System.EventHandler(this.cmbCN_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -363,6 +373,7 @@ namespace formDN
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = this.cTPXTableAdapter;
             this.tableAdapterManager.DatHangTableAdapter = null;
+            this.tableAdapterManager.DSVTTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
@@ -448,29 +459,39 @@ namespace formDN
             // 
             // bdsCTPX
             // 
-            this.bdsCTPX.DataMember = "CTPX";
-            this.bdsCTPX.DataSource = this.qLVT_DATHANGDataSet1;
+            this.bdsCTPX.DataMember = "FK_CTPX_PX";
+            this.bdsCTPX.DataSource = this.bdsPX;
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnThêmCTPX,
-            this.btnGhiCTPX});
+            this.btnThemCTPX,
+            this.btnGhiCTPX,
+            this.btnXoaCTPX});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(116, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
             // 
-            // btnThêmCTPX
+            // btnThemCTPX
             // 
-            this.btnThêmCTPX.Name = "btnThêmCTPX";
-            this.btnThêmCTPX.Size = new System.Drawing.Size(115, 24);
-            this.btnThêmCTPX.Text = "Thêm";
+            this.btnThemCTPX.Name = "btnThemCTPX";
+            this.btnThemCTPX.Size = new System.Drawing.Size(210, 24);
+            this.btnThemCTPX.Text = "THÊM";
+            this.btnThemCTPX.Click += new System.EventHandler(this.btnThêmCTPX_Click);
             // 
             // btnGhiCTPX
             // 
             this.btnGhiCTPX.Name = "btnGhiCTPX";
-            this.btnGhiCTPX.Size = new System.Drawing.Size(115, 24);
-            this.btnGhiCTPX.Text = "Ghi";
+            this.btnGhiCTPX.Size = new System.Drawing.Size(210, 24);
+            this.btnGhiCTPX.Text = "GHI";
+            this.btnGhiCTPX.Click += new System.EventHandler(this.btnGhiCTPX_Click);
+            // 
+            // btnXoaCTPX
+            // 
+            this.btnXoaCTPX.Name = "btnXoaCTPX";
+            this.btnXoaCTPX.Size = new System.Drawing.Size(210, 24);
+            this.btnXoaCTPX.Text = "XOÁ";
+            this.btnXoaCTPX.Click += new System.EventHandler(this.btnXoaCTPX_Click);
             // 
             // bdsVT
             // 
@@ -492,95 +513,96 @@ namespace formDN
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbKho);
             this.groupBox1.Controls.Add(mAKHOLabel);
-            this.groupBox1.Controls.Add(this.mAKHOTextEdit);
             this.groupBox1.Controls.Add(mANVLabel);
-            this.groupBox1.Controls.Add(this.mANVSpinEdit);
+            this.groupBox1.Controls.Add(this.txtMANV);
             this.groupBox1.Controls.Add(hOTENKHLabel);
-            this.groupBox1.Controls.Add(this.hOTENKHTextEdit);
+            this.groupBox1.Controls.Add(this.txtTENKH);
             this.groupBox1.Controls.Add(nGAYLabel);
-            this.groupBox1.Controls.Add(this.nGAYDateEdit);
+            this.groupBox1.Controls.Add(this.txtNgay);
             this.groupBox1.Controls.Add(mAPXLabel);
-            this.groupBox1.Controls.Add(this.mAPXTextEdit);
+            this.groupBox1.Controls.Add(this.txtMAPX);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 365);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(305, 376);
+            this.groupBox1.Size = new System.Drawing.Size(502, 376);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PHIẾU XUẤT";
             // 
-            // mAKHOTextEdit
+            // cmbKho
             // 
-            this.mAKHOTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "MAKHO", true));
-            this.mAKHOTextEdit.Location = new System.Drawing.Point(108, 229);
-            this.mAKHOTextEdit.MenuManager = this.barManager1;
-            this.mAKHOTextEdit.Name = "mAKHOTextEdit";
-            this.mAKHOTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.mAKHOTextEdit.TabIndex = 9;
+            this.cmbKho.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsPX, "MAKHO", true));
+            this.cmbKho.DataSource = this.bdsK;
+            this.cmbKho.DisplayMember = "MAKHO";
+            this.cmbKho.FormattingEnabled = true;
+            this.cmbKho.Location = new System.Drawing.Point(171, 230);
+            this.cmbKho.Name = "cmbKho";
+            this.cmbKho.Size = new System.Drawing.Size(172, 24);
+            this.cmbKho.TabIndex = 10;
+            this.cmbKho.ValueMember = "MAKHO";
             // 
-            // mANVSpinEdit
+            // txtMANV
             // 
-            this.mANVSpinEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "MANV", true));
-            this.mANVSpinEdit.EditValue = new decimal(new int[] {
+            this.txtMANV.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "MANV", true));
+            this.txtMANV.EditValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.mANVSpinEdit.Location = new System.Drawing.Point(107, 180);
-            this.mANVSpinEdit.MenuManager = this.barManager1;
-            this.mANVSpinEdit.Name = "mANVSpinEdit";
-            this.mANVSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.txtMANV.Location = new System.Drawing.Point(171, 179);
+            this.txtMANV.MenuManager = this.barManager1;
+            this.txtMANV.Name = "txtMANV";
+            this.txtMANV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.mANVSpinEdit.Size = new System.Drawing.Size(125, 24);
-            this.mANVSpinEdit.TabIndex = 7;
+            this.txtMANV.Size = new System.Drawing.Size(176, 24);
+            this.txtMANV.TabIndex = 7;
             // 
-            // hOTENKHTextEdit
+            // txtTENKH
             // 
-            this.hOTENKHTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "HOTENKH", true));
-            this.hOTENKHTextEdit.Location = new System.Drawing.Point(108, 135);
-            this.hOTENKHTextEdit.MenuManager = this.barManager1;
-            this.hOTENKHTextEdit.Name = "hOTENKHTextEdit";
-            this.hOTENKHTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.hOTENKHTextEdit.TabIndex = 5;
+            this.txtTENKH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "HOTENKH", true));
+            this.txtTENKH.Location = new System.Drawing.Point(171, 135);
+            this.txtTENKH.MenuManager = this.barManager1;
+            this.txtTENKH.Name = "txtTENKH";
+            this.txtTENKH.Size = new System.Drawing.Size(176, 22);
+            this.txtTENKH.TabIndex = 5;
             // 
-            // nGAYDateEdit
+            // txtNgay
             // 
-            this.nGAYDateEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "NGAY", true));
-            this.nGAYDateEdit.EditValue = null;
-            this.nGAYDateEdit.Location = new System.Drawing.Point(108, 91);
-            this.nGAYDateEdit.MenuManager = this.barManager1;
-            this.nGAYDateEdit.Name = "nGAYDateEdit";
-            this.nGAYDateEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.txtNgay.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "NGAY", true));
+            this.txtNgay.EditValue = null;
+            this.txtNgay.Location = new System.Drawing.Point(171, 91);
+            this.txtNgay.MenuManager = this.barManager1;
+            this.txtNgay.Name = "txtNgay";
+            this.txtNgay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.nGAYDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.txtNgay.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.nGAYDateEdit.Size = new System.Drawing.Size(125, 22);
-            this.nGAYDateEdit.TabIndex = 3;
+            this.txtNgay.Size = new System.Drawing.Size(176, 22);
+            this.txtNgay.TabIndex = 3;
             // 
-            // mAPXTextEdit
+            // txtMAPX
             // 
-            this.mAPXTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "MAPX", true));
-            this.mAPXTextEdit.Location = new System.Drawing.Point(107, 51);
-            this.mAPXTextEdit.MenuManager = this.barManager1;
-            this.mAPXTextEdit.Name = "mAPXTextEdit";
-            this.mAPXTextEdit.Size = new System.Drawing.Size(125, 22);
-            this.mAPXTextEdit.TabIndex = 1;
-            // 
-            // cTPXBindingSource
-            // 
-            this.cTPXBindingSource.DataMember = "FK_CTPX_PX";
-            this.cTPXBindingSource.DataSource = this.bdsPX;
+            this.txtMAPX.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsPX, "MAPX", true));
+            this.txtMAPX.Location = new System.Drawing.Point(171, 49);
+            this.txtMAPX.MenuManager = this.barManager1;
+            this.txtMAPX.Name = "txtMAPX";
+            this.txtMAPX.Size = new System.Drawing.Size(176, 22);
+            this.txtMAPX.TabIndex = 1;
             // 
             // cTPXGridControl
             // 
-            this.cTPXGridControl.DataSource = this.cTPXBindingSource;
+            this.cTPXGridControl.ContextMenuStrip = this.contextMenuStrip1;
+            this.cTPXGridControl.DataSource = this.bdsCTPX;
             this.cTPXGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTPXGridControl.Location = new System.Drawing.Point(305, 365);
+            this.cTPXGridControl.Location = new System.Drawing.Point(502, 365);
             this.cTPXGridControl.MainView = this.gridView2;
             this.cTPXGridControl.MenuManager = this.barManager1;
             this.cTPXGridControl.Name = "cTPXGridControl";
-            this.cTPXGridControl.Size = new System.Drawing.Size(1183, 376);
+            this.cTPXGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEdit1});
+            this.cTPXGridControl.Size = new System.Drawing.Size(986, 376);
             this.cTPXGridControl.TabIndex = 14;
             this.cTPXGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -606,12 +628,28 @@ namespace formDN
             // 
             // colMAVT
             // 
+            this.colMAVT.ColumnEdit = this.repositoryItemLookUpEdit1;
             this.colMAVT.FieldName = "MAVT";
             this.colMAVT.MinWidth = 25;
             this.colMAVT.Name = "colMAVT";
             this.colMAVT.Visible = true;
             this.colMAVT.VisibleIndex = 1;
             this.colMAVT.Width = 94;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.DataSource = this.dSVTBindingSource;
+            this.repositoryItemLookUpEdit1.DisplayMember = "MAVT";
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.ValueMember = "MAVT";
+            // 
+            // dSVTBindingSource
+            // 
+            this.dSVTBindingSource.DataMember = "DSVT";
+            this.dSVTBindingSource.DataSource = this.qLVT_DATHANGDataSet1;
             // 
             // colSOLUONG
             // 
@@ -630,6 +668,10 @@ namespace formDN
             this.colDONGIA.Visible = true;
             this.colDONGIA.VisibleIndex = 3;
             this.colDONGIA.Width = 94;
+            // 
+            // dSVTTableAdapter
+            // 
+            this.dSVTTableAdapter.ClearBeforeFill = true;
             // 
             // frmPhieuXuat
             // 
@@ -660,15 +702,15 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.bdsK)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mAKHOTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mANVSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOTENKHTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cTPXBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTENKH.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNgay.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNgay.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMAPX.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dSVTBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -708,24 +750,27 @@ namespace formDN
         private QLVT_DATHANGDataSet1TableAdapters.CTPXTableAdapter cTPXTableAdapter;
         private System.Windows.Forms.BindingSource bdsCTPX;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem btnThêmCTPX;
+        private System.Windows.Forms.ToolStripMenuItem btnThemCTPX;
         private System.Windows.Forms.ToolStripMenuItem btnGhiCTPX;
         private System.Windows.Forms.BindingSource bdsVT;
         private QLVT_DATHANGDataSet1TableAdapters.VattuTableAdapter vattuTableAdapter;
         private System.Windows.Forms.BindingSource bdsK;
         private QLVT_DATHANGDataSet1TableAdapters.KhoTableAdapter khoTableAdapter;
         private DevExpress.XtraGrid.GridControl cTPXGridControl;
-        private System.Windows.Forms.BindingSource cTPXBindingSource;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraGrid.Columns.GridColumn colMAPX1;
         private DevExpress.XtraGrid.Columns.GridColumn colMAVT;
         private DevExpress.XtraGrid.Columns.GridColumn colSOLUONG;
         private DevExpress.XtraGrid.Columns.GridColumn colDONGIA;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.TextEdit mAKHOTextEdit;
-        private DevExpress.XtraEditors.SpinEdit mANVSpinEdit;
-        private DevExpress.XtraEditors.TextEdit hOTENKHTextEdit;
-        private DevExpress.XtraEditors.DateEdit nGAYDateEdit;
-        private DevExpress.XtraEditors.TextEdit mAPXTextEdit;
+        private DevExpress.XtraEditors.SpinEdit txtMANV;
+        private DevExpress.XtraEditors.TextEdit txtTENKH;
+        private DevExpress.XtraEditors.DateEdit txtNgay;
+        private DevExpress.XtraEditors.TextEdit txtMAPX;
+        private System.Windows.Forms.ComboBox cmbKho;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
+        private System.Windows.Forms.ToolStripMenuItem btnXoaCTPX;
+        private System.Windows.Forms.BindingSource dSVTBindingSource;
+        private QLVT_DATHANGDataSet1TableAdapters.DSVTTableAdapter dSVTTableAdapter;
     }
 }

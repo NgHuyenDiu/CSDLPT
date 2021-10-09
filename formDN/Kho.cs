@@ -15,9 +15,9 @@ namespace formDN
     {
         private string macn;
         private int vitri;
-        private Stack<String> stackundo = new Stack<string>();
+        private Stack<String> stackundo = new Stack<string>(16);
         String query = "";
-
+        Boolean them = false;
         public frmKho()
         {
             InitializeComponent();
@@ -69,7 +69,7 @@ namespace formDN
                     cmbCN.Enabled = true;
                     groupBox1.Enabled = false;
                 }
-                else if (Program.mGroup == "USSER")
+                else if (Program.mGroup == "USER")
                 {
                     btnXoa.Enabled = btnSua.Enabled = btnReload.Enabled = true;
                     btnThem.Enabled = true;
@@ -109,10 +109,10 @@ namespace formDN
             vitri = bdsKho.Position;
             groupBox1.Enabled = true;
             txtMK.Enabled = false;
-            query = String.Format("update Kho set TENKHO=N'{1}', DIACHI=N'{2}',MACN=N'{3}' where MAKHO=N'{0}'", txtMK.Text, txtTenKho.Text, txtDiaChi.Text, txtCN.Text);
+            them = false;
+            query = String.Format("update Kho set TENKHO=N'{1}', DIACHI=N'{2}',MACN=N'{3}' where MAKHO=N'{0}'", txtMK.Text.Trim(), txtTenKho.Text, txtDiaChi.Text, txtCN.Text);
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnThoat.Enabled = true;
-            
             txtCN.Enabled = cmbCN.Enabled = false;
         }
 
@@ -142,8 +142,10 @@ namespace formDN
             vitri = bdsKho.Position;
             bdsKho.AddNew();
             txtCN.Text = macn;
-            query = String.Format("delete from Kho where MAKHO = {0}", txtMK.Text);
             txtMK.Enabled = true;
+            them = true;
+           
+           
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnThoat.Enabled = true;
             txtCN.Enabled = cmbCN.Enabled = false;
@@ -232,6 +234,11 @@ namespace formDN
                 // luu csdl
                 this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.khoTableAdapter.Update(this.qLVT_DATHANGDataSet1.Kho);
+                if(them)
+                {
+                    query = String.Format("Delete from Kho where MAKHO = N'{0}' ", txtMK.Text.Trim());
+                }
+                
                 stackundo.Push(query);
             }catch(Exception ex)
             {

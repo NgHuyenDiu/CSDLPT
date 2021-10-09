@@ -1,54 +1,116 @@
-// kiem tra nhan vien co login hay không
-create procedure  [dbo].[sp_checknhanviencologin]
-@tenlogin nvarchar(50)
-as
-begin
-select MANV, HOTEN= HO +''+TEN 
-from NhanVien
-where CONVERT(varchar, MANV) in (select name from sys.sysusers)and TrangThaiXoa=0 and MANV= @tenlogin
-end
+CREATE PROCEDURE [dbo].[NewDeleteCommand]
+(
+	@Original_MAVT nchar(4),
+	@Original_TENVT nvarchar(30)
+)
+AS
+	SET NOCOUNT OFF;
+DELETE FROM [Vattu] WHERE (([MAVT] = @Original_MAVT) AND ([TENVT] = @Original_TENVT))
 
-// chuyển chi nhánh
-create PROCEDURE [dbo].[sp_chuyenchinhanh] 
-@manv int,
-@mamoi int
-as
-begin
-	declare @ttx int
-	select @ttx=TrangThaiXoa from NhanVien where MANV = @manv
-	if(@ttx=0)
-		begin
-			declare @macn nchar(10)
-			select @macn = MACN from LINK1.QLVT_DATHANG.DBO.ChiNhanh
 
-			-- kiem tra nhan vien da ton tai chua
-			declare @ho nvarchar(50), @ten nvarchar(50) , @ngaySinh nvarchar(50), @diaChi nvarchar(50)
-			select @ho= HO, @ten=TEN, @diaChi=DIACHI,@ngaySinh= NGAYSINH FROM NhanVien where MANV=@manv
-			select @@ROWCOUNT FROM LINK1.QLVT_DATHANG.DBO.NhanVien 
-					where (HO= @ho AND TEN= @ten and DIACHI= @diaChi and NGAYSINH= @ngaySinh)
+***************************
+CREATE PROCEDURE [dbo].[NewSelectCommand]
+AS
+	SET NOCOUNT ON;
+select MAVT, TENVT from Vattu
 
-	if(@@ROWCOUNT = 1 )-- neu nhan vien da ton tai 
-		begin
-			update LINK1.QLVT_DATHANG.DBO.NhanVien set TrangThaiXoa = 0
-			where HO = @ho and TEN = @ten AND NGAYSINH= @ngaySinh AND DIACHI= @diaChi
-		end
-	else
-		begin
-			insert into LINK1.QLVT_DATHANG.DBO.NhanVien (MANV, HO, TEN, DIACHI, NGAYSINH, LUONG, MACN, TrangThaiXoa)
-			select MANV=@mamoi,HO,TEN,DIACHI,NGAYSINH,LUONG,MACN=@macn,TrangThaiXoa = 0
-			from NhanVien
-			where MANV = @manv
-		end
 
-	update NhanVien set TrangThaiXoa = 1
-	where MANV = @manv
-		end
-	else
-	raiserror(50001, 18, 1, N'Nhân viên đã chuyển chi nhánh')
-end
+*************************
+CREATE PROCEDURE [dbo].[NewUpdateCommand]
+(
+	@MAVT nchar(4),
+	@TENVT nvarchar(30),
+	@Original_MAVT nchar(4),
+	@Original_TENVT nvarchar(30)
+)
+AS
+	SET NOCOUNT OFF;
+UPDATE [Vattu] SET [MAVT] = @MAVT, [TENVT] = @TENVT WHERE (([MAVT] = @Original_MAVT) AND ([TENVT] = @Original_TENVT));
+	
+SELECT MAVT, TENVT FROM Vattu WHERE (MAVT = @MAVT)
 
-// đăng nhập
-create PROC [dbo].[SP_DANGNHAP]
+***********************************
+CREATE procedure  [dbo].[sp_checknhanviencologin]
+@TENLOGIN NVARCHAR(50)
+AS
+BEGIN
+SELECT MANV, HOTEN= HO +''+TEN 
+FROM NHANVIEN
+WHERE CONVERT(VARCHAR, MANV) IN (SELECT NAME FROM SYS.SYSUSERS)AND TRANGTHAIXOA=0 AND MANV= @TENLOGIN
+END
+
+***************************************
+CREATE PROCEDURE [dbo].[sp_checkquyenxoanhanvien] 
+@TENLOGIN VARCHAR(50),	--TENLOGIN LÀ TRUYỀN MÃ NHÂN VIÊN VÔ
+@ROLENGUOIXOA VARCHAR(50)
+AS
+BEGIN
+DECLARE @SID VARBINARY(85)
+	SELECT @SID = SID FROM SYS.SYSUSERS WHERE NAME = @TENLOGIN
+	IF (@SID IS NOT NULL)
+	BEGIN
+		DECLARE @LGNAME VARCHAR(50)
+		SELECT @LGNAME = LOGINNAME FROM SYS.SYSLOGINS WHERE SID = @SID
+	END
+DECLARE @TENUSER NVARCHAR(50), @USERID INT, @ROLE NVARCHAR(50)
+	
+	SELECT @USERID= UID ,@TENUSER=NAME FROM SYS.SYSUSERS WHERE SID = SUSER_SID(@LGNAME)
+IF EXISTS(SELECT HO+ ' '+ TEN FROM DBO.NHANVIEN WHERE MANV = @TENUSER AND TRANGTHAIXOA=0)
+BEGIN
+	SELECT 
+   @ROLE = NAME
+   FROM SYS.SYSUSERS 
+   WHERE UID = (SELECT GROUPUID 
+                 FROM SYS.SYSMEMBERS 
+                   WHERE MEMBERUID= @USERID
+               )
+
+END
+IF((@ROLENGUOIXOA = 'CHINHANH' AND @ROLE = 'CONGTY')OR(@ROLENGUOIXOA = 'USER' AND @ROLE = 'CONGTY') OR(@ROLENGUOIXOA = 'USER' AND @ROLE = 'CHINHANH'))
+RAISERROR('BẠN KHÔNG ĐỦ QUYỀN ĐỂ XÓA NHÂN VIÊN NÀY',16,1)
+END
+
+*****************************************
+CREATE PROCEDURE [dbo].[sp_chuyenchinhanh] 
+@MANV INT,
+@MAMOI INT
+AS
+BEGIN
+	DECLARE @TTX INT
+	SELECT @TTX=TRANGTHAIXOA FROM NHANVIEN WHERE MANV = @MANV
+	IF(@TTX=0)
+		BEGIN
+			DECLARE @MACN NCHAR(10)
+			SELECT @MACN = MACN FROM LINK1.QLVT_DATHANG.DBO.CHINHANH
+
+			-- KIEM TRA NHAN VIEN DA TON TAI CHUA
+			DECLARE @HO NVARCHAR(50), @TEN NVARCHAR(50) , @NGAYSINH NVARCHAR(50), @DIACHI NVARCHAR(50)
+			SELECT @HO= HO, @TEN=TEN, @DIACHI=DIACHI,@NGAYSINH= NGAYSINH FROM NHANVIEN WHERE MANV=@MANV
+			SELECT @@ROWCOUNT FROM LINK1.QLVT_DATHANG.DBO.NHANVIEN 
+					WHERE (HO= @HO AND TEN= @TEN AND DIACHI= @DIACHI AND NGAYSINH= @NGAYSINH)
+
+	IF(@@ROWCOUNT = 1 )-- NEU NHAN VIEN DA TON TAI 
+		BEGIN
+			UPDATE LINK1.QLVT_DATHANG.DBO.NHANVIEN SET TRANGTHAIXOA = 0
+			WHERE HO = @HO AND TEN = @TEN AND NGAYSINH= @NGAYSINH AND DIACHI= @DIACHI
+		END
+	ELSE
+		BEGIN
+			INSERT INTO LINK1.QLVT_DATHANG.DBO.NHANVIEN (MANV, HO, TEN, DIACHI, NGAYSINH, LUONG, MACN, TRANGTHAIXOA)
+			SELECT MANV=@MAMOI,HO,TEN,DIACHI,NGAYSINH,LUONG,MACN=@MACN,TRANGTHAIXOA = 0
+			FROM NHANVIEN
+			WHERE MANV = @MANV
+		END
+
+	UPDATE NHANVIEN SET TRANGTHAIXOA = 1
+	WHERE MANV = @MANV
+		END
+	ELSE
+	RAISERROR(50001, 18, 1, N'NHÂN VIÊN ĐÃ CHUYỂN CHI NHÁNH')
+END
+
+*********************************************
+CREATE PROC [dbo].[SP_DANGNHAP]
 @TENLOGIN NVARCHAR (50)
 AS
 DECLARE @TENUSER NVARCHAR(50)
@@ -62,137 +124,198 @@ SELECT @TENUSER=NAME FROM sys.sysusers WHERE sid = SUSER_SID(@TENLOGIN)
                  FROM SYS.SYSMEMBERS 
                    WHERE MEMBERUID= (SELECT UID FROM sys.sysusers 
                                       WHERE NAME=@TENUSER))
-//lay loginname cua nhan vien
-create PROCEDURE [dbo].[sp_layloginname] 
-@tenlogin VARCHAR(50)	--tenlogin là truyền mã nhân viên vô
+
+********************************************
+CREATE proc [dbo].[sp_ktrasoluongvattu]
+@MAPHIEU NCHAR(8),
+@MAVT NCHAR(4),
+@SOLUONG INT
+AS
+BEGIN
+IF(@SOLUONG<=(SELECT SOLUONG FROM CTDDH WHERE MASODDH= @MAPHIEU AND MAVT= @MAVT))
+		SELECT SOLUONG FROM CTDDH WHERE MASODDH= @MAPHIEU AND MAVT= @MAVT
+ELSE
+	RAISERROR(N'SỐ LƯỢNG VẬT TƯ KHÔNG HỢP LỆ !',16,1)
+END
+
+********************************************
+CREATE PROCEDURE [dbo].[sp_layloginname] @tenlogin VARCHAR(50)	--tenlogin là truyền mã nhân viên
 AS
 BEGIN
 	DECLARE @SID VARBINARY(85)
 	SELECT @SID = sid FROM sys.sysusers WHERE name = @tenlogin
 	IF (@SID IS NULL)
-		RAISERROR('Nhân viên chưa tạo tài khoản',16,1)
+		RAISERROR('K TIM THAY SID',16,1)
 	ELSE
 	BEGIN
 		DECLARE @LGNAME VARCHAR(50)
 		SELECT @LGNAME = loginname FROM sys.syslogins WHERE sid = @SID
-		IF(@LGNAME IS NOT NULL)
-		BEGIN
-			select @LGNAME
-		END
+		IF(@LGNAME IS NULL)
+			RAISERROR('K TIM THAY LGNAME',16,1)
 		ELSE
-			RAISERROR('Nhân viên chưa tạo tài khoản',16,1)
+			select @LGNAME
 	END
 END
-
-// lay quyen nhan vien 
-create proc [dbo].[sp_layquyennhanvien]
-@tenLogin varchar(50)
-as
-begin
-declare @userId int, @role nvarchar(50) 
-	select @userId = UID from sys.sysusers where NAME = @tenLogin
-if exists(SELECT HO+ ' '+ TEN FROM dbo.NhanVien WHERE MANV = @tenLogin and TrangThaiXoa=0)
-begin
-	SELECT 
-   @role = NAME
-   FROM sys.sysusers 
-   WHERE UID = (SELECT GROUPUID 
-                 FROM SYS.SYSMEMBERS 
-                   WHERE MEMBERUID= @UserId
-               )
-if(@role is not null)
-	begin
-	select @role
-	end
-else
-	raiserror('khong co quyen han',16,1)
-end
-end
-
-// undo chuyển chi nhánh
-create proc [dbo].[sp_undochuyencn]
-@manv int,
-@mamoi int
-as
-begin
-	update NhanVien set TrangThaiXoa = 0 where MANV = @manv
-	delete LINK1.QLVT_DATHANG.DBO.NhanVien where MANV = @mamoi
-end
-
-//
-create PROCEDURE [dbo].[sp_undoxoanhanvien] 
-	@LGNAME VARCHAR(50),
-	@USERNAME VARCHAR(50),
-	@ROLE varchar(50),
-	@Ho nvarchar(50),
-	@Ten nvarchar(50),
-	@DiaChi nvarchar(50),
-	@NgaySinh varchar(50),
-	@Luong varchar(50),
-	@MaCN varchar(50)
+**************************************
+CREATE proc [dbo].[sp_layquyennhanvien]
+@TENLOGIN VARCHAR(50)
 AS
 BEGIN
-	insert into NhanVien (MANV, HO, TEN, DIACHI, NGAYSINH, LUONG, MACN, TrangThaiXoa) Values (@USERNAME,@Ho,@Ten,@DiaChi,@NgaySinh,@Luong,@MaCN,0)
+DECLARE @USERID INT, @ROLE NVARCHAR(50) 
+	SELECT @USERID = UID FROM SYS.SYSUSERS WHERE NAME = @TENLOGIN
+IF EXISTS(SELECT HO+ ' '+ TEN FROM DBO.NHANVIEN WHERE MANV = @TENLOGIN AND TRANGTHAIXOA=0)
+BEGIN
+	SELECT 
+   @ROLE = NAME
+   FROM SYS.SYSUSERS 
+   WHERE UID = (SELECT GROUPUID 
+                 FROM SYS.SYSMEMBERS 
+                   WHERE MEMBERUID= @USERID
+               )
+IF(@ROLE IS NOT NULL)
+	BEGIN
+	SELECT @ROLE
+	END
+ELSE
+	RAISERROR('KHONG CO QUYEN HAN',16,1)
+END
+END
+****************************
+CREATE PROC [dbo].[sp_timctddh]
+@MADDH NCHAR(8),
+@MAVT NCHAR(4)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM DBO.CTDDH WHERE MASODDH = @MADDH AND MAVT = @MAVT)
+		RETURN 1;
+	ELSE
+		IF EXISTS (SELECT * FROM LINK1.QLVT_DATHANG.DBO.CTDDH WHERE MASODDH = @MADDH AND MAVT = @MAVT)
+			RETURN 1;
+		ELSE
+			RAISERROR(N'CHI TIẾT ĐƠN ĐẶT HÀNG BẠN TÌM KHÔNG TỒN TẠI',16,1)
+END
+*************************************
+CREATE PROC [dbo].[sp_timddh]
+@MADDH NCHAR(8)
+AS
+BEGIN
+	IF EXISTS (SELECT MaSoDDH FROM DBO.DATHANG WHERE MASODDH = @MADDH)
+		RETURN 1;
+	ELSE
+		IF EXISTS (SELECT MasoDDH FROM LINK1.QLVT_DATHANG.DBO.DATHANG WHERE MASODDH = @MADDH)
+			RETURN 1;
+		ELSE
+			RAISERROR(N'ĐƠN ĐẶT HÀNG BẠN TÌM KHÔNG TỒN TẠI',16,1)
+END
+**************************************
+CREATE PROC [dbo].[sp_timkho]
+@MAKHO NCHAR(4)
+AS
+BEGIN
+	IF EXISTS (SELECT MAKHO FROM DBO.KHO WHERE MAKHO = @MAKHO)
+		RETURN 1;
+	ELSE
+		IF EXISTS (SELECT MAKHO FROM LINK1.QLVT_DATHANG.DBO.KHO WHERE MAKHO = @MAKHO)
+			RETURN 1;
+		ELSE
+			RAISERROR(N'KHO BẠN TÌM KHÔNG TỒN TẠI',16,1)
+END
+*************************************
+CREATE proc [dbo].[sp_timphieunhap]
+@MAPN NCHAR(8)
+AS
+BEGIN
+	IF EXISTS (SELECT MAPN FROM DBO.PHIEUNHAP WHERE MAPN = @MAPN)
+		RETURN 1;
+	ELSE
+		IF EXISTS (SELECT MAPN FROM LINK1.QLVT_DATHANG.DBO.PHIEUNHAP WHERE MAPN = @MAPN)
+			RETURN 1;
+		ELSE
+			RAISERROR(N'PHIẾU NHẬP BẠN TÌM KHÔNG TỒN TẠI',16,1)
+END
+************************************
+CREATE PROC [dbo].[sp_timphieuxuat]
+@MAPX NCHAR(8)
+AS
+BEGIN
+IF EXISTS (SELECT MAPX FROM DBO.PHIEUXUAT WHERE MAPX = @MAPX)
+		RETURN 1;
+	ELSE
+		IF EXISTS (SELECT MAPX FROM LINK1.QLVT_DATHANG.DBO.PHIEUXUAT WHERE MAPX = @MAPX)
+			RETURN 1;
+		ELSE
+			RAISERROR(N'PHIEU XUAT BẠN TÌM KHÔNG TỒN TẠI',16,1) 
+END
+********************************
+CREATE proc [dbo].[sp_undochuyencn]
+@MANV INT,
+@MAMOI INT
+AS
+BEGIN
+	UPDATE NHANVIEN SET TRANGTHAIXOA = 0 WHERE MANV = @MANV
+	DELETE LINK1.QLVT_DATHANG.DBO.NHANVIEN WHERE MANV = @MAMOI
+END
+***********************************
+CREATE  PROCEDURE [dbo].[sp_undoxoanhanvien] 
+	@LGNAME VARCHAR(50),
+	@USERNAME VARCHAR(50),
+	@HO NVARCHAR(50),
+	@TEN NVARCHAR(50),
+	@DIACHI NVARCHAR(50),
+	@NGAYSINH VARCHAR(50),
+	@LUONG VARCHAR(50),
+	@MACN VARCHAR(50),
+	@ROLE NVARCHAR(50)
+AS
+BEGIN
+	INSERT INTO NHANVIEN (MANV, HO, TEN, DIACHI, NGAYSINH, LUONG, MACN, TRANGTHAIXOA) VALUES (@USERNAME,@HO,@TEN,@DIACHI,@NGAYSINH,@LUONG,@MACN,0)
+
 
 	DECLARE @RET INT
-		EXEC @RET = sp_addlogin @LGNAME, '123456', 'QLVT_DATHANG'
+		EXEC @RET = SP_ADDLOGIN @LGNAME, '123456', 'QLVT_DATHANG'
 			IF (@RET =1) --LOGINNAME BI TRUNG
 				RETURN 1
-		EXEC @RET = sp_grantdbaccess @LGNAME, @USERNAME
+		EXEC @RET = SP_GRANTDBACCESS @LGNAME, @USERNAME
 		IF(@RET =1) --USER NAME BI TRUNG
 		BEGIN
-			EXEC sp_droplogin @LGNAME
+			EXEC SP_DROPLOGIN @LGNAME
 			RETURN 2
 		END
-
-		EXEC sp_addrolemember @ROLE, @USERNAME
+		--EXEC SP_ADDROLEMEMBER   @ROLE, @USERNAME
+		EXEC SP_ADDROLEMEMBER  @ROLENAME =  @ROLE,  @MEMBERNAME =  @USERNAME
 		IF @ROLE='CONGTY' OR @ROLE='CHINHANH'
-			EXEC sp_addsrvrolemember @LGNAME, 'securityAdmin'
-			EXEC sp_addsrvrolemember @LGNAME, 'sysadmin' -- thuc hien bat ky hoat dong nao tren server
-			EXEC sp_addsrvrolemember @LGNAME, 'processadmin' -- quyenthao tac tren db
+			EXEC SP_ADDSRVROLEMEMBER @LGNAME, 'SECURITYADMIN'
+			EXEC SP_ADDSRVROLEMEMBER @LGNAME, 'SYSADMIN' -- THUC HIEN BAT KY HOAT DONG NAO TREN SERVER
+			EXEC SP_ADDSRVROLEMEMBER @LGNAME, 'PROCESSADMIN' -- QUYENTHAO TAC TREN DB
 			RETURN 0 -- THANH CONG
 
-		IF @ROLE='USSER'
-			EXEC sp_addsrvrolemember @LGNAME, 'processadmin' -- quyenthao tac tren db
+		IF @ROLE='USER'
+			EXEC SP_ADDSRVROLEMEMBER @LGNAME, 'PROCESSADMIN' -- QUYENTHAO TAC TREN DB
 		COMMIT
 		RETURN 0 -- THANH CONG
+
+	
+
 END
-
-//xoá nhân viên
-create proc [dbo].[sp_xoanhanvien]
-@tenLogin varchar(50), @RoleNguoiXoa varchar(50)
-as
-begin
-declare @SID varbinary(85)
-	select @SID= sid from sys.sysusers where name= @tenLogin
-	if(@SID is null)
-		raiserror ('KHÔNG TÌM THẤY SID',16,1)
-	else
-	begin
-		declare @lgName varchar(50)
-		select @lgName = loginname from sys.syslogins where sid= @SID
-		if(@lgName is null)
-			raiserror('KHÔNG TÌM THẤY LOGINNAME', 16,1)
-	end
-declare @tenUser nvarchar(50), @userId int, @role nvarchar(50) 
-	select @userId = UID , @tenUser= name from sys.sysusers where sid = SUSER_SID(@lgName)
-if exists(SELECT HO+ ' '+ TEN FROM dbo.NhanVien WHERE MANV = @tenUser and TrangThaiXoa=0)
-begin
-	SELECT 
-   @ROLE = name
-   FROM sys.sysusers 
-   WHERE UID = (SELECT groupuid 
-                 FROM sys.sysmembers
-                   WHERE memberuid= @UserId
-               )
-
-end
-if((@RoleNguoiXoa = 'CHINHANH' and @ROLE = 'CONGTY')or(@RoleNguoiXoa = 'USER' and @ROLE = 'CONGTY') or(@RoleNguoiXoa = 'USER' and @ROLE = 'CHINHANH'))
-RAISERROR('Không có quyền xóa người này',16,1)
-else
+**********************************************
+CREATE PROCEDURE [dbo].[sp_xoatkdangnhap] 
+@TENLOGIN VARCHAR(50)	--TENLOGIN LÀ TRUYỀN MÃ NHÂN VIÊN VÔ
+AS
 BEGIN
-	--delete NhanVien where MANV = @tenlogin
-	EXEC SP_DROPUSER @tenlogin	--Xóa user trong server role
-	EXEC SP_DROPLOGIN @lgname	--Xóa tài khoản đăng nhập của nhân viên
-END
+	DECLARE @SID VARBINARY(85)
+	SELECT @SID = SID FROM SYS.SYSUSERS WHERE NAME = @TENLOGIN
+	IF (@SID IS NULL)
+		RAISERROR('NHÂN VIÊN CHƯA TẠO TÀI KHOẢN',16,1)
+	ELSE
+	BEGIN
+		DECLARE @LGNAME VARCHAR(50)
+		SELECT @LGNAME = LOGINNAME FROM SYS.SYSLOGINS WHERE SID = @SID
+		IF(@LGNAME IS NOT NULL)
+		BEGIN
+			EXEC SP_DROPUSER @TENLOGIN	--XÓA USER TRONG SERVER ROLE
+			EXEC SP_DROPLOGIN @LGNAME	--XÓA TÀI KHOẢN ĐĂNG NHẬP CỦA NHÂN VIÊN
+		END
+		ELSE
+			RAISERROR('NHÂN VIÊN CHƯA TẠO TÀI KHOẢN',16,1)
+	END
 END

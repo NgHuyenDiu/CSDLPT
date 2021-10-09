@@ -36,7 +36,7 @@ namespace formDN
 
         private void Form_main_Load(object sender, EventArgs e)
         {
-          skins();
+         // skins();
             if (Program.mGroup.Equals("CHINHANH") || Program.mGroup.Equals("CONGTY"))
             {
                 themTaiKhoan.Enabled = true;

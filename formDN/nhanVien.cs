@@ -58,6 +58,7 @@ namespace formDN
 
                 this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet1.NhanVien);
+                this.bdsNV.Filter = "TrangThaiXoa= 0";
 
                 this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DatHang);
@@ -160,9 +161,9 @@ namespace formDN
                     LoadTable();
                     
                 }
-                catch
+                catch(SqlException ex)
                 {
-                    XtraMessageBox.Show(lenh);
+                    XtraMessageBox.Show(lenh+ ex);
                 }
             }
         }
@@ -195,6 +196,7 @@ namespace formDN
         {
             int trangthaixoa = int.Parse(((DataRowView)bdsNV[bdsNV.Position])["TrangThaiXoa"].ToString());
             int manv = 0;
+
             if (trangthaixoa == 1)
             {
                 XtraMessageBox.Show("Nhân viên này đã nghỉ làm hoặc chuyển chi nhánh. Vui lòng chọn nhân viên khác !", "", MessageBoxButtons.OK);
@@ -210,12 +212,14 @@ namespace formDN
                 XtraMessageBox.Show("Bạn không thể xóa chính mình !", "", MessageBoxButtons.OK);
                 return;
             }
-            if (XtraMessageBox.Show("Bạn có thực sự muốn xoá nhân viên này? ","Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (XtraMessageBox.Show("Bạn có thực sự muốn xoá nhân viên này? ", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                Console.WriteLine(Program.connstr);
                 try
                 {
                     // lay các thông tin của nhân viên
-                    manv = int.Parse(((DataRowView)bdsNV[bdsNV.Position])["MANV"].ToString());
+                    manv = int.Parse((((DataRowView)bdsNV[bdsNV.Position])["MANV"].ToString()));
+
                     String ho = ((DataRowView)bdsNV[bdsNV.Position])["HO"].ToString();
                     String ten = ((DataRowView)bdsNV[bdsNV.Position])["TEN"].ToString();
                     String diaChi = ((DataRowView)bdsNV[bdsNV.Position])["DIACHI"].ToString();
@@ -225,69 +229,89 @@ namespace formDN
                     String ttx = ((DataRowView)bdsNV[bdsNV.Position])["TrangThaiXoa"].ToString();
 
                     // kiem tra nhan vien dinh xoa co tai khoan khong
-                    Boolean kiemTra = false;
-                    String lenh1 = String.Format("EXEC sp_checknhanviencologin {0}",manv);
-                    using(SqlConnection connection = new SqlConnection(Program.connstr))
+                    Boolean kiemtra = false;
+                    String lenh2 = String.Format("EXEC sp_checknhanviencologin {0} ", manv);
+                    using (SqlConnection connection = new SqlConnection(Program.connstr))
                     {
                         connection.Open();
-                        SqlCommand sqlcmt = new SqlCommand(lenh1, connection);
+                        SqlCommand sqlcmt = new SqlCommand(lenh2, connection);
                         sqlcmt.CommandType = CommandType.Text;
                         try
                         {
                             SqlDataReader a = sqlcmt.ExecuteReader();
+
                             while (a.Read())
                             {
-                                kiemTra = true;
+                                kiemtra = true;
                             }
+
                         }
                         catch
                         {
-                            XtraMessageBox.Show(lenh1);
+                            MessageBox.Show(lenh2);
                         }
                     }
 
-                    if (kiemTra) // neu co tai khoan
+                    if (kiemtra)
                     {
-                        // giu lai thong tin nhan vien
-                        String lenh2 = String.Format("EXEC sp_layloginname {0}", manv);
-                        String loginame = "";
+                        String lenh3 = String.Format("EXEC sp_checkquyenxoanhanvien {0},'{1}' ", manv, Program.mGroup);
                         using (SqlConnection connection = new SqlConnection(Program.connstr))
-                        {
-                            connection.Open();
-                            SqlCommand sqlcmt = new SqlCommand(lenh2, connection);
-                            sqlcmt.CommandType = CommandType.Text;
-                            try
-                            {
-                                loginame = (String)sqlcmt.ExecuteScalar();
-                            }
-                            catch
-                            {
-                                XtraMessageBox.Show(lenh2);
-                                return;
-                            }
-                        }
-                        String lenh3 = String.Format("EXEC sp_layquyennhanvien {0}", manv);
-                        String role = "";
-                        using(SqlConnection connection = new SqlConnection(Program.connstr))
                         {
                             connection.Open();
                             SqlCommand sqlcmt = new SqlCommand(lenh3, connection);
                             sqlcmt.CommandType = CommandType.Text;
                             try
                             {
-                                role = (String)sqlcmt.ExecuteScalar();
+                                 sqlcmt.ExecuteNonQuery();
+                               
+
                             }
-                            catch
+                            catch (SqlException ex)
                             {
-                                XtraMessageBox.Show(lenh3);
+                                MessageBox.Show(lenh3+ex.Message);
                                 return;
                             }
-
                         }
-                        // undo
-                        query = String.Format("EXEC sp_undoxoanhanvien '{0}','{1}','{2}',N'{3}',N'{4}',N'{5}','{6}',{7},'{8}'", loginame, manv, role, ho, ten, diaChi, ngaySinh, luong, macn);
-                        // xoa
-                        String lenh = String.Format("EXEC sp_xoanhanvien {0},'{1}' ", manv, Program.mGroup);
+                        String lenh1 = String.Format("EXEC sp_layloginname {0} ", manv);
+                        String Loginname = "";
+                        using (SqlConnection connection = new SqlConnection(Program.connstr))
+                        {
+                            connection.Open();
+                            SqlCommand sqlcmt = new SqlCommand(lenh1, connection);
+                            sqlcmt.CommandType = CommandType.Text;
+                            try
+                            {
+                                Loginname = sqlcmt.ExecuteScalar().ToString();
+
+                            }
+                            catch(SqlException E)
+                            {
+                                MessageBox.Show(lenh1 + E.Message);
+                                return;
+                            }
+                        }
+
+                        String lenh4 = String.Format("EXEC sp_layquyennhanvien {0} ", manv);
+                        String role = "";
+                        using (SqlConnection connection = new SqlConnection(Program.connstr))
+                        {
+                            connection.Open();
+                            SqlCommand sqlcmt = new SqlCommand(lenh4, connection);
+                            sqlcmt.CommandType = CommandType.Text;
+                            try
+                            {
+                                role = sqlcmt.ExecuteScalar().ToString();
+                                
+                            }
+                            catch (SqlException E)
+                            {
+                                MessageBox.Show(lenh4 + E.Message);
+                                return;
+                            }
+                        }
+                        Console.WriteLine(role);
+                        query = String.Format("EXEC sp_undoxoanhanvien '{0}',{1},N'{2}',N'{3}',N'{4}','{5}', {6},'{7}','{8}'", Loginname, manv, ho, ten, diaChi, ngaySinh, luong, macn,role);
+                        String lenh = String.Format("EXEC sp_xoatkdangnhap {0} ", manv);
                         using (SqlConnection connection = new SqlConnection(Program.connstr))
                         {
                             connection.Open();
@@ -296,16 +320,16 @@ namespace formDN
                             try
                             {
                                 sqlcmt.ExecuteNonQuery();
-                            }
-                            catch(SqlException ex)
-                            {
-                                XtraMessageBox.Show(ex.Message);
 
+                            }
+                            catch(SqlException EX)
+                            {
+                                MessageBox.Show(lenh+EX.Message);
                                 return;
                             }
                         }
                     }
-                    else // nhan vien chua co tai khoan
+                    else
                     {
                         query = String.Format("insert into NhanVien (MANV, HO, TEN, DIACHI, NGAYSINH, LUONG, MACN, TrangThaiXoa) Values ({0},N'{1}',N'{2}',N'{3}','{4}',{5},'{6}',0)", manv, ho, ten, diaChi, ngaySinh, luong, macn);
                     }
@@ -315,17 +339,20 @@ namespace formDN
 
                     stackundo.Push(query);
                     LoadTable();
-                  
+                    loadUndo();
+                    
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show("Lỗi xoá nhân viên . Bạn hãy xoá lại\n" + ex.Message, "", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi xóa nhân viên. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet1.NhanVien);
                     bdsNV.Position = bdsNV.Find("MANV", manv);
                     return;
                 }
+            
 
-            }
+       }
+    
             if (bdsNV.Count == 0) btnXoa.Enabled = false;
         }
         private String chuanhoa(String a)
