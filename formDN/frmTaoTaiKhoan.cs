@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,136 @@ namespace formDN
         {
             InitializeComponent();
         }
+        private void loadData()
+        {
+            this.qLVT_DATHANGDataSet1.EnforceConstraints = false;
+            this.hOTENNV.Connection.ConnectionString = Program.connstr;
+            this.hOTENNV.Fill(this.qLVT_DATHANGDataSet1.HOTENNV);
 
-      
+        }
+        private void frmTaoTaiKhoan_Load(object sender, EventArgs e)
+        {
+            loadData();
+            txtPassword.UseSystemPasswordChar = true;
+            cmbUsername.Enabled = true;
+
+            if (Program.mGroup == "CONGTY")
+            {
+                chiNhanh.Enabled = user.Enabled = false;
+            }
+            if (Program.mGroup == "CHINHANH")
+            {
+                congTy.Enabled = false;
+            }
+        }
+        private Boolean kiemTraTonTai(String loginname)
+        {
+            Boolean result = true;
+            String lenh = String.Format("EXEC sp_kiemtratontailogin {0}", loginname);
+           
+            using(SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlcmt = new SqlCommand(lenh, connection);
+                sqlcmt.CommandType = CommandType.Text;
+                try
+                {
+                    SqlDataReader reader = sqlcmt.ExecuteReader();
+                    String kq = "";
+                    while (reader.Read())
+                    {
+                        kq = reader["name"].ToString();
+                    }
+                    if (kq.Length == 0)
+                    {
+                        result = false;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(lenh + ex.Message);
+                }
+            }
+            return result;
+        }
+
+        private bool CreateLogin(string loginName, string password, string username, string role)
+        {
+            bool result = true;
+            string strLenh = string.Format("EXEC SP_TAOTAIKHOAN {0},{1},{2},{3}", loginName, password, username, role);
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+
+                connection.Open();
+                SqlCommand sqlcmd = new SqlCommand(strLenh, connection);
+                sqlcmd.CommandType = CommandType.Text;
+                try
+                {
+                    sqlcmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    MessageBox.Show(strLenh + ex.Message + " ");
+                }
+            }
+            return result;
+        }
+
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = (checkBox1.Checked) ? false : true;
+        }
+
+        private void buttonTaoTaiKhoan_Click(object sender, EventArgs e)
+        {
+            if (txtloginname.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("LoginName không được thiếu !", "", MessageBoxButtons.OK);
+                txtloginname.Focus();
+                return;
+            }
+            if (txtloginname.Text.Contains(" "))
+            {
+                MessageBox.Show("LoginName không được có khoảng trống !", "", MessageBoxButtons.OK);
+                txtloginname.Focus();
+                return;
+            }
+            if (kiemTraTonTai(txtloginname.Text))
+            {
+                MessageBox.Show("LoginName bị trùng. Vui lòng chọn LoginName khác !", "", MessageBoxButtons.OK);
+                txtloginname.Focus();
+                return;
+            }
+            if (txtPassword.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Password không được thiếu !", "", MessageBoxButtons.OK);
+                txtPassword.Focus();
+                return;
+            }
+            if ((chiNhanh.Checked || congTy.Checked || user.Checked) == false)
+            {
+                MessageBox.Show("Role không được thiếu !", "", MessageBoxButtons.OK);
+                return;
+            }
+            try
+            {
+                String role = congTy.Checked ? "CONGTY" : (chiNhanh.Checked ? "CHINHANH" : "USER");
+                CreateLogin(txtloginname.Text, txtPassword.Text, cmbUsername.Text, role);
+                MessageBox.Show("Tạo Login thành công!", "", MessageBoxButtons.OK);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi ghi.\n" + ex.Message);
+                return;
+            }
+            loadData();
+        }
+
+        private void buttonThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

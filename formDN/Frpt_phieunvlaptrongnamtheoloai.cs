@@ -88,5 +88,10 @@ namespace formDN
             }
             catch(Exception ex) { }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

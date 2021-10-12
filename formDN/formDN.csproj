@@ -80,6 +80,18 @@
     <Compile Include="frmTaoTaiKhoan.Designer.cs">
       <DependentUpon>frmTaoTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frpt_indanhsachnhanvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frpt_indanhsachnhanvien.Designer.cs">
+      <DependentUpon>Frpt_indanhsachnhanvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frpt_indanhsachvattu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frpt_indanhsachvattu.Designer.cs">
+      <DependentUpon>Frpt_indanhsachvattu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frpt_phieunvlaptrongnamtheoloai.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,17 +155,35 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLVT_DATHANGDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Xrpt_indanhsachvattu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_indanhsachvattu.Designer.cs">
+      <DependentUpon>Xrpt_indanhsachvattu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Xrpt_phieunvlaptrongnamtheoloai.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Xrpt_phieunvlaptrongnamtheoloai.Designer.cs">
       <DependentUpon>Xrpt_phieunvlaptrongnamtheoloai.cs</DependentUpon>
     </Compile>
+    <Compile Include="Xrpt_indanhsachnhanvien.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_indanhsachnhanvien.Designer.cs">
+      <DependentUpon>Xrpt_indanhsachnhanvien.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmDonDatHang.resx">
       <DependentUpon>frmDonDatHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTaoTaiKhoan.resx">
       <DependentUpon>frmTaoTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frpt_indanhsachnhanvien.resx">
+      <DependentUpon>Frpt_indanhsachnhanvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frpt_indanhsachvattu.resx">
+      <DependentUpon>Frpt_indanhsachvattu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frpt_phieunvlaptrongnamtheoloai.resx">
       <DependentUpon>Frpt_phieunvlaptrongnamtheoloai.cs</DependentUpon>
@@ -190,8 +220,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Xrpt_indanhsachvattu.resx">
+      <DependentUpon>Xrpt_indanhsachvattu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Xrpt_phieunvlaptrongnamtheoloai.resx">
       <DependentUpon>Xrpt_phieunvlaptrongnamtheoloai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_indanhsachnhanvien.resx">
+      <DependentUpon>Xrpt_indanhsachnhanvien.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

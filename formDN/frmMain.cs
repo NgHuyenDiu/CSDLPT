@@ -36,15 +36,8 @@ namespace formDN
 
         private void Form_main_Load(object sender, EventArgs e)
         {
-         // skins();
-            if (Program.mGroup.Equals("CHINHANH") || Program.mGroup.Equals("CONGTY"))
-            {
-                themTaiKhoan.Enabled = true;
-            }
-            else
-            {
-                themTaiKhoan.Enabled = false;
-            }
+            // skins();
+            
         }
 
         private void btn_nhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -74,6 +67,8 @@ namespace formDN
                 frmDangNhap frm = new frmDangNhap();
                 frm.MdiParent = this;
                 frm.Show();
+
+               
             }
         }
 
@@ -152,10 +147,6 @@ namespace formDN
             }
         }
 
-        private void ribbonControl1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -170,6 +161,71 @@ namespace formDN
                 frm.MdiParent = this;
                 frm.Show();
             }
+        }
+
+        private void btn_inDSNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(Frpt_indanhsachnhanvien));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                Frpt_indanhsachnhanvien frm = new Frpt_indanhsachnhanvien();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btn_inDSVT_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(Frpt_indanhsachvattu));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                Frpt_indanhsachvattu frm = new Frpt_indanhsachvattu();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+     
+
+        private void btnTaoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            Form f = this.checkExist(typeof(frmTaoTaiKhoan));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                if (Program.mGroup.Equals("CHINHANH") || Program.mGroup.Equals("CONGTY"))
+                {
+                    frmTaoTaiKhoan frm = new frmTaoTaiKhoan();
+                    frm.MdiParent = this;
+                    frm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Không có quyền tạo tài khoản");
+                    return;
+                }
+            }
+        }
+
+        private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        { 
+            
+                frmDangNhap frm = new frmDangNhap();
+                frm.MdiParent = this;
+                frm.Show();
+
         }
     }
 }

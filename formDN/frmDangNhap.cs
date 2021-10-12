@@ -129,6 +129,8 @@ namespace formDN
             Program.fMain.MANV.Text = "Mã nhân viên : " + Program.username;
             Program.fMain.HOTEN.Text = "Họ tên : " + Program.mHoten;
             Program.fMain.NHOM.Text = "Nhóm : " + Program.mGroup;
+
+            
         }
 
       
