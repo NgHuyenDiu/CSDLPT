@@ -1,0 +1,13 @@
+STORED PROCEDURES
+- CẤP QUYỀN EXECCUTE CHO CONGTY CÁC SP SAU
+	[dbo].[NewSelectCommand]
+	[dbo].[SP_DANGNHAP]
+	[dbo].[sp_indanhsachnhanvien]
+	[dbo].[sp_indanhsachvattu]
+	[dbo].[sp_kiemtratontailogin]
+	[dbo].[sp_phieunvlaptrongnamtheoloai]
+	[dbo].[SP_TAOTAIKHOAN]
+
+- ALTER DATABASE QLVT_DATHANG
+SET ALLOW_SNAPSHOT_ISOLATION ON
+- BẬT Dịch vụ MS DTC :Distributed Transaction Coordinator
