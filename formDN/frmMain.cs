@@ -227,5 +227,20 @@ namespace formDN
                 frm.Show();
 
         }
+
+        private void btn_bangKeVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(Frpt_bangkectvt));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                Frpt_bangkectvt frm = new Frpt_bangkectvt();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
     }
 }

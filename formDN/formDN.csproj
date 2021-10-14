@@ -80,6 +80,12 @@
     <Compile Include="frmTaoTaiKhoan.Designer.cs">
       <DependentUpon>frmTaoTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frpt_bangkectvt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frpt_bangkectvt.Designer.cs">
+      <DependentUpon>Frpt_bangkectvt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frpt_indanhsachnhanvien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,11 +179,20 @@
     <Compile Include="Xrpt_indanhsachnhanvien.Designer.cs">
       <DependentUpon>Xrpt_indanhsachnhanvien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Xrpt_bangkectvt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_bangkectvt.Designer.cs">
+      <DependentUpon>Xrpt_bangkectvt.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmDonDatHang.resx">
       <DependentUpon>frmDonDatHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTaoTaiKhoan.resx">
       <DependentUpon>frmTaoTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frpt_bangkectvt.resx">
+      <DependentUpon>Frpt_bangkectvt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frpt_indanhsachnhanvien.resx">
       <DependentUpon>Frpt_indanhsachnhanvien.cs</DependentUpon>
@@ -228,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Xrpt_indanhsachnhanvien.resx">
       <DependentUpon>Xrpt_indanhsachnhanvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_bangkectvt.resx">
+      <DependentUpon>Xrpt_bangkectvt.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
