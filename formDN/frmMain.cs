@@ -242,5 +242,20 @@ namespace formDN
                 frm.Show();
             }
         }
+
+        private void inDSDDH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(Frpt_dsddhchuacophieunhap));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                Frpt_dsddhchuacophieunhap frm = new Frpt_dsddhchuacophieunhap();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
     }
 }

@@ -100,7 +100,7 @@ namespace formDN
             this.barButtonItem1,
             this.btnTaoTaiKhoan});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(19, 24, 19, 24);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(24, 30, 24, 30);
             this.ribbonControl1.MaxItemId = 43;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -197,6 +197,7 @@ namespace formDN
             this.inDSDDH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("inDSDDH.ImageOptions.Image")));
             this.inDSDDH.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("inDSDDH.ImageOptions.LargeImage")));
             this.inDSDDH.Name = "inDSDDH";
+            this.inDSDDH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.inDSDDH_ItemClick);
             // 
             // btn_bangKeVatTu
             // 
