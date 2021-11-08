@@ -257,5 +257,35 @@ namespace formDN
                 frm.Show();
             }
         }
+
+        private void btn_inDSHDNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(Frpt_hdnv));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                Frpt_hdnv frm = new Frpt_hdnv();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
+
+        private void btn_tongHopPhieuXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form f = this.checkExist(typeof(Frpt_tonghopnhapxuat));
+            if (f != null)
+            {
+                f.Activate();
+            }
+            else
+            {
+                Frpt_tonghopnhapxuat frm = new Frpt_tonghopnhapxuat();
+                frm.MdiParent = this;
+                frm.Show();
+            }
+        }
     }
 }

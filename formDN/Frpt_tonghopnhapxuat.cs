@@ -11,21 +11,19 @@ using System.Windows.Forms;
 
 namespace formDN
 {
-    public partial class Frpt_bangkectvt : Form
+    public partial class Frpt_tonghopnhapxuat : Form
     {
-        public Frpt_bangkectvt()
+        public Frpt_tonghopnhapxuat()
         {
             InitializeComponent();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             String quyen;
+            String bd = dateTimePicker1.Text;
+            String kt = dateTimePicker2.Text;
+            Console.WriteLine(bd + kt);
             if (Program.mGroup == "CONGTY")
             {
                 quyen = "F";
@@ -34,22 +32,27 @@ namespace formDN
             {
                 quyen = "C";
             }
-            string loai1 = comboBox1.Text;
-            String loai = comboBox1.Text.Substring(0, 1);
-            String bd = dateTimePicker1.Text;
-            String kt = dateTimePicker2.Text;
+           
 
             if (bd.CompareTo(kt) > 0)
             {
                 MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày bắt đầu", string.Empty, MessageBoxButtons.OK);
                 return;
             }
-            Xrpt_bangkectvt rp = new Xrpt_bangkectvt(quyen, loai, bd, kt);
 
-           
-            rp.lblTieuDe.Text = "BẢNG KÊ CHI TIẾT SỐ LƯỢNG - TRỊ GIÁ PHIẾU " + loai1.ToUpper() + " " + "TỪ NGÀY " + bd + " ĐẾN NGÀY: " + kt;
+            
+            Xrpt_tonghopnhapxuat rp = new Xrpt_tonghopnhapxuat(quyen, bd, kt);
+
+
+            rp.label1.Text = "BẢNG TỔNG HỢP NHẬP XUẤT TỪ NGÀY " + bd + " ĐẾN NGÀY " + kt;
+
             ReportPrintTool print = new ReportPrintTool(rp);
             print.ShowPreviewDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -100,7 +100,7 @@ namespace formDN
             this.barButtonItem1,
             this.btnTaoTaiKhoan});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(24, 30, 24, 30);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(30, 38, 30, 38);
             this.ribbonControl1.MaxItemId = 43;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -215,6 +215,7 @@ namespace formDN
             this.btn_tongHopPhieuXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_tongHopPhieuXuat.ImageOptions.Image")));
             this.btn_tongHopPhieuXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_tongHopPhieuXuat.ImageOptions.LargeImage")));
             this.btn_tongHopPhieuXuat.Name = "btn_tongHopPhieuXuat";
+            this.btn_tongHopPhieuXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_tongHopPhieuXuat_ItemClick);
             // 
             // btn_inDSHDNV
             // 
@@ -223,6 +224,7 @@ namespace formDN
             this.btn_inDSHDNV.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_inDSHDNV.ImageOptions.Image")));
             this.btn_inDSHDNV.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_inDSHDNV.ImageOptions.LargeImage")));
             this.btn_inDSHDNV.Name = "btn_inDSHDNV";
+            this.btn_inDSHDNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btn_inDSHDNV_ItemClick);
             // 
             // btnDangXuat
             // 

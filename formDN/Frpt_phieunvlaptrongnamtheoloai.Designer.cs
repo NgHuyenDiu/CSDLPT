@@ -54,46 +54,51 @@ namespace formDN
             // hOTENLabel
             // 
             hOTENLabel.AutoSize = true;
-            hOTENLabel.Location = new System.Drawing.Point(124, 143);
+            hOTENLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            hOTENLabel.Location = new System.Drawing.Point(105, 143);
             hOTENLabel.Name = "hOTENLabel";
-            hOTENLabel.Size = new System.Drawing.Size(61, 17);
+            hOTENLabel.Size = new System.Drawing.Size(82, 22);
             hOTENLabel.TabIndex = 4;
             hOTENLabel.Text = "HOTEN:";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label2.Location = new System.Drawing.Point(55, 212);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(43, 17);
+            label2.Size = new System.Drawing.Size(61, 22);
             label2.TabIndex = 8;
             label2.Text = "LOAI:";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label3.Location = new System.Drawing.Point(342, 208);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(42, 17);
+            label3.Size = new System.Drawing.Size(61, 22);
             label3.TabIndex = 9;
             label3.Text = "NAM:";
             // 
             // cmbCN
             // 
             this.cmbCN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCN.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCN.FormattingEnabled = true;
             this.cmbCN.Location = new System.Drawing.Point(213, 63);
             this.cmbCN.Name = "cmbCN";
-            this.cmbCN.Size = new System.Drawing.Size(239, 24);
+            this.cmbCN.Size = new System.Drawing.Size(239, 30);
             this.cmbCN.TabIndex = 3;
             this.cmbCN.SelectedIndexChanged += new System.EventHandler(this.cmbCN_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(105, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 17);
+            this.label1.Size = new System.Drawing.Size(99, 22);
             this.label1.TabIndex = 2;
             this.label1.Text = "Chi nhánh: ";
             // 
@@ -125,6 +130,7 @@ namespace formDN
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
             this.tableAdapterManager.PhieuXuatTableAdapter = null;
+            this.tableAdapterManager.SP_DSNVTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = formDN.QLVT_DATHANGDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VattuTableAdapter = null;
             // 
@@ -133,10 +139,11 @@ namespace formDN
             this.cmbHoTen.DataSource = this.bdsHoTenNN;
             this.cmbHoTen.DisplayMember = "HOTEN";
             this.cmbHoTen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHoTen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbHoTen.FormattingEnabled = true;
-            this.cmbHoTen.Location = new System.Drawing.Point(213, 143);
+            this.cmbHoTen.Location = new System.Drawing.Point(213, 140);
             this.cmbHoTen.Name = "cmbHoTen";
-            this.cmbHoTen.Size = new System.Drawing.Size(239, 24);
+            this.cmbHoTen.Size = new System.Drawing.Size(239, 30);
             this.cmbHoTen.TabIndex = 5;
             this.cmbHoTen.ValueMember = "MANV";
             this.cmbHoTen.SelectedIndexChanged += new System.EventHandler(this.cmbHoTen_SelectedIndexChanged);
@@ -144,33 +151,36 @@ namespace formDN
             // cmbLoai
             // 
             this.cmbLoai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLoai.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbLoai.FormattingEnabled = true;
             this.cmbLoai.Items.AddRange(new object[] {
             "NHẬP",
             "XUẤT"});
-            this.cmbLoai.Location = new System.Drawing.Point(118, 205);
+            this.cmbLoai.Location = new System.Drawing.Point(127, 205);
             this.cmbLoai.Name = "cmbLoai";
-            this.cmbLoai.Size = new System.Drawing.Size(121, 24);
+            this.cmbLoai.Size = new System.Drawing.Size(121, 30);
             this.cmbLoai.TabIndex = 6;
             // 
             // cmbNam
             // 
+            this.cmbNam.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbNam.FormattingEnabled = true;
             this.cmbNam.Items.AddRange(new object[] {
             "2018",
             "2019",
             "2020",
             "2021"});
-            this.cmbNam.Location = new System.Drawing.Point(406, 205);
+            this.cmbNam.Location = new System.Drawing.Point(409, 204);
             this.cmbNam.Name = "cmbNam";
-            this.cmbNam.Size = new System.Drawing.Size(121, 24);
+            this.cmbNam.Size = new System.Drawing.Size(121, 30);
             this.cmbNam.TabIndex = 7;
             // 
             // buttonPreview
             // 
+            this.buttonPreview.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPreview.Location = new System.Drawing.Point(127, 292);
             this.buttonPreview.Name = "buttonPreview";
-            this.buttonPreview.Size = new System.Drawing.Size(75, 23);
+            this.buttonPreview.Size = new System.Drawing.Size(121, 49);
             this.buttonPreview.TabIndex = 10;
             this.buttonPreview.Text = "Preview";
             this.buttonPreview.UseVisualStyleBackColor = true;
@@ -178,9 +188,10 @@ namespace formDN
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(324, 292);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(128, 49);
             this.button1.TabIndex = 11;
             this.button1.Text = "exit";
             this.button1.UseVisualStyleBackColor = true;

@@ -39,7 +39,7 @@ namespace formDN
             // cmbCN
             // 
             this.cmbCN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCN.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCN.FormattingEnabled = true;
             this.cmbCN.Location = new System.Drawing.Point(238, 93);
             this.cmbCN.Name = "cmbCN";
@@ -50,19 +50,20 @@ namespace formDN
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(107, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 24);
+            this.label1.Size = new System.Drawing.Size(99, 22);
             this.label1.TabIndex = 2;
             this.label1.Text = "Chi nhánh: ";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(148, 175);
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(148, 155);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 32);
+            this.button1.Size = new System.Drawing.Size(126, 52);
             this.button1.TabIndex = 4;
             this.button1.Text = "Preview";
             this.button1.UseVisualStyleBackColor = true;
@@ -70,10 +71,10 @@ namespace formDN
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(395, 175);
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(395, 155);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 32);
+            this.button2.Size = new System.Drawing.Size(98, 52);
             this.button2.TabIndex = 5;
             this.button2.Text = "exit";
             this.button2.UseVisualStyleBackColor = true;
@@ -82,10 +83,10 @@ namespace formDN
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(190, 29);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(142, 31);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(275, 24);
+            this.label2.Size = new System.Drawing.Size(383, 32);
             this.label2.TabIndex = 6;
             this.label2.Text = "IN DANH SÁCH NHÂN VIÊN";
             // 

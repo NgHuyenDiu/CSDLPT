@@ -89,9 +89,9 @@ namespace formDN
             // button_dangNhap
             // 
             this.button_dangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_dangNhap.Location = new System.Drawing.Point(204, 303);
+            this.button_dangNhap.Location = new System.Drawing.Point(204, 294);
             this.button_dangNhap.Name = "button_dangNhap";
-            this.button_dangNhap.Size = new System.Drawing.Size(142, 34);
+            this.button_dangNhap.Size = new System.Drawing.Size(142, 59);
             this.button_dangNhap.TabIndex = 6;
             this.button_dangNhap.Text = "Đăng nhập";
             this.button_dangNhap.UseVisualStyleBackColor = true;
@@ -100,9 +100,9 @@ namespace formDN
             // button_thoat
             // 
             this.button_thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_thoat.Location = new System.Drawing.Point(392, 303);
+            this.button_thoat.Location = new System.Drawing.Point(392, 294);
             this.button_thoat.Name = "button_thoat";
-            this.button_thoat.Size = new System.Drawing.Size(108, 34);
+            this.button_thoat.Size = new System.Drawing.Size(108, 59);
             this.button_thoat.TabIndex = 7;
             this.button_thoat.Text = "Thoát";
             this.button_thoat.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@ namespace formDN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 365);
+            this.ClientSize = new System.Drawing.Size(782, 410);
             this.Controls.Add(this.comboBox_CN);
             this.Controls.Add(this.checkBox_matKhau);
             this.Controls.Add(this.button_thoat);

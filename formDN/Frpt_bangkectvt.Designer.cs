@@ -29,7 +29,6 @@ namespace formDN
         /// </summary>
         private void InitializeComponent()
         {
-            this.lb_tieude = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -38,18 +37,8 @@ namespace formDN
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // lb_tieude
-            // 
-            this.lb_tieude.AutoSize = true;
-            this.lb_tieude.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lb_tieude.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_tieude.Location = new System.Drawing.Point(0, 0);
-            this.lb_tieude.Name = "lb_tieude";
-            this.lb_tieude.Size = new System.Drawing.Size(519, 32);
-            this.lb_tieude.TabIndex = 22;
-            this.lb_tieude.Text = "CHI TIẾT TRỊ GIÁ HÀNG NHẬP /XUẤT";
             // 
             // button2
             // 
@@ -96,18 +85,18 @@ namespace formDN
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(177, 30);
             this.dateTimePicker2.TabIndex = 18;
-            this.dateTimePicker2.Value = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this.dateTimePicker2.Value = new System.DateTime(2021, 12, 31, 0, 0, 0, 0);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "yyyy-MM-dd";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(335, 106);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(177, 30);
             this.dateTimePicker1.TabIndex = 17;
-            this.dateTimePicker1.Value = new System.DateTime(2017, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2021, 1, 1, 0, 0, 0, 0);
             // 
             // label3
             // 
@@ -139,12 +128,22 @@ namespace formDN
             this.label1.TabIndex = 14;
             this.label1.Text = "Ngày bắt đầu: ";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(133, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(519, 32);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "CHI TIẾT TRỊ GIÁ HÀNG NHẬP /XUẤT";
+            // 
             // Frpt_bangkectvt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lb_tieude);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
@@ -161,8 +160,6 @@ namespace formDN
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lb_tieude;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -171,5 +168,6 @@ namespace formDN
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }

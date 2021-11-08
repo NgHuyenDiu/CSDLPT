@@ -298,3 +298,7 @@ D:\formDN\formDN\obj\Debug\formDN.Frpt_bangkectvt.resources
 D:\formDN\formDN\obj\Debug\formDN.Xrpt_bangkectvt.resources
 D:\formDN\formDN\obj\Debug\formDN.Frpt_dsddhchuacophieunhap.resources
 D:\formDN\formDN\obj\Debug\formDN.Xrpt_dsddhchuacophieunhap.resources
+D:\formDN\formDN\obj\Debug\formDN.Frpt_hdnv.resources
+D:\formDN\formDN\obj\Debug\formDN.Xrpt_hdnv.resources
+D:\formDN\formDN\obj\Debug\formDN.Frpt_tonghopnhapxuat.resources
+D:\formDN\formDN\obj\Debug\formDN.Xrpt_tonghopnhapxuat.resources
