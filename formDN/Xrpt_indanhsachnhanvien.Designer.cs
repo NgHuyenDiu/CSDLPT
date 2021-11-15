@@ -163,10 +163,16 @@ namespace formDN
             // 
             // labelTen
             // 
+            this.labelTen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.labelTen.BorderColor = System.Drawing.Color.Black;
+            this.labelTen.ForeColor = System.Drawing.Color.White;
             this.labelTen.LocationFloat = new DevExpress.Utils.PointFloat(5F, 5F);
             this.labelTen.Name = "labelTen";
             this.labelTen.SizeF = new System.Drawing.SizeF(640F, 24.19433F);
             this.labelTen.StyleName = "Title";
+            this.labelTen.StylePriority.UseBackColor = false;
+            this.labelTen.StylePriority.UseBorderColor = false;
+            this.labelTen.StylePriority.UseForeColor = false;
             this.labelTen.StylePriority.UseTextAlignment = false;
             this.labelTen.Text = "DANH SÁCH NHÂN VIÊN CHI NHÁNH ....";
             this.labelTen.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;

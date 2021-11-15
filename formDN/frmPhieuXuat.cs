@@ -157,6 +157,7 @@ namespace formDN
             viTri = bdsPX.Position;
             bdsPX.AddNew();
             groupBox1.Enabled = true;
+            phieuXuatGridControl.Enabled = false;
             disableButton();
             txtMANV.Text = Program.username;
             txtNgay.Text = DateTime.Now.ToString().Substring(0, 10);
@@ -412,13 +413,7 @@ namespace formDN
             }
             try
             {
-                bdsCTPX.EndEdit();
-                bdsCTPX.ResetCurrentItem();
-
-                MessageBox.Show("Ghi thành công !!!");
-
-                this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTPXTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPX);
+              
                 String lenh = String.Format("EXEC sp_capnhatsoluongton  N'{0}' , {1}, N'{2}'", mavt, soluong, "X");
                 using (SqlConnection connection = new SqlConnection(Program.connstr))
                 {
@@ -432,8 +427,16 @@ namespace formDN
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message + " ");
+                        return;
                     }
                 }
+                bdsCTPX.EndEdit();
+                bdsCTPX.ResetCurrentItem();
+
+                MessageBox.Show("Ghi thành công !!!");
+
+                this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.cTPXTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPX);
 
                 query = String.Format("EXEC sp_undothemCTPX N'{0}', N'{1}',{2}, N'{3}'", mapx, mavt.Trim(), soluong, "N");
                 stackundo.Push(query);

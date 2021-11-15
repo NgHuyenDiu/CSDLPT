@@ -39,7 +39,7 @@ namespace formDN
                 congTy.Enabled = false;
             }
         }
-        private Boolean kiemTraTonTai(String loginname)
+        private Boolean kiemTraTonTaiLogin(String loginname)
         {
             Boolean result = true;
             String lenh = String.Format("EXEC sp_kiemtratontailogin {0}", loginname);
@@ -70,6 +70,37 @@ namespace formDN
             return result;
         }
 
+        private Boolean kiemTraTonTaiUser(String username)
+        {
+            Boolean result = true;
+            String lenh = String.Format("EXEC sp_kiemtratontaiuser {0}", username);
+
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlcmt = new SqlCommand(lenh, connection);
+                sqlcmt.CommandType = CommandType.Text;
+                try
+                {
+                    SqlDataReader reader = sqlcmt.ExecuteReader();
+                    String kq = "";
+                    while (reader.Read())
+                    {
+                        kq = reader["name"].ToString();
+                    }
+                    if (kq.Length == 0)
+                    {
+                        result = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(lenh + ex.Message);
+                }
+            }
+            return result;
+        }
+
         private bool CreateLogin(string loginName, string password, string username, string role)
         {
             bool result = true;
@@ -87,7 +118,7 @@ namespace formDN
                 catch (Exception ex)
                 {
                     result = false;
-                    MessageBox.Show(strLenh + ex.Message + " ");
+                    MessageBox.Show(ex.Message );
                 }
             }
             return result;
@@ -113,9 +144,9 @@ namespace formDN
                 txtloginname.Focus();
                 return;
             }
-            if (kiemTraTonTai(txtloginname.Text))
+            if (kiemTraTonTaiLogin(txtloginname.Text))
             {
-                MessageBox.Show("LoginName bị trùng. Vui lòng chọn LoginName khác !", "", MessageBoxButtons.OK);
+                MessageBox.Show("LoginName đã tồn tại. Vui lòng chọn LoginName khác !", "", MessageBoxButtons.OK);
                 txtloginname.Focus();
                 return;
             }
@@ -123,6 +154,13 @@ namespace formDN
             {
                 MessageBox.Show("Password không được thiếu !", "", MessageBoxButtons.OK);
                 txtPassword.Focus();
+                return;
+            }
+            if (kiemTraTonTaiUser(cmbUsername.Text))
+            {
+               
+                MessageBox.Show("Username bị tồn tại. Vui lòng chọn Username khác !", "", MessageBoxButtons.OK);
+                cmbUsername.Focus();
                 return;
             }
             if ((chiNhanh.Checked || congTy.Checked || user.Checked) == false)
@@ -133,8 +171,16 @@ namespace formDN
             try
             {
                 String role = congTy.Checked ? "CONGTY" : (chiNhanh.Checked ? "CHINHANH" : "USER");
-                CreateLogin(txtloginname.Text, txtPassword.Text, cmbUsername.Text, role);
-                MessageBox.Show("Tạo Login thành công!", "", MessageBoxButtons.OK);
+                Boolean result= CreateLogin(txtloginname.Text, txtPassword.Text, cmbUsername.Text, role);
+                if(result == true)
+                {
+                    MessageBox.Show("Tạo Login thành công!", "", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Tạo Login thất bại!", "", MessageBoxButtons.OK);
+                }
+               
             }
             catch (Exception ex)
             {

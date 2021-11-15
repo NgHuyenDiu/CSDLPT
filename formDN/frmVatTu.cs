@@ -31,5 +31,7 @@ namespace formDN
             this.tableAdapterManager.UpdateAll(this.qLVT_DATHANGDataSet1);
 
         }
+
+        
     }
 }

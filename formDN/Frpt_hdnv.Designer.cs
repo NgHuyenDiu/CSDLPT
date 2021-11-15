@@ -107,21 +107,21 @@ namespace formDN
             0,
             0,
             0});
-            this.txtMaNV.Location = new System.Drawing.Point(168, 97);
-            this.txtMaNV.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMaNV.Location = new System.Drawing.Point(178, 98);
+            this.txtMaNV.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtMaNV.Name = "txtMaNV";
             this.txtMaNV.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaNV.Properties.Appearance.Options.UseFont = true;
             this.txtMaNV.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtMaNV.Size = new System.Drawing.Size(194, 28);
+            this.txtMaNV.Size = new System.Drawing.Size(242, 28);
             this.txtMaNV.TabIndex = 27;
             this.txtMaNV.EditValueChanged += new System.EventHandler(this.txtMaNV_EditValueChanged);
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(477, 327);
+            this.button2.Location = new System.Drawing.Point(540, 340);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 63);
             this.button2.TabIndex = 26;
@@ -132,7 +132,7 @@ namespace formDN
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(88, 327);
+            this.button1.Location = new System.Drawing.Point(151, 340);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 63);
             this.button1.TabIndex = 25;
@@ -220,7 +220,6 @@ namespace formDN
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
-            this.tableAdapterManager.DSVTTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;

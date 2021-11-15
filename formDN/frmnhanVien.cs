@@ -132,8 +132,10 @@ namespace formDN
         {
             vitri = bdsNV.Position;// luu lai vi tri
             groupBox1.Enabled = true;
+            nhanVienGridControl.Enabled = false;
             bdsNV.AddNew();
             cmb_MANV.Text = taoMa().ToString();
+            cmb_MANV.Enabled = false;
             txtCN.Text = macn;
             txtNgaySinh.EditValue = "";
             trangThaiXoa.Text = "0";
@@ -494,6 +496,7 @@ namespace formDN
                 {
                     sqlcmt.ExecuteNonQuery();
                     query = string.Format("EXEC sp_undochuyencn {0}, {1} ", maHT, maMoi);
+                    stackundo.Push(query);
                 }
                 catch
                 {
@@ -517,9 +520,16 @@ namespace formDN
                 try
                 {
                     int MaNV = int.Parse(((DataRowView)bdsNV[bdsNV.Position])["MANV"].ToString());
-                    chuyenChiNhanh(MaNV, taoMa());
-                    XtraMessageBox.Show("Chuyển chi nhánh thành công");
-                   // stackundo.Push(query);
+                    int result= chuyenChiNhanh(MaNV, taoMa());
+                    if(result == 1)
+                    {
+                        XtraMessageBox.Show("Chuyển chi nhánh thành công");
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Lỗi chuyển chi nhánh :");
+                    }
+                  
                 }
                 catch(Exception ex)
                 {

@@ -374,11 +374,11 @@ namespace formDN
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = this.cTPXTableAdapter;
             this.tableAdapterManager.DatHangTableAdapter = null;
-            this.tableAdapterManager.DSVTTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
             this.tableAdapterManager.PhieuXuatTableAdapter = this.phieuXuatTableAdapter;
+            this.tableAdapterManager.SP_DSNVTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = formDN.QLVT_DATHANGDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VattuTableAdapter = null;
             // 
@@ -390,13 +390,13 @@ namespace formDN
             // 
             this.phieuXuatGridControl.DataSource = this.bdsPX;
             this.phieuXuatGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.phieuXuatGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.phieuXuatGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(10);
             this.phieuXuatGridControl.Location = new System.Drawing.Point(0, 97);
             this.phieuXuatGridControl.MainView = this.gridView1;
-            this.phieuXuatGridControl.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.phieuXuatGridControl.Margin = new System.Windows.Forms.Padding(10);
             this.phieuXuatGridControl.MenuManager = this.barManager1;
             this.phieuXuatGridControl.Name = "phieuXuatGridControl";
-            this.phieuXuatGridControl.Size = new System.Drawing.Size(1488, 419);
+            this.phieuXuatGridControl.Size = new System.Drawing.Size(1488, 312);
             this.phieuXuatGridControl.TabIndex = 8;
             this.phieuXuatGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -525,9 +525,9 @@ namespace formDN
             this.groupBox1.Controls.Add(mAPXLabel);
             this.groupBox1.Controls.Add(this.txtMAPX);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 516);
+            this.groupBox1.Location = new System.Drawing.Point(0, 409);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 225);
+            this.groupBox1.Size = new System.Drawing.Size(502, 332);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PHIẾU XUẤT";
@@ -597,15 +597,15 @@ namespace formDN
             this.cTPXGridControl.ContextMenuStrip = this.contextMenuStrip1;
             this.cTPXGridControl.DataSource = this.bdsCTPX;
             this.cTPXGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTPXGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.cTPXGridControl.Location = new System.Drawing.Point(502, 516);
+            this.cTPXGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5);
+            this.cTPXGridControl.Location = new System.Drawing.Point(502, 409);
             this.cTPXGridControl.MainView = this.gridView2;
-            this.cTPXGridControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cTPXGridControl.Margin = new System.Windows.Forms.Padding(5);
             this.cTPXGridControl.MenuManager = this.barManager1;
             this.cTPXGridControl.Name = "cTPXGridControl";
             this.cTPXGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
-            this.cTPXGridControl.Size = new System.Drawing.Size(986, 225);
+            this.cTPXGridControl.Size = new System.Drawing.Size(986, 332);
             this.cTPXGridControl.TabIndex = 14;
             this.cTPXGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});

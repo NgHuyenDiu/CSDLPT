@@ -201,7 +201,7 @@ namespace formDN
             // 
             // btn_bangKeVatTu
             // 
-            this.btn_bangKeVatTu.Caption = "Bảng kê chi tiết vật tư";
+            this.btn_bangKeVatTu.Caption = "Bảng kê chi tiết số lượng – trị giá hàng nhập hoặc xuất ";
             this.btn_bangKeVatTu.Id = 37;
             this.btn_bangKeVatTu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_bangKeVatTu.ImageOptions.Image")));
             this.btn_bangKeVatTu.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_bangKeVatTu.ImageOptions.LargeImage")));

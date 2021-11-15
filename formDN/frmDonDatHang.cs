@@ -149,6 +149,7 @@ namespace formDN
             txtMANV.Text = Program.username;
             ngay.Text = DateTime.Now.ToString().Substring(0, 10);
             groupBox1.Enabled = true;
+            datHangGridControl.Enabled = false;
             txtMANV.Enabled = ngay.Enabled = false;
             txtDDH.Enabled = true;
             them = true;

@@ -60,6 +60,7 @@ namespace formDN
             // 
             // cmbCN
             // 
+            this.cmbCN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCN.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCN.FormattingEnabled = true;
             this.cmbCN.Location = new System.Drawing.Point(250, 148);

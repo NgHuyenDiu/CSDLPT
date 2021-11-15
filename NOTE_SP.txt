@@ -7,6 +7,12 @@ STORED PROCEDURES
 	[dbo].[sp_kiemtratontailogin]
 	[dbo].[sp_phieunvlaptrongnamtheoloai]
 	[dbo].[SP_TAOTAIKHOAN]
+	sp_hdnv
+	sp_dsddhchuacophieunhap
+	sp_tonghopnhapxuat
+	SP_ThongTinNhanVien
+	sp_dsnvcohoadon
+	sp_kiemtratontaiuser
 
 - ALTER DATABASE QLVT_DATHANG
 SET ALLOW_SNAPSHOT_ISOLATION ON

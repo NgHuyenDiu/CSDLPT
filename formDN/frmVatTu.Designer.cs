@@ -150,6 +150,7 @@ namespace formDN
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+         
             // 
             // btnSua
             // 
@@ -277,11 +278,11 @@ namespace formDN
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
-            this.tableAdapterManager.DSVTTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
             this.tableAdapterManager.PhieuXuatTableAdapter = null;
+            this.tableAdapterManager.SP_DSNVTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = formDN.QLVT_DATHANGDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VattuTableAdapter = this.vattuTableAdapter;
             // 
@@ -289,10 +290,10 @@ namespace formDN
             // 
             this.vattuGridControl.DataSource = this.bdsVatTu;
             this.vattuGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vattuGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.vattuGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(8);
             this.vattuGridControl.Location = new System.Drawing.Point(0, 30);
             this.vattuGridControl.MainView = this.gridView1;
-            this.vattuGridControl.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.vattuGridControl.Margin = new System.Windows.Forms.Padding(8);
             this.vattuGridControl.MenuManager = this.barManager1;
             this.vattuGridControl.Name = "vattuGridControl";
             this.vattuGridControl.Size = new System.Drawing.Size(1185, 465);
@@ -341,7 +342,7 @@ namespace formDN
             // 
             this.txtMAVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "MAVT", true));
             this.txtMAVT.Location = new System.Drawing.Point(584, 554);
-            this.txtMAVT.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.txtMAVT.Margin = new System.Windows.Forms.Padding(8);
             this.txtMAVT.MenuManager = this.barManager1;
             this.txtMAVT.Name = "txtMAVT";
             this.txtMAVT.Size = new System.Drawing.Size(374, 22);
@@ -351,7 +352,7 @@ namespace formDN
             // 
             this.txtTenVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "TENVT", true));
             this.txtTenVT.Location = new System.Drawing.Point(582, 630);
-            this.txtTenVT.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.txtTenVT.Margin = new System.Windows.Forms.Padding(8);
             this.txtTenVT.MenuManager = this.barManager1;
             this.txtTenVT.Name = "txtTenVT";
             this.txtTenVT.Size = new System.Drawing.Size(375, 22);
@@ -361,7 +362,7 @@ namespace formDN
             // 
             this.txtDVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "DVT", true));
             this.txtDVT.Location = new System.Drawing.Point(582, 690);
-            this.txtDVT.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.txtDVT.Margin = new System.Windows.Forms.Padding(8);
             this.txtDVT.MenuManager = this.barManager1;
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.Size = new System.Drawing.Size(375, 22);

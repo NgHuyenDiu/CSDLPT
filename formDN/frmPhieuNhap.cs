@@ -48,11 +48,8 @@ namespace formDN
                 this.dSVTTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.dSVTTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DSVT);
 
-               /* this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTDDHTableAdapter.Fill(this.qLVT_DATHANGDataSet1.CTDDH);
-*/
-                //  this.donHangChuaCoPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                // this.donHangChuaCoPNTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DonHangChuaCoPN);
+                this.dsDDHchuaCoPNTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.dsDDHchuaCoPNTableAdapter.Fill(this.qLVT_DATHANGDataSet1.dsDDHchuaCoPN);
 
                 this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.phieuNhapTableAdapter.Fill(this.qLVT_DATHANGDataSet1.PhieuNhap);
@@ -85,15 +82,9 @@ namespace formDN
         }
         private void frmPhieuNhap_Load(object sender, EventArgs e)
         {
-    
-            this.dsDDHchuaCoPNTableAdapter.Fill(this.qLVT_DATHANGDataSet1.dsDDHchuaCoPN);
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet1.DSVT' table. You can move, or remove it, as needed.
+            this.dSVTTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DSVT);
             LoadTable();    
-         /*  if (Program.mGroup != "CONGTY")
-            {
-              this.bdsPN.Filter = "MANV='" + Program.username + "'";
-              this.dsDDHchuaCoPNBindingSource.Filter = "MANV='" + Program.username + "'";
-            }*/
-
             cmbCN.DataSource = Program.bds_dspm.DataSource;
             cmbCN.DisplayMember = "TENCN";
             cmbCN.ValueMember = "TENSERVER";
@@ -119,10 +110,12 @@ namespace formDN
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+       
             vitri = bdsPN.Position;
             bdsPN.AddNew();
             DisEnableButton();
             groupBox1.Enabled = true;
+            phieuNhapGridControl.Enabled = false;
             txtMANV.Text = Program.username;
             ngay.Text = DateTime.Now.ToString().Substring(0, 10);
             txtMANV.Enabled = ngay.Enabled = false;
@@ -309,9 +302,12 @@ namespace formDN
         private void btnThemCTPN_Click(object sender, EventArgs e)
         {
             bdsCTPN.AddNew();
+            this.sp_vattutrongddhTableAdapter.Fill(this.qLVT_DATHANGDataSet1.sp_vattutrongddh, cmbDDH.Text);
+            this.colMAVT.ColumnEdit = repositoryItemLookUpEdit1;
             btnGhiCTPN.Enabled = true;
             btnThemCTPN.Enabled = false;
-            
+           
+
         }
 
         private Boolean ktraVattutrenView ( String maVT)
@@ -468,9 +464,7 @@ namespace formDN
                     String soluong = ((DataRowView)bdsCTPN[bdsCTPN.Position])["SOLUONG"].ToString();
                     String dongia = ((DataRowView)bdsCTPN[bdsCTPN.Position])["DONGIA"].ToString();
 
-                    bdsCTPN.RemoveCurrent();
-                    this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.cTPNTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPN);
+                   
                     String lenh = String.Format("EXEC sp_capnhatsoluongton  N'{0}' , {1}, N'{2}'", mavt, soluong, "X");
                     using (SqlConnection connection = new SqlConnection(Program.connstr))
                     {
@@ -484,8 +478,12 @@ namespace formDN
                         catch (Exception ex)
                         {
                             MessageBox.Show(ex.Message + " ");
+                            return;
                         }
                     }
+                    bdsCTPN.RemoveCurrent();
+                    this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.cTPNTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPN);
                     query = String.Format("EXEC sp_undoxoaCTPN N'{0}', N'{1}', {2}, {3}, N'{4}'", mapn, mavt, soluong, dongia, "N");
                     stackundo.Push(query);
                     LoadTable();
@@ -498,6 +496,18 @@ namespace formDN
                 }
                 groupBox1.Enabled = false;
             }
+        }
+
+        private void btnThoatCTPN_Click(object sender, EventArgs e)
+        {
+            if (cTPNGridControl.Enabled)
+            {
+                if (MessageBox.Show("Chưa lưu dữ liệu vào dataSet. Thoát dữ liệu sẽ bị mất", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    
+                }
+            }
+           // this.Dispose();
         }
     }
 }

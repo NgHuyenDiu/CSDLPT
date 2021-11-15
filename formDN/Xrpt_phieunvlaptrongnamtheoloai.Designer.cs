@@ -210,11 +210,19 @@ namespace formDN
             // 
             // labelTieuDe
             // 
-            this.labelTieuDe.ForeColor = System.Drawing.Color.Blue;
+            this.labelTieuDe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.labelTieuDe.BorderColor = System.Drawing.Color.Gray;
+            this.labelTieuDe.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.labelTieuDe.ForeColor = System.Drawing.Color.White;
             this.labelTieuDe.LocationFloat = new DevExpress.Utils.PointFloat(4.999975F, 10F);
             this.labelTieuDe.Name = "labelTieuDe";
             this.labelTieuDe.SizeF = new System.Drawing.SizeF(640F, 24.19433F);
             this.labelTieuDe.StyleName = "Title";
+            this.labelTieuDe.StylePriority.UseBackColor = false;
+            this.labelTieuDe.StylePriority.UseBorderColor = false;
+            this.labelTieuDe.StylePriority.UseBorders = false;
             this.labelTieuDe.StylePriority.UseForeColor = false;
             this.labelTieuDe.StylePriority.UseTextAlignment = false;
             this.labelTieuDe.Text = "DANH SACH PHIEU ...  NHAN VIEN LAP TRONG NAM ...";
@@ -254,12 +262,12 @@ namespace formDN
             // 
             // tableCell1
             // 
-            this.tableCell1.BackColor = System.Drawing.Color.White;
-            this.tableCell1.BorderColor = System.Drawing.Color.Black;
+            this.tableCell1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.tableCell1.BorderColor = System.Drawing.Color.Gray;
             this.tableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.tableCell1.ForeColor = System.Drawing.Color.White;
             this.tableCell1.Name = "tableCell1";
             this.tableCell1.StyleName = "DetailCaption1";
             this.tableCell1.StylePriority.UseBackColor = false;
@@ -271,12 +279,12 @@ namespace formDN
             // 
             // tableCell2
             // 
-            this.tableCell2.BackColor = System.Drawing.Color.White;
-            this.tableCell2.BorderColor = System.Drawing.Color.Black;
+            this.tableCell2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.tableCell2.BorderColor = System.Drawing.Color.Gray;
             this.tableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell2.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.tableCell2.ForeColor = System.Drawing.Color.White;
             this.tableCell2.Name = "tableCell2";
             this.tableCell2.StyleName = "DetailCaption1";
             this.tableCell2.StylePriority.UseBackColor = false;
@@ -288,12 +296,12 @@ namespace formDN
             // 
             // tableCell3
             // 
-            this.tableCell3.BackColor = System.Drawing.Color.White;
-            this.tableCell3.BorderColor = System.Drawing.Color.Black;
+            this.tableCell3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.tableCell3.BorderColor = System.Drawing.Color.Gray;
             this.tableCell3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell3.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.tableCell3.ForeColor = System.Drawing.Color.White;
             this.tableCell3.Name = "tableCell3";
             this.tableCell3.StyleName = "DetailCaption1";
             this.tableCell3.StylePriority.UseBackColor = false;
@@ -305,12 +313,12 @@ namespace formDN
             // 
             // tableCell4
             // 
-            this.tableCell4.BackColor = System.Drawing.Color.White;
-            this.tableCell4.BorderColor = System.Drawing.Color.Black;
+            this.tableCell4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.tableCell4.BorderColor = System.Drawing.Color.Gray;
             this.tableCell4.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell4.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.tableCell4.ForeColor = System.Drawing.Color.White;
             this.tableCell4.Name = "tableCell4";
             this.tableCell4.StyleName = "DetailCaption1";
             this.tableCell4.StylePriority.UseBackColor = false;
@@ -324,12 +332,12 @@ namespace formDN
             // 
             // tableCell5
             // 
-            this.tableCell5.BackColor = System.Drawing.Color.White;
-            this.tableCell5.BorderColor = System.Drawing.Color.Black;
+            this.tableCell5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.tableCell5.BorderColor = System.Drawing.Color.Gray;
             this.tableCell5.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tableCell5.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.tableCell5.ForeColor = System.Drawing.Color.White;
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.StyleName = "DetailCaption1";
             this.tableCell5.StylePriority.UseBackColor = false;
@@ -343,12 +351,12 @@ namespace formDN
             // 
             // xrTableCell1
             // 
-            this.xrTableCell1.BackColor = System.Drawing.Color.White;
-            this.xrTableCell1.BorderColor = System.Drawing.Color.Black;
+            this.xrTableCell1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.xrTableCell1.BorderColor = System.Drawing.Color.Gray;
             this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.xrTableCell1.ForeColor = System.Drawing.Color.White;
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.StyleName = "DetailCaption1";
@@ -391,7 +399,7 @@ namespace formDN
             // 
             // tableCell6
             // 
-            this.tableCell6.BorderColor = System.Drawing.Color.Black;
+            this.tableCell6.BorderColor = System.Drawing.Color.Gray;
             this.tableCell6.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
@@ -406,7 +414,7 @@ namespace formDN
             // 
             // tableCell7
             // 
-            this.tableCell7.BorderColor = System.Drawing.Color.Black;
+            this.tableCell7.BorderColor = System.Drawing.Color.Gray;
             this.tableCell7.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
@@ -422,7 +430,7 @@ namespace formDN
             // 
             // tableCell8
             // 
-            this.tableCell8.BorderColor = System.Drawing.Color.Black;
+            this.tableCell8.BorderColor = System.Drawing.Color.Gray;
             this.tableCell8.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
@@ -436,7 +444,7 @@ namespace formDN
             // 
             // tableCell9
             // 
-            this.tableCell9.BorderColor = System.Drawing.Color.Black;
+            this.tableCell9.BorderColor = System.Drawing.Color.Gray;
             this.tableCell9.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
@@ -452,7 +460,7 @@ namespace formDN
             // 
             // tableCell10
             // 
-            this.tableCell10.BorderColor = System.Drawing.Color.Black;
+            this.tableCell10.BorderColor = System.Drawing.Color.Gray;
             this.tableCell10.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
@@ -469,7 +477,7 @@ namespace formDN
             // 
             // xrTableCell2
             // 
-            this.xrTableCell2.BorderColor = System.Drawing.Color.Black;
+            this.xrTableCell2.BorderColor = System.Drawing.Color.Gray;
             this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));

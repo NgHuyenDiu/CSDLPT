@@ -181,10 +181,14 @@ namespace formDN
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(159)))), ((int)(((byte)(228)))));
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.LocationFloat = new DevExpress.Utils.PointFloat(5F, 5F);
             this.label1.Name = "label1";
             this.label1.SizeF = new System.Drawing.SizeF(640F, 24.19433F);
             this.label1.StyleName = "Title";
+            this.label1.StylePriority.UseBackColor = false;
+            this.label1.StylePriority.UseForeColor = false;
             this.label1.Text = "TỔNG HỢP NHẬP XUẤT";
             // 
             // GroupHeader1
@@ -324,6 +328,7 @@ namespace formDN
             this.tableCell7.StylePriority.UseBorders = false;
             this.tableCell7.StylePriority.UseTextAlignment = false;
             this.tableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell7.TextFormatString = "{0:#,#}";
             this.tableCell7.Weight = 0.22820509800050581D;
             // 
             // tableCell8
@@ -340,6 +345,7 @@ namespace formDN
             this.tableCell8.StylePriority.UseBorders = false;
             this.tableCell8.StylePriority.UseTextAlignment = false;
             this.tableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell8.TextFormatString = "{0:0.00%}";
             this.tableCell8.Weight = 0.15512821259925252D;
             // 
             // tableCell9
@@ -356,6 +362,7 @@ namespace formDN
             this.tableCell9.StylePriority.UseBorders = false;
             this.tableCell9.StylePriority.UseTextAlignment = false;
             this.tableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell9.TextFormatString = "{0:#,#}";
             this.tableCell9.Weight = 0.2069149538142897D;
             // 
             // tableCell10
@@ -372,6 +379,7 @@ namespace formDN
             this.tableCell10.StylePriority.UseBorders = false;
             this.tableCell10.StylePriority.UseTextAlignment = false;
             this.tableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell10.TextFormatString = "{0:0.00%}";
             this.tableCell10.Weight = 0.13026451882808277D;
             // 
             // ReportFooter
@@ -436,6 +444,7 @@ namespace formDN
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             this.xrLabel3.Text = "xrLabel1";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrLabel3.TextFormatString = "{0:#,#}";
             // 
             // xrLabel2
             // 
@@ -457,6 +466,7 @@ namespace formDN
             this.xrLabel2.StylePriority.UseTextAlignment = false;
             this.xrLabel2.Text = "xrLabel1";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.xrLabel2.TextFormatString = "{0:#,#}";
             // 
             // xrLabel1
             // 
