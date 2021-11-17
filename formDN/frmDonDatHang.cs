@@ -150,7 +150,7 @@ namespace formDN
             txtMANV.Text = Program.username;
             ngay.Text = DateTime.Now.ToString().Substring(0, 10);
             groupBox1.Enabled = true;
-            datHangGridControl.Enabled = false;
+           
             txtMANV.Enabled = ngay.Enabled = false;
             txtDDH.Enabled = true;
             them = true;
@@ -270,14 +270,14 @@ namespace formDN
             LoadTable();
             groupBox1.Enabled = false;
         }
-
-        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void xoaDonHang()
         {
-            if(cTDDHBindingSource.Count+ phieuNhapBindingSource.Count > 0)
+            if (cTDDHBindingSource.Count + phieuNhapBindingSource.Count > 0)
             {
                 XtraMessageBox.Show("Đơn đặt hàng đã có phiếu nhập hoặc đã có chi tiết đơn đặt hàng. Không xoá được", "", MessageBoxButtons.OK);
-                    return;
-            }else if( XtraMessageBox.Show("Bạn có thực sụ muốn xoá đơn hàng.","",MessageBoxButtons.OKCancel)== DialogResult.OK)
+                return;
+            }
+            else if (XtraMessageBox.Show("Bạn có thực sụ muốn xoá đơn hàng.", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -291,17 +291,22 @@ namespace formDN
                     this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.datHangTableAdapter.Update(this.qLVT_DATHANGDataSet1.DatHang);
 
-                    query= String.Format("Insert into DatHang (MasoDDH, NGAY, NHACC, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}' )", ddh, ngay, nhacc, Program.username, makho);
+                    query = String.Format("Insert into DatHang (MasoDDH, NGAY, NHACC, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}' )", ddh, ngay, nhacc, Program.username, makho);
                     stackundo.Push(query);
                     LoadTable();
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
-                     XtraMessageBox.Show("Lỗi xóa đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi xóa đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DatHang);
                     return;
                 }
                 groupBox1.Enabled = false;
             }
+        }
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            xoaDonHang();
 
         }
 
@@ -428,6 +433,14 @@ namespace formDN
 
                     query = String.Format("Insert into CTDDH (MasoDDH, MAVT, SOLUONG, DONGIA) values(N'{0}', N'{1}', {2} , {3} )", maddh,mavt,soluong,dongia);
                     stackundo.Push(query);
+                    
+                    if (cTDDHBindingSource.Count == 0)
+                    {
+                       if( XtraMessageBox.Show("Đơn hàng không có chi tiết đơn đặt hàng. Bạn muốn xoá không? \n","", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            xoaDonHang();
+                        }
+                    }
                     LoadTable();
                 }
                  catch (Exception ex)

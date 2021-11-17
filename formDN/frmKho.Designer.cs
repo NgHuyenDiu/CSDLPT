@@ -345,11 +345,11 @@ namespace formDN
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
-           // this.tableAdapterManager.DSVTTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = this.khoTableAdapter;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
             this.tableAdapterManager.PhieuXuatTableAdapter = null;
+            this.tableAdapterManager.SP_DSNVTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = formDN.QLVT_DATHANGDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VattuTableAdapter = null;
             // 
@@ -357,10 +357,10 @@ namespace formDN
             // 
             this.khoGridControl.DataSource = this.bdsKho;
             this.khoGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.khoGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.khoGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(8);
             this.khoGridControl.Location = new System.Drawing.Point(0, 97);
             this.khoGridControl.MainView = this.gridView1;
-            this.khoGridControl.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.khoGridControl.Margin = new System.Windows.Forms.Padding(8);
             this.khoGridControl.MenuManager = this.barManager1;
             this.khoGridControl.Name = "khoGridControl";
             this.khoGridControl.Size = new System.Drawing.Size(1240, 329);
@@ -378,6 +378,8 @@ namespace formDN
             this.gridView1.DetailHeight = 852;
             this.gridView1.GridControl = this.khoGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colMAKHO
             // 

@@ -374,7 +374,6 @@ namespace formDN
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = this.datHangTableAdapter;
-           // this.tableAdapterManager.DSVTTableAdapter = null;
             this.tableAdapterManager.KhoTableAdapter = this.khoTableAdapter;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = this.phieuNhapTableAdapter;
@@ -414,10 +413,10 @@ namespace formDN
             // 
             this.datHangGridControl.DataSource = this.datHangBindingSource;
             this.datHangGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.datHangGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.datHangGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5);
             this.datHangGridControl.Location = new System.Drawing.Point(0, 97);
             this.datHangGridControl.MainView = this.gridView1;
-            this.datHangGridControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.datHangGridControl.Margin = new System.Windows.Forms.Padding(5);
             this.datHangGridControl.MenuManager = this.barManager1;
             this.datHangGridControl.Name = "datHangGridControl";
             this.datHangGridControl.Size = new System.Drawing.Size(1444, 344);
@@ -436,6 +435,8 @@ namespace formDN
             this.gridView1.DetailHeight = 546;
             this.gridView1.GridControl = this.datHangGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colMasoDDH
             // 
@@ -567,10 +568,10 @@ namespace formDN
             this.cTDDHGridControl.ContextMenuStrip = this.contextMenuStrip2;
             this.cTDDHGridControl.DataSource = this.cTDDHBindingSource;
             this.cTDDHGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTDDHGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cTDDHGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(5);
             this.cTDDHGridControl.Location = new System.Drawing.Point(363, 441);
             this.cTDDHGridControl.MainView = this.gridView2;
-            this.cTDDHGridControl.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cTDDHGridControl.Margin = new System.Windows.Forms.Padding(5);
             this.cTDDHGridControl.MenuManager = this.barManager1;
             this.cTDDHGridControl.Name = "cTDDHGridControl";
             this.cTDDHGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {

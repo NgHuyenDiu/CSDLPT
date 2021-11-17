@@ -431,10 +431,10 @@ namespace formDN
             // 
             this.nhanVienGridControl.DataSource = this.bdsNV;
             this.nhanVienGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nhanVienGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.nhanVienGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(12);
             this.nhanVienGridControl.Location = new System.Drawing.Point(0, 125);
             this.nhanVienGridControl.MainView = this.gridView1;
-            this.nhanVienGridControl.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.nhanVienGridControl.Margin = new System.Windows.Forms.Padding(12);
             this.nhanVienGridControl.MenuManager = this.barManager1;
             this.nhanVienGridControl.Name = "nhanVienGridControl";
             this.nhanVienGridControl.Size = new System.Drawing.Size(1381, 315);
@@ -455,6 +455,8 @@ namespace formDN
             this.colTrangThaiXoa});
             this.gridView1.GridControl = this.nhanVienGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colMANV
             // 

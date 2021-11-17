@@ -1,0 +1,24 @@
+USE [QLVT_DATHANG]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_ktdongia]    Script Date: 11/18/2021 01:50:07 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROC [dbo].[sp_ktdongia]
+@MAPHIEU NCHAR(8),
+@MAVT NCHAR(4),
+@DONGIA INT
+AS
+BEGIN
+IF(@DONGIA = (SELECT DONGIA FROM CTDDH WHERE MASODDH= @MAPHIEU AND MAVT= @MAVT))
+		
+		return 1;
+ELSE
+	RAISERROR(N'ĐƠN GIÁ KHÁC ĐƠN GIÁ LÚC ĐẶT HÀNG !',16,1)
+END
+GO
+

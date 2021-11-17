@@ -158,7 +158,7 @@ namespace formDN
             viTri = bdsPX.Position;
             bdsPX.AddNew();
             groupBox1.Enabled = true;
-            phieuXuatGridControl.Enabled = false;
+      
             disableButton();
             txtMANV.Text = Program.username;
             txtNgay.Text = DateTime.Now.ToString().Substring(0, 10);
@@ -255,14 +255,14 @@ namespace formDN
 
         }
 
-        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void xoaPX()
         {
-            if(bdsCTPX.Count > 0)
+            if (bdsCTPX.Count > 0)
             {
-                 XtraMessageBox.Show("Phiếu Xuất đã có Chi Tiết Phiếu xuất nên không thể xóa !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Phiếu Xuất đã có Chi Tiết Phiếu xuất nên không thể xóa !", "", MessageBoxButtons.OK);
                 return;
             }
-            else if( XtraMessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            else if (XtraMessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -274,17 +274,22 @@ namespace formDN
                     bdsPX.RemoveCurrent();
                     this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.phieuXuatTableAdapter.Update(this.qLVT_DATHANGDataSet1.PhieuXuat);
-                    query = String.Format("Insert into PhieuXuat (MAPX, NGAY, HOTENKH, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}')", mapx, ngay,tenkh,Program.username,makho);
+                    query = String.Format("Insert into PhieuXuat (MAPX, NGAY, HOTENKH, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}')", mapx, ngay, tenkh, Program.username, makho);
                     stackundo.Push(query);
                     LoadTable();
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
-                     XtraMessageBox.Show("Lỗi xóa phiếu xuất. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi xóa phiếu xuất. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     return;
 
                 }
                 groupBox1.Enabled = false;
             }
+        }
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            xoaPX();
         }
 
         private void cmbCN_SelectedIndexChanged(object sender, EventArgs e)
@@ -355,6 +360,13 @@ namespace formDN
 
                     query = String.Format("EXEC sp_undoxoaCTPX N'{0}', N'{1}', {2}, {3}, N'{4}'", mapx, mavt, soluong, dongia, "X");
                     stackundo.Push(query);
+                    if (bdsCTPX.Count == 0)
+                    {
+                        if (XtraMessageBox.Show("Đơn hàng không có chi tiết đơn đặt hàng. Bạn muốn xoá không? \n", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            xoaPX();
+                        }
+                    }
                     LoadTable();
                 }
                 catch (Exception ex)
@@ -434,7 +446,7 @@ namespace formDN
                 bdsCTPX.EndEdit();
                 bdsCTPX.ResetCurrentItem();
 
-                MessageBox.Show("Ghi thành công !!!");
+                XtraMessageBox.Show("Ghi thành công !!!");
 
                 this.cTPXTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.cTPXTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPX);

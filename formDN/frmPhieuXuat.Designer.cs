@@ -412,6 +412,8 @@ namespace formDN
             this.gridView1.DetailHeight = 1065;
             this.gridView1.GridControl = this.phieuXuatGridControl;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // colMAPX
             // 

@@ -116,7 +116,7 @@ namespace formDN
             bdsPN.AddNew();
             DisEnableButton();
             groupBox1.Enabled = true;
-            phieuNhapGridControl.Enabled = false;
+           
             txtMANV.Text = Program.username;
             ngay.Text = DateTime.Now.ToString().Substring(0, 10);
             txtMANV.Enabled = ngay.Enabled = false;
@@ -186,15 +186,14 @@ namespace formDN
                 LoadTable();
             }
         }
-
-        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void xoaPN()
         {
             if (bdsCTPN.Count > 0)
             {
-                 XtraMessageBox.Show("Phiếu Nhập đã có Chi Tiết Phiếu Nhập nên không thể xóa !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Phiếu Nhập đã có Chi Tiết Phiếu Nhập nên không thể xóa !", "", MessageBoxButtons.OK);
                 return;
             }
-            else if( XtraMessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            else if (XtraMessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -209,14 +208,19 @@ namespace formDN
                     query = String.Format("Insert into PhieuNhap (MAPN, NGAY, MasoDDH, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}' )", mapn, ngay, masoddh, Program.username, makho);
                     stackundo.Push(query);
                     LoadTable();
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
-                     XtraMessageBox.Show("Lỗi xóa phiếu nhập. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi xóa phiếu nhập. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.phieuNhapTableAdapter.Fill(this.qLVT_DATHANGDataSet1.PhieuNhap);
                     return;
                 }
-               
+
             }
+        }
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            xoaPN();
         }
         private int kiemTraTonTai(String mapn)
         {
@@ -298,18 +302,20 @@ namespace formDN
             btnThemCTPN.Enabled = btnGhiCTPN.Enabled = true;
             LoadTable();
             groupBox1.Enabled = false;
+            
         }
+        
 
         private void btnThemCTPN_Click(object sender, EventArgs e)
         {
             bdsCTPN.AddNew();
             this.sp_vattutrongddhTableAdapter.Fill(this.qLVT_DATHANGDataSet1.sp_vattutrongddh, cmbDDH.Text);
             this.colMAVT.ColumnEdit = repositoryItemLookUpEdit1;
+            this.sp_dongiavtTableAdapter.Fill(this.qLVT_DATHANGDataSet1.sp_dongiavt, cmbDDH.Text);
+            this.colDONGIA.ColumnEdit = repositoryItemLookUpEdit3;
             btnGhiCTPN.Enabled = true;
             btnThemCTPN.Enabled = false;
-           
-
-        }
+              }
 
         private Boolean ktraVattutrenView ( String maVT)
         {
@@ -366,6 +372,29 @@ namespace formDN
             return result;
         }
 
+        private int ktDonGia(String maddh, String mavt, int dongia)
+        {
+            int result = 1;
+            String lenh = string.Format("EXEC sp_ktdongia {0},{1},{2}", maddh, mavt, dongia);
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand(lenh, connection);
+                sqlCommand.CommandType = CommandType.Text;
+                try
+                {
+
+                    sqlCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    result = 0;
+                    XtraMessageBox.Show(ex.Message + " ");
+                }
+            }
+            return result;
+        }
+
         private void btnGhiCTPN_Click(object sender, EventArgs e)
         {
             btnThemCTPN.Enabled = true;
@@ -411,9 +440,16 @@ namespace formDN
                 btnThemCTPN.Enabled = false;
                 return;
             }
+            int dongia = int.Parse((gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "DONGIA").ToString()));
             if (gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "DONGIA").ToString() == string.Empty)
             {
                  XtraMessageBox.Show("Đơn giá không được thiếu !", "", MessageBoxButtons.OK);
+                btnThemCTPN.Enabled = false;
+                return;
+            }
+            if (ktDonGia(maDDH, mavt, dongia) == 0)
+            {
+                XtraMessageBox.Show("Đơn giá khác lúc đặt hàng!", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
@@ -448,10 +484,13 @@ namespace formDN
                 stackundo.Push(query);
             }
             catch (Exception) { }
-            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnReload.Enabled = true;
-            btnGhi.Enabled = btnUndo.Enabled = false;
-            LoadTable();
+            btnThemCTPN.Enabled = btnXoaCTPN.Enabled = true;
             btnGhiCTPN.Enabled = false;
+            LoadTable();
+            groupBox1.Enabled = false;
+            this.colMAVT.ColumnEdit = repositoryItemLookUpEdit2;
+            this.colDONGIA.ColumnEdit = null ;
+
         }
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)
@@ -487,6 +526,13 @@ namespace formDN
                     this.cTPNTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPN);
                     query = String.Format("EXEC sp_undoxoaCTPN N'{0}', N'{1}', {2}, {3}, N'{4}'", mapn, mavt, soluong, dongia, "N");
                     stackundo.Push(query);
+                    if (bdsCTPN.Count == 0)
+                    {
+                        if (XtraMessageBox.Show("Đơn hàng không có chi tiết đơn đặt hàng. Bạn muốn xoá không? \n", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        {
+                            xoaPN();
+                        }
+                    }
                     LoadTable();
                 }
                 catch (Exception ex)
@@ -499,16 +545,5 @@ namespace formDN
             }
         }
 
-        private void btnThoatCTPN_Click(object sender, EventArgs e)
-        {
-            if (cTPNGridControl.Enabled)
-            {
-                if ( XtraMessageBox.Show("Chưa lưu dữ liệu vào dataSet. Thoát dữ liệu sẽ bị mất", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    
-                }
-            }
-           // this.Dispose();
-        }
     }
 }
