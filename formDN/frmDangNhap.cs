@@ -126,13 +126,20 @@ namespace formDN
       
             this.Hide();
             Program.fMain.FormClosed += (o, w) => this.Show();
+            
             Program.fMain.MANV.Text = "Mã nhân viên : " + Program.username;
             Program.fMain.HOTEN.Text = "Họ tên : " + Program.mHoten;
             Program.fMain.NHOM.Text = "Nhóm : " + Program.mGroup;
-
+            if (Program.mGroup.Equals("CONGTY") || Program.mGroup.Equals("CHINHANH"))
+            {
+                Program.fMain.btnTaoTaiKhoan.Enabled = true;
+            }
             
+            Program.fMain.btnDangXuat.Enabled = true;
+            Program.fMain.btn_dangNhap.Enabled = false;
+
         }
 
-      
+        
     }
 }

@@ -120,4 +120,7 @@
   <metadata name="sqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="sqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
+    <value>PERhdGFTZXQgTmFtZT0ic3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9InNwX2hkbnYiPjxGaWVsZCBOYW1lPSJUSEFOR05BTSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOR0FZIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iTUFQTiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJIT1RFTktIIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRFTlZUIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRFTktITyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTT0xVT05HIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iRE9OR0lBIiBUeXBlPSJEb3VibGUiIC8+PEZpZWxkIE5hbWU9IlRSSUdJQSIgVHlwZT0iRG91YmxlIiAvPjxGaWVsZCBOYW1lPSJNQU5WIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSE9URU5OViIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+  </data>
 </root>

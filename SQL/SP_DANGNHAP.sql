@@ -1,0 +1,27 @@
+USE [QLVT_DATHANG]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_DANGNHAP]    Script Date: 11/17/2021 06:28:11 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROC [dbo].[SP_DANGNHAP]
+@TENLOGIN NVARCHAR (50)
+AS
+DECLARE @TENUSER NVARCHAR(50)
+SELECT @TENUSER=NAME FROM sys.sysusers WHERE sid = SUSER_SID(@TENLOGIN)
+ 
+ SELECT USERNAME = @TENUSER, 
+  HOTEN = (SELECT HO+ ' '+ TEN FROM NHANVIEN  WHERE MANV = @TENUSER ),
+   TENNHOM= NAME
+   FROM sys.sysusers 
+   WHERE UID = (SELECT GROUPUID 
+                 FROM SYS.SYSMEMBERS 
+                   WHERE MEMBERUID= (SELECT UID FROM sys.sysusers 
+                                      WHERE NAME=@TENUSER))
+
+GO
+

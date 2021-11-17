@@ -1,0 +1,29 @@
+USE [QLVT_DATHANG]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_undothemCTPX]    Script Date: 11/17/2021 06:33:15 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROC [dbo].[sp_undothemCTPX]
+@MAPX nchar(8), @MAVT NCHAR(4), @SOLUONG INT ,@LOAI CHAR(1)
+AS
+SET XACT_ABORT ON 
+BEGIN TRANSACTION
+BEGIN TRY
+	delete from CTPX where MAPX= @MAPX AND MAVT= @MAVT
+	EXEC sp_capnhatsoluongton @MAVT, @SOlUONG, @LOAI
+COMMIT TRANSACTION
+END TRY
+BEGIN CATCH
+   ROLLBACK
+	DECLARE @ErrorMessage VARCHAR(2000)
+	SELECT @ErrorMessage = 'Lỗi: ' + ERROR_MESSAGE()
+	RAISERROR( @ErrorMessage, 16, 1)
+END CATCH
+
+GO
+

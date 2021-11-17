@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -71,7 +72,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                 XtraMessageBox.Show(ex.Message);
             }
 
         }
@@ -115,7 +116,7 @@ namespace formDN
         {
             if (groupBox1.Enabled)
             {
-                if (MessageBox.Show("Dữ liệu Form Phiếu Xuất vẫn chưa lưu vào Database! \nBạn có chắn chắn muốn thoát?", "Thông báo",
+                if ( XtraMessageBox.Show("Dữ liệu Form Phiếu Xuất vẫn chưa lưu vào Database! \nBạn có chắn chắn muốn thoát?", "Thông báo",
                             MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     this.Close();
@@ -147,7 +148,7 @@ namespace formDN
                 }
                 catch
                 {
-                    MessageBox.Show(lenh);
+                     XtraMessageBox.Show(lenh);
                 }
             }
         }
@@ -199,21 +200,21 @@ namespace formDN
             {
                 if (kiemTratonTai(txtMAPX.Text) == 1)
                 {
-                    MessageBox.Show("Mã Phiếu Xuất không được trùng !", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Mã Phiếu Xuất không được trùng !", "", MessageBoxButtons.OK);
                     txtMAPX.Focus();
                     return;
                 }
 
                 if (txtMAPX.Text == string.Empty)
                 {
-                    MessageBox.Show("Mã Phiếu Xuất không được thiếu !", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Mã Phiếu Xuất không được thiếu !", "", MessageBoxButtons.OK);
                     txtMAPX.Focus();
                     return;
                 }
 
                 if (txtMAPX.Text.Length > 8)
                 {
-                    MessageBox.Show("Mã Phiếu Xuất không được hơn 8 ký tự !", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Mã Phiếu Xuất không được hơn 8 ký tự !", "", MessageBoxButtons.OK);
                     txtMAPX.Focus();
                     return;
                 }
@@ -221,12 +222,12 @@ namespace formDN
           
             if (txtTENKH.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Họ tên Khách hàng không được thiếu !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Họ tên Khách hàng không được thiếu !", "", MessageBoxButtons.OK);
                 return;
             }
             if (cmbKho.Text.Trim() == String.Empty)
             {
-                MessageBox.Show("Mã kho không được trống !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã kho không được trống !", "", MessageBoxButtons.OK);
                 return;
             }
             try
@@ -241,11 +242,11 @@ namespace formDN
                     query = String.Format("delete from PhieuXuat where MAPX=N'{0}'", txtMAPX.Text);
                 }
                 stackundo.Push(query);
-                MessageBox.Show("Ghi thành công");
+                 XtraMessageBox.Show("Ghi thành công");
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Lỗi ghi Phiếu xuất .\n" + ex.Message);
+                XtraMessageBox.Show("Lỗi ghi Phiếu xuất .\n" + ex.Message);
                 return;
             }
             EnableButton();
@@ -258,10 +259,10 @@ namespace formDN
         {
             if(bdsCTPX.Count > 0)
             {
-                MessageBox.Show("Phiếu Xuất đã có Chi Tiết Phiếu xuất nên không thể xóa !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Phiếu Xuất đã có Chi Tiết Phiếu xuất nên không thể xóa !", "", MessageBoxButtons.OK);
                 return;
             }
-            else if(MessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            else if( XtraMessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -278,7 +279,7 @@ namespace formDN
                     LoadTable();
                 }catch(Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa phiếu xuất. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Lỗi xóa phiếu xuất. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     return;
 
                 }
@@ -305,7 +306,7 @@ namespace formDN
             }
             if (Program.KetNoi() == 0)
             {
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
             }
             else
             {
@@ -322,7 +323,7 @@ namespace formDN
 
         private void btnXoaCTPX_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if( XtraMessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -348,7 +349,7 @@ namespace formDN
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message + " ");
+                             XtraMessageBox.Show(ex.Message + " ");
                         }
                     }
 
@@ -358,7 +359,7 @@ namespace formDN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa chi tiết phiếu xuất. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi xóa chi tiết phiếu xuất. Bạn hãy xóa lại \n", ex.Message,  MessageBoxButtons.OK);
                     return;
                 }
             }
@@ -382,14 +383,14 @@ namespace formDN
             String dongia = ((DataRowView)bdsCTPX[bdsCTPX.Count -1])["DONGIA"].ToString();
             if (mavt == String.Empty)
             {
-                MessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);
                 btnThemCTPX.Enabled = false;
                 btnXoaCTPX.Enabled = false;
                 return;
             }
             if (KiemTraVatTuTrenView(mavt) == false)
             {
-                MessageBox.Show("Vật tư không được trùng!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Vật tư không được trùng!", "", MessageBoxButtons.OK);
                 //cTPXBindingSource.RemoveCurrent();
                 btnThemCTPX.Enabled = false;
                 btnXoaCTPX.Enabled = false;
@@ -398,7 +399,7 @@ namespace formDN
 
             if (soluong == string.Empty)
             {
-                MessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);
                 btnThemCTPX.Enabled = false;
                 btnXoaCTPX.Enabled = false;
                 return;
@@ -406,7 +407,7 @@ namespace formDN
 
             if (dongia == string.Empty)
             {
-                MessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);
                 btnThemCTPX.Enabled = false;
                 btnXoaCTPX.Enabled = false;
                 return;
@@ -426,7 +427,7 @@ namespace formDN
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message + " ");
+                         XtraMessageBox.Show(ex.Message + " ");
                         return;
                     }
                 }

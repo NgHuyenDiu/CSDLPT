@@ -38,6 +38,7 @@ namespace formDN
             this.button_thoat = new System.Windows.Forms.Button();
             this.checkBox_matKhau = new System.Windows.Forms.CheckBox();
             this.comboBox_CN = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -132,11 +133,22 @@ namespace formDN
             this.comboBox_CN.TabIndex = 9;
             this.comboBox_CN.SelectedIndexChanged += new System.EventHandler(this.comboBox_CN_SelectedIndexChanged_1);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(244, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(184, 32);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "ĐĂNG NHẬP";
+            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 410);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox_CN);
             this.Controls.Add(this.checkBox_matKhau);
             this.Controls.Add(this.button_thoat);
@@ -165,5 +177,6 @@ namespace formDN
         private System.Windows.Forms.Button button_thoat;
         private System.Windows.Forms.CheckBox checkBox_matKhau;
         private System.Windows.Forms.ComboBox comboBox_CN;
+        private System.Windows.Forms.Label label2;
     }
 }

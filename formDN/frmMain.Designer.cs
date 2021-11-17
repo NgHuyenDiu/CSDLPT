@@ -451,7 +451,6 @@ namespace formDN
         public System.Windows.Forms.ToolStripStatusLabel MANV;
         public System.Windows.Forms.ToolStripStatusLabel HOTEN;
         public System.Windows.Forms.ToolStripStatusLabel NHOM;
-        private DevExpress.XtraBars.BarButtonItem btn_dangNhap;
         private DevExpress.XtraBars.BarButtonItem btn_nhanVien;
         private DevExpress.XtraBars.BarButtonItem btn_vatTu;
         private DevExpress.XtraBars.BarButtonItem btn_kho;
@@ -464,11 +463,12 @@ namespace formDN
         private DevExpress.XtraBars.BarButtonItem btn_bangKeVatTu;
         private DevExpress.XtraBars.BarButtonItem btn_tongHopPhieuXuat;
         private DevExpress.XtraBars.BarButtonItem btn_inDSHDNV;
-        private DevExpress.XtraBars.BarButtonItem btnDangXuat;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
-        private DevExpress.XtraBars.BarButtonItem btnTaoTaiKhoan;
+        public DevExpress.XtraBars.BarButtonItem btnDangXuat;
+        public DevExpress.XtraBars.BarButtonItem btnTaoTaiKhoan;
+        public DevExpress.XtraBars.BarButtonItem btn_dangNhap;
     }
 }
 

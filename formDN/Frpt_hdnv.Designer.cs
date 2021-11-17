@@ -42,8 +42,6 @@ namespace formDN
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.cmbPhieu = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.dSNhanVienCoHDTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.dSNhanVienCoHDTableAdapter();
             this.tableAdapterManager = new formDN.QLVT_DATHANGDataSet1TableAdapters.TableAdapterManager();
             this.label2 = new System.Windows.Forms.Label();
@@ -108,7 +106,7 @@ namespace formDN
             0,
             0});
             this.txtMaNV.Location = new System.Drawing.Point(178, 98);
-            this.txtMaNV.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtMaNV.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaNV.Name = "txtMaNV";
             this.txtMaNV.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaNV.Properties.Appearance.Options.UseFont = true;
@@ -121,7 +119,7 @@ namespace formDN
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(540, 340);
+            this.button2.Location = new System.Drawing.Point(542, 276);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 63);
             this.button2.TabIndex = 26;
@@ -132,7 +130,7 @@ namespace formDN
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(151, 340);
+            this.button1.Location = new System.Drawing.Point(153, 276);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 63);
             this.button1.TabIndex = 25;
@@ -145,7 +143,7 @@ namespace formDN
             this.dateTimePicker2.CustomFormat = "yyyy-MM-dd";
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(623, 242);
+            this.dateTimePicker2.Location = new System.Drawing.Point(625, 178);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 30);
             this.dateTimePicker2.TabIndex = 24;
@@ -156,7 +154,7 @@ namespace formDN
             this.dateTimePicker1.CustomFormat = "yyyy-MM-dd";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(235, 250);
+            this.dateTimePicker1.Location = new System.Drawing.Point(237, 186);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 30);
             this.dateTimePicker1.TabIndex = 23;
@@ -166,7 +164,7 @@ namespace formDN
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(473, 250);
+            this.label5.Location = new System.Drawing.Point(475, 186);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(128, 22);
             this.label5.TabIndex = 22;
@@ -176,36 +174,11 @@ namespace formDN
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(84, 258);
+            this.label4.Location = new System.Drawing.Point(86, 194);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(127, 22);
             this.label4.TabIndex = 21;
             this.label4.Text = "Ngày Bắt đầu: ";
-            // 
-            // cmbPhieu
-            // 
-            this.cmbPhieu.DisplayMember = "Nhập";
-            this.cmbPhieu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPhieu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPhieu.FormattingEnabled = true;
-            this.cmbPhieu.Items.AddRange(new object[] {
-            "Nhập",
-            "Xuất"});
-            this.cmbPhieu.Location = new System.Drawing.Point(168, 162);
-            this.cmbPhieu.Name = "cmbPhieu";
-            this.cmbPhieu.Size = new System.Drawing.Size(267, 30);
-            this.cmbPhieu.TabIndex = 20;
-            this.cmbPhieu.ValueMember = "Nhập";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(84, 162);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 22);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Phiếu: ";
             // 
             // dSNhanVienCoHDTableAdapter
             // 
@@ -252,8 +225,6 @@ namespace formDN
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.cmbPhieu);
-            this.Controls.Add(this.label3);
             this.Controls.Add(họ_tênLabel);
             this.Controls.Add(mã_NVLabel);
             this.Name = "Frpt_hdnv";
@@ -277,8 +248,6 @@ namespace formDN
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cmbPhieu;
-        private System.Windows.Forms.Label label3;
         private QLVT_DATHANGDataSet1 qLVT_DATHANGDataSet1;
         private System.Windows.Forms.BindingSource dSNhanVienCoHDBindingSource;
         private QLVT_DATHANGDataSet1TableAdapters.dSNhanVienCoHDTableAdapter dSNhanVienCoHDTableAdapter;

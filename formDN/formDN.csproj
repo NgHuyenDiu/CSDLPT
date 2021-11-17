@@ -209,17 +209,17 @@
     <Compile Include="Xrpt_bangkectvt.Designer.cs">
       <DependentUpon>Xrpt_bangkectvt.cs</DependentUpon>
     </Compile>
-    <Compile Include="xrpt_hdnv.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="xrpt_hdnv.Designer.cs">
-      <DependentUpon>xrpt_hdnv.cs</DependentUpon>
-    </Compile>
     <Compile Include="Xrpt_tonghopnhapxuat.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Xrpt_tonghopnhapxuat.Designer.cs">
       <DependentUpon>Xrpt_tonghopnhapxuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Xrpt_hdnv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Xrpt_hdnv.Designer.cs">
+      <DependentUpon>Xrpt_hdnv.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmDonDatHang.resx">
       <DependentUpon>frmDonDatHang.cs</DependentUpon>
@@ -295,11 +295,11 @@
     <EmbeddedResource Include="Xrpt_bangkectvt.resx">
       <DependentUpon>Xrpt_bangkectvt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="xrpt_hdnv.resx">
-      <DependentUpon>xrpt_hdnv.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Xrpt_tonghopnhapxuat.resx">
       <DependentUpon>Xrpt_tonghopnhapxuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xrpt_hdnv.resx">
+      <DependentUpon>Xrpt_hdnv.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">

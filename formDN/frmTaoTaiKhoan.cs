@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,7 +65,7 @@ namespace formDN
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show(lenh + ex.Message);
+                     XtraMessageBox.Show(lenh + ex.Message);
                 }
             }
             return result;
@@ -95,7 +96,7 @@ namespace formDN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(lenh + ex.Message);
+                     XtraMessageBox.Show(lenh + ex.Message);
                 }
             }
             return result;
@@ -118,7 +119,7 @@ namespace formDN
                 catch (Exception ex)
                 {
                     result = false;
-                    MessageBox.Show(ex.Message );
+                     XtraMessageBox.Show(ex.Message );
                 }
             }
             return result;
@@ -134,38 +135,38 @@ namespace formDN
         {
             if (txtloginname.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("LoginName không được thiếu !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("LoginName không được thiếu !", "", MessageBoxButtons.OK);
                 txtloginname.Focus();
                 return;
             }
             if (txtloginname.Text.Contains(" "))
             {
-                MessageBox.Show("LoginName không được có khoảng trống !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("LoginName không được có khoảng trống !", "", MessageBoxButtons.OK);
                 txtloginname.Focus();
                 return;
             }
             if (kiemTraTonTaiLogin(txtloginname.Text))
             {
-                MessageBox.Show("LoginName đã tồn tại. Vui lòng chọn LoginName khác !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("LoginName đã tồn tại. Vui lòng chọn LoginName khác !", "", MessageBoxButtons.OK);
                 txtloginname.Focus();
                 return;
             }
             if (txtPassword.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Password không được thiếu !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Password không được thiếu !", "", MessageBoxButtons.OK);
                 txtPassword.Focus();
                 return;
             }
             if (kiemTraTonTaiUser(cmbUsername.Text))
             {
                
-                MessageBox.Show("Username bị tồn tại. Vui lòng chọn Username khác !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Username bị tồn tại. Vui lòng chọn Username khác !", "", MessageBoxButtons.OK);
                 cmbUsername.Focus();
                 return;
             }
             if ((chiNhanh.Checked || congTy.Checked || user.Checked) == false)
             {
-                MessageBox.Show("Role không được thiếu !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Role không được thiếu !", "", MessageBoxButtons.OK);
                 return;
             }
             try
@@ -174,17 +175,17 @@ namespace formDN
                 Boolean result= CreateLogin(txtloginname.Text, txtPassword.Text, cmbUsername.Text, role);
                 if(result == true)
                 {
-                    MessageBox.Show("Tạo Login thành công!", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Tạo Login thành công!", "", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    MessageBox.Show("Tạo Login thất bại!", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Tạo Login thất bại!", "", MessageBoxButtons.OK);
                 }
                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi ghi.\n" + ex.Message);
+                 XtraMessageBox.Show("Lỗi ghi.\n" + ex.Message);
                 return;
             }
             loadData();

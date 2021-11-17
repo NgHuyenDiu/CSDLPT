@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -82,7 +83,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show("LOI LOAD DU LIEU "+ex.Message);
+                 XtraMessageBox.Show("LOI LOAD DU LIEU "+ex.Message);
             }
         }
 
@@ -130,7 +131,7 @@ namespace formDN
         {
             if (groupBox1.Enabled)
             {
-                if(MessageBox.Show("Dữ liệu Form Đơn Đặt Hàng vẫn chưa lưu vào Database! Bạn có chắc chắn muốn thoát", "", MessageBoxButtons.OKCancel)== DialogResult.OK)
+                if( XtraMessageBox.Show("Dữ liệu Form Đơn Đặt Hàng vẫn chưa lưu vào Database! Bạn có chắc chắn muốn thoát", "", MessageBoxButtons.OKCancel)== DialogResult.OK)
                 {
                     this.Close();
                 }
@@ -172,7 +173,7 @@ namespace formDN
                 }
                 catch
                 {
-                    MessageBox.Show(lenh);
+                     XtraMessageBox.Show(lenh);
                 }
             }
         }
@@ -205,14 +206,14 @@ namespace formDN
         {
             if (txtDDH.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Mã đơn đặt hàng không được thiếu !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã đơn đặt hàng không được thiếu !", "", MessageBoxButtons.OK);
                 txtDDH.Focus();
                 return;
             }
 
             if (txtDDH.Text.Length > 8)
             {
-                MessageBox.Show("Mã đơn đặt hàng không được quá 8 kí tự !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã đơn đặt hàng không được quá 8 kí tự !", "", MessageBoxButtons.OK);
                 txtDDH.Focus();
                 return;
             }
@@ -222,7 +223,7 @@ namespace formDN
                 {
                     if(kiemTraTonTai(txtDDH.Text)==1)
                     {
-                        MessageBox.Show("Mã đơn đặt hàng không được trùng !", "", MessageBoxButtons.OK);
+                         XtraMessageBox.Show("Mã đơn đặt hàng không được trùng !", "", MessageBoxButtons.OK);
                         txtDDH.Focus();
                         return;
                     }
@@ -230,19 +231,19 @@ namespace formDN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                     XtraMessageBox.Show(ex.Message);
                     return;
                 }
             }
             if (txtNCC.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Nhà cung cấp không được thiếu!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Nhà cung cấp không được thiếu!", "", MessageBoxButtons.OK);
                 txtNCC.Focus();
                 return;
             }
             if (cmbKho.Text.Trim() == String.Empty)
             {
-                MessageBox.Show("Mã kho không được thiếu!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã kho không được thiếu!", "", MessageBoxButtons.OK);
                 cmbKho.Focus();
                 return;
             }
@@ -262,7 +263,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi ghi Đơn Đặt Hàng .\n" + ex.Message);
+                 XtraMessageBox.Show("Lỗi ghi Đơn Đặt Hàng .\n" + ex.Message);
                 return;
             }
             EnableForm();
@@ -274,9 +275,9 @@ namespace formDN
         {
             if(cTDDHBindingSource.Count+ phieuNhapBindingSource.Count > 0)
             {
-                MessageBox.Show("Đơn đặt hàng đã có phiếu nhập hoặc đã có chi tiết đơn đặt hàng. Không xoá được", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Đơn đặt hàng đã có phiếu nhập hoặc đã có chi tiết đơn đặt hàng. Không xoá được", "", MessageBoxButtons.OK);
                     return;
-            }else if(MessageBox.Show("Bạn có thực sụ muốn xoá đơn hàng.","",MessageBoxButtons.OKCancel)== DialogResult.OK)
+            }else if( XtraMessageBox.Show("Bạn có thực sụ muốn xoá đơn hàng.","",MessageBoxButtons.OKCancel)== DialogResult.OK)
             {
                 try
                 {
@@ -295,7 +296,7 @@ namespace formDN
                     LoadTable();
                 }catch(Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Lỗi xóa đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DatHang);
                     return;
                 }
@@ -332,7 +333,7 @@ namespace formDN
             }
 
             if (Program.KetNoi() == 0)
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
             else
             {
                 LoadTable();
@@ -367,27 +368,27 @@ namespace formDN
             String dongia = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["DONGIA"].ToString();
             if (mavt == String.Empty)
             {
-                MessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);                
+                 XtraMessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);                
                 btntThemCTDDH.Enabled = false;            
                 return;
             }
             if (kiemTraTonTaiCT(maddh, mavt) == 1)
             {
-                MessageBox.Show("Vật tư không được trùng!", "", MessageBoxButtons.OK);           
+                 XtraMessageBox.Show("Vật tư không được trùng!", "", MessageBoxButtons.OK);           
                 btntThemCTDDH.Enabled = false;             
                 return;
             }
 
             if (soluong == string.Empty)
             {
-                MessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);             
+                 XtraMessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);             
                 btntThemCTDDH.Enabled = false;           
                 return;
             }
 
             if (dongia == string.Empty)
             {
-                MessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);              
+                 XtraMessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);              
                 btntThemCTDDH.Enabled = false;   
                 return;
             }
@@ -397,7 +398,7 @@ namespace formDN
                 cTDDHBindingSource.ResetCurrentItem();
                 this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.cTDDHTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTDDH);
-                MessageBox.Show("Ghi thanh cong");
+                 XtraMessageBox.Show("Ghi thanh cong");
                 query = String.Format("delete from CTDDH where MasoDDH=N'{0}' AND MAVT=N'{1}'", maddh.Trim(), mavt.Trim());
                 stackundo.Push(query);
             }
@@ -412,7 +413,7 @@ namespace formDN
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Bạn chắc chắn muốn xoá chi tiết của đơn đặt hàng này ","",MessageBoxButtons.OKCancel)== DialogResult.OK)
+            if( XtraMessageBox.Show("Bạn chắc chắn muốn xoá chi tiết của đơn đặt hàng này ","",MessageBoxButtons.OKCancel)== DialogResult.OK)
             {
                 try
                 {
@@ -431,7 +432,7 @@ namespace formDN
                 }
                  catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa chi tiết đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Lỗi xóa chi tiết đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.cTDDHTableAdapter.Fill(this.qLVT_DATHANGDataSet1.CTDDH);
                     return;
                 }

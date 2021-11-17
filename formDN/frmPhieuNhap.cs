@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -76,7 +77,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                 XtraMessageBox.Show(ex.Message);
             }
 
         }
@@ -127,7 +128,7 @@ namespace formDN
         {
             if (groupBox1.Enabled)
             {
-               if( MessageBox.Show("Chưa lưu dữ liệu vào dataSet. Thoát dữ liệu sẽ bị mất","", MessageBoxButtons.OKCancel)== DialogResult.OK){
+               if(  XtraMessageBox.Show("Chưa lưu dữ liệu vào dataSet. Thoát dữ liệu sẽ bị mất","", MessageBoxButtons.OKCancel)== DialogResult.OK){
                     this.Close();
                 }
             }
@@ -154,7 +155,7 @@ namespace formDN
                 }
                 catch
                 {
-                    MessageBox.Show(lenh);
+                     XtraMessageBox.Show(lenh);
                 }
             }
         }
@@ -178,7 +179,7 @@ namespace formDN
             }
             if(Program.KetNoi()== 0)
             {
-                MessageBox.Show("Loi ket noi ve chi nhanh.", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Loi ket noi ve chi nhanh.", "", MessageBoxButtons.OK);
             }
             else
             {
@@ -190,10 +191,10 @@ namespace formDN
         {
             if (bdsCTPN.Count > 0)
             {
-                MessageBox.Show("Phiếu Nhập đã có Chi Tiết Phiếu Nhập nên không thể xóa !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Phiếu Nhập đã có Chi Tiết Phiếu Nhập nên không thể xóa !", "", MessageBoxButtons.OK);
                 return;
             }
-            else if(MessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            else if( XtraMessageBox.Show("Bạn thực sự muốn xóa ??", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -210,7 +211,7 @@ namespace formDN
                     LoadTable();
                 }catch(Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa phiếu nhập. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Lỗi xóa phiếu nhập. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.phieuNhapTableAdapter.Fill(this.qLVT_DATHANGDataSet1.PhieuNhap);
                     return;
                 }
@@ -246,21 +247,21 @@ namespace formDN
                
                 if (kiemTraTonTai(txtMAPN.Text.Trim()) == 1)
                 {
-                    MessageBox.Show("Mã Phiếu Nhập không được trùng !", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Mã Phiếu Nhập không được trùng !", "", MessageBoxButtons.OK);
                     txtMAPN.Focus();
                     return;
                 }
 
                 if (txtMAPN.Text == string.Empty)
                 {
-                    MessageBox.Show("Mã Phiếu Nhập không được thiếu !", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Mã Phiếu Nhập không được thiếu !", "", MessageBoxButtons.OK);
                     txtMAPN.Focus();
                     return;
                 }
 
                 if (txtMAPN.Text.Length > 8)
                 {
-                    MessageBox.Show("Mã Phiếu Nhập không được hơn 8 ký tự !", "", MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Mã Phiếu Nhập không được hơn 8 ký tự !", "", MessageBoxButtons.OK);
                     txtMAPN.Focus();
                     return;
                 }
@@ -268,12 +269,12 @@ namespace formDN
         
             if (cmbDDH.Text == string.Empty)
             {
-                MessageBox.Show("Mã Đơn Đặt Hàng không được thiếu !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã Đơn Đặt Hàng không được thiếu !", "", MessageBoxButtons.OK);
                 return;
             }
             if (cmbKho.Text.Trim() == String.Empty)
             {
-                MessageBox.Show("Mã kho không được trống !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã kho không được trống !", "", MessageBoxButtons.OK);
                 return;
             }
             try
@@ -287,11 +288,11 @@ namespace formDN
                     query = String.Format("delete from PhieuNhap where MAPN = N'{0}'", txtMAPN.Text);
                 }
                 stackundo.Push(query);
-                MessageBox.Show("Ghi thanh cong");
+                 XtraMessageBox.Show("Ghi thanh cong");
 
             }catch(Exception ex)
             {
-                MessageBox.Show("Lỗi ghi Phiếu nhập .\n" + ex.Message);
+                XtraMessageBox.Show("Lỗi ghi Phiếu nhập .\n" + ex.Message);
                 return;
             }
             btnThemCTPN.Enabled = btnGhiCTPN.Enabled = true;
@@ -359,7 +360,7 @@ namespace formDN
                 catch (Exception ex)
                 {
                     result = 0;
-                    MessageBox.Show(ex.Message + " ");
+                     XtraMessageBox.Show(ex.Message + " ");
                 }
             }
             return result;
@@ -374,45 +375,45 @@ namespace formDN
           
             if (mavt == string.Empty)
             {
-                MessageBox.Show("Vật tư không thể thiếu ! ", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Vật tư không thể thiếu ! ", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
             if (ktraVattutrenView(mavt) == false)
             {
-                MessageBox.Show("Vật tư đã được nhập ! ", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Vật tư đã được nhập ! ", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
 
             if (ktctddh(maDDH, mavt) == 0)
             {
-                MessageBox.Show("Vật tư không có trong đơn đặt hàng ! ", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Vật tư không có trong đơn đặt hàng ! ", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
             if (gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "SOLUONG").ToString() == String.Empty)
             {
-                MessageBox.Show("Số lượng không thể thiếu! ", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Số lượng không thể thiếu! ", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
             int soLuong = int.Parse((gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "SOLUONG").ToString()));
             if (soLuong < 0)
             {
-                MessageBox.Show("Số lượng không thể âm ! ", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Số lượng không thể âm ! ", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
             if (ktSoLuongDatHang(maDDH, mavt, soLuong) == 0)
             {
-                MessageBox.Show("Số lượng nhập không được hơn số lượng đã đặt !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Số lượng nhập không được hơn số lượng đã đặt !", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
             if (gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "DONGIA").ToString() == string.Empty)
             {
-                MessageBox.Show("Đơn giá không được thiếu !", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Đơn giá không được thiếu !", "", MessageBoxButtons.OK);
                 btnThemCTPN.Enabled = false;
                 return;
             }
@@ -422,7 +423,7 @@ namespace formDN
                 bdsCTPN.ResetCurrentItem();
 
 
-                MessageBox.Show("Ghi thành công !!!");
+                 XtraMessageBox.Show("Ghi thành công !!!");
 
                 this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.cTPNTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPN);
@@ -439,7 +440,7 @@ namespace formDN
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message + " ");
+                         XtraMessageBox.Show(ex.Message + " ");
                     }
                 }
               
@@ -455,7 +456,7 @@ namespace formDN
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn chắc chắn muốn xoá chi tiết của phiếu nhập này ", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if ( XtraMessageBox.Show("Bạn chắc chắn muốn xoá chi tiết của phiếu nhập này ", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -477,7 +478,7 @@ namespace formDN
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.Message + " ");
+                             XtraMessageBox.Show(ex.Message + " ");
                             return;
                         }
                     }
@@ -490,7 +491,7 @@ namespace formDN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa chi tiết phiếu nhập . Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Lỗi xóa chi tiết phiếu nhập . Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet1.CTPN);
                     return;
                 }
@@ -502,7 +503,7 @@ namespace formDN
         {
             if (cTPNGridControl.Enabled)
             {
-                if (MessageBox.Show("Chưa lưu dữ liệu vào dataSet. Thoát dữ liệu sẽ bị mất", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if ( XtraMessageBox.Show("Chưa lưu dữ liệu vào dataSet. Thoát dữ liệu sẽ bị mất", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     
                 }

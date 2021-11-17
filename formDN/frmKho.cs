@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -90,7 +91,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                 XtraMessageBox.Show(ex.Message);
             }
         }
         private void frmKho_Load(object sender, EventArgs e)
@@ -120,7 +121,7 @@ namespace formDN
         {
             if (groupBox1.Enabled)
             {
-                if(MessageBox.Show("Dữ liệu chưa được lưu vào data", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if( XtraMessageBox.Show("Dữ liệu chưa được lưu vào data", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     this.Close();
                 }
@@ -180,20 +181,20 @@ namespace formDN
             
             if(txtMK.Text.Trim() == String.Empty)
             {
-                MessageBox.Show("Mã kho không được để trống", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã kho không được để trống", "", MessageBoxButtons.OK);
                 txtMK.Focus();
                 return;
             }
             if (txtMK.Text.Length > 4)
             {
-                MessageBox.Show("Mã kho không được quá 4 ký tự ", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã kho không được quá 4 ký tự ", "", MessageBoxButtons.OK);
                 txtMK.Focus();
                 return;
 
             }
             else if(txtMK.Text.Contains(" "))
             {
-                MessageBox.Show("Mã kho không được chứa khoảng trắng!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Mã kho không được chứa khoảng trắng!", "", MessageBoxButtons.OK);
                 txtMK.Focus();
                 return;
             }
@@ -204,25 +205,25 @@ namespace formDN
                 {
                     if(kiemTraTonTai(txtMK.EditValue.ToString())==1)
                     {
-                        MessageBox.Show("Mã kho không được trùng!", "", MessageBoxButtons.OK);
+                         XtraMessageBox.Show("Mã kho không được trùng!", "", MessageBoxButtons.OK);
                         txtMK.Focus();
                         return;
                     }
                 }catch(Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                     XtraMessageBox.Show(ex.Message);
                     return;
                 }
             }
             if (txtTenKho.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Tên kho không được thiếu !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Tên kho không được thiếu !", "", MessageBoxButtons.OK);
                 txtTenKho.Focus();
                 return;
             }
             if (txtDiaChi.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("Địa chỉ không được thiếu!", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Địa chỉ không được thiếu!", "", MessageBoxButtons.OK);
                 txtDiaChi.Focus();
                 return;
             }
@@ -243,7 +244,7 @@ namespace formDN
                 stackundo.Push(query);
             }catch(Exception ex)
             {
-                MessageBox.Show("Lỗi ghi kho." + ex.Message);
+                 XtraMessageBox.Show("Lỗi ghi kho." + ex.Message);
                 return;
             }
             LoadTable();
@@ -264,7 +265,7 @@ namespace formDN
                 }
                 catch
                 {
-                    MessageBox.Show(lenh);
+                     XtraMessageBox.Show(lenh);
                 }
             }
         }
@@ -286,7 +287,7 @@ namespace formDN
             }
             if (Program.KetNoi() == 0)
             {
-                MessageBox.Show("Lỗi kết nối về chi nhánh mới");
+                 XtraMessageBox.Show("Lỗi kết nối về chi nhánh mới");
             }
             else
             {
@@ -300,10 +301,10 @@ namespace formDN
             maKho = ((DataRowView)bdsKho[bdsKho.Position])["MAKHO"].ToString();
             if(bdsPN.Count + bdsPX.Count + bdsDH.Count >0)
             {
-                MessageBox.Show("Không thể xóa kho này vì đã lập phiếu", "", MessageBoxButtons.OK);
+                 XtraMessageBox.Show("Không thể xóa kho này vì đã lập phiếu", "", MessageBoxButtons.OK);
                 return;
             }
-            else if(MessageBox.Show("Bạn có thật sự xoá kho này !", "", MessageBoxButtons.OKCancel)== DialogResult.OK)
+            else if( XtraMessageBox.Show("Bạn có thật sự xoá kho này !", "", MessageBoxButtons.OKCancel)== DialogResult.OK)
             {
                 try
                 {
@@ -317,7 +318,7 @@ namespace formDN
                     LoadTable();
                 }catch(Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa vật tư. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                     XtraMessageBox.Show("Lỗi xóa vật tư. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     //Đặt con trỏ về vị trí hiện thời
                     this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet1.Kho);
                     bdsKho.Position = bdsKho.Find("MAKHO", maKho);

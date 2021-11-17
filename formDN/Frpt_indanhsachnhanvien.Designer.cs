@@ -41,7 +41,7 @@ namespace formDN
             this.cmbCN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCN.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCN.FormattingEnabled = true;
-            this.cmbCN.Location = new System.Drawing.Point(238, 93);
+            this.cmbCN.Location = new System.Drawing.Point(236, 108);
             this.cmbCN.Name = "cmbCN";
             this.cmbCN.Size = new System.Drawing.Size(306, 30);
             this.cmbCN.TabIndex = 3;
@@ -51,7 +51,7 @@ namespace formDN
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(107, 96);
+            this.label1.Location = new System.Drawing.Point(105, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 22);
             this.label1.TabIndex = 2;
@@ -61,9 +61,9 @@ namespace formDN
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(148, 155);
+            this.button1.Location = new System.Drawing.Point(146, 179);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 52);
+            this.button1.Size = new System.Drawing.Size(145, 60);
             this.button1.TabIndex = 4;
             this.button1.Text = "Preview";
             this.button1.UseVisualStyleBackColor = true;
@@ -72,9 +72,9 @@ namespace formDN
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(395, 155);
+            this.button2.Location = new System.Drawing.Point(396, 179);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 52);
+            this.button2.Size = new System.Drawing.Size(108, 60);
             this.button2.TabIndex = 5;
             this.button2.Text = "exit";
             this.button2.UseVisualStyleBackColor = true;

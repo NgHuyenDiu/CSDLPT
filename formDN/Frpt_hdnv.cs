@@ -31,7 +31,6 @@ namespace formDN
         {
             String ngaysinh, luong, diachi, machinhanh;
             int manv = int.Parse(txtMaNV.Text);
-            String loai = cmbPhieu.Text.Substring(0, 1);
             String bd = dateTimePicker1.Text;
             String kt = dateTimePicker2.Text;
 
@@ -72,11 +71,12 @@ namespace formDN
 
                 dataReader.Close();
             }
-           
 
-       
-            xrpt_hdnv rp = new xrpt_hdnv(manv, loai, bd, kt);
-            rp.label1.Text = "HOẠT ĐỘNG NHÂN VIÊN " + "PHIẾU " + cmbPhieu.Text.ToUpper() + " TỪ NGÀY " + bd + " ĐẾN NGÀY " + kt;
+
+
+            //xrpt_hdnv rp = new xrpt_hdnv(manv, bd, kt);
+            Xrpt_hdnv rp = new Xrpt_hdnv(manv, bd, kt);
+            rp.label1.Text = "HOẠT ĐỘNG NHÂN VIÊN  TỪ NGÀY " + bd + " ĐẾN NGÀY " + kt;
             rp.ngaysinh.Text = ngaysinh;
             rp.diachi.Text = diachi;
             rp.luong.Text= luong;

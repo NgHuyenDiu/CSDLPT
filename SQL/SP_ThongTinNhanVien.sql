@@ -1,0 +1,20 @@
+USE [QLVT_DATHANG]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_ThongTinNhanVien]    Script Date: 11/17/2021 06:31:18 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_ThongTinNhanVien] @MANV INT
+AS
+BEGIN
+	SELECT MANV, HO + ' ' + TEN AS HOTEN, FORMAT(NGAYSINH,'dd/MM/yyyy'), DIACHI, LUONG, MACN
+	FROM dbo.NhanVien 
+	WHERE MANV = @MANV
+END
+
+GO
+

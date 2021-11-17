@@ -47,9 +47,9 @@ namespace formDN
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(370, 133);
+            this.button2.Location = new System.Drawing.Point(370, 123);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 57);
+            this.button2.Size = new System.Drawing.Size(131, 67);
             this.button2.TabIndex = 7;
             this.button2.Text = "exit";
             this.button2.UseVisualStyleBackColor = true;
@@ -58,9 +58,9 @@ namespace formDN
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(179, 133);
+            this.button1.Location = new System.Drawing.Point(164, 123);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 57);
+            this.button1.Size = new System.Drawing.Size(143, 67);
             this.button1.TabIndex = 6;
             this.button1.Text = "Preview";
             this.button1.UseVisualStyleBackColor = true;

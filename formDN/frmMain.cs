@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.LookAndFeel;
+using DevExpress.XtraEditors;
 
 namespace formDN
 {
@@ -31,13 +32,14 @@ namespace formDN
         public void skins()
         {
             DevExpress.LookAndFeel.DefaultLookAndFeel themes = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            themes.LookAndFeel.SkinName = "Summer 2008";
+            themes.LookAndFeel.SkinName = "Liquid Sky";
         }
 
         private void Form_main_Load(object sender, EventArgs e)
         {
-            // skins();
-            
+             skins();
+            btnDangXuat.Enabled = btnTaoTaiKhoan.Enabled = false;
+          
         }
 
         private void btn_nhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -67,8 +69,9 @@ namespace formDN
                 frmDangNhap frm = new frmDangNhap();
                 frm.MdiParent = this;
                 frm.Show();
-
                
+               
+
             }
         }
 
@@ -197,7 +200,7 @@ namespace formDN
 
         private void btnTaoTaiKhoan_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            
             Form f = this.checkExist(typeof(frmTaoTaiKhoan));
             if (f != null)
             {
@@ -205,27 +208,25 @@ namespace formDN
             }
             else
             {
-                if (Program.mGroup.Equals("CHINHANH") || Program.mGroup.Equals("CONGTY"))
-                {
                     frmTaoTaiKhoan frm = new frmTaoTaiKhoan();
                     frm.MdiParent = this;
                     frm.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Không có quyền tạo tài khoản");
-                    return;
-                }
             }
         }
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        { 
-            
+        {
+                foreach (Form f in this.MdiChildren)
+                f.Dispose();
+                Program.fMain.MANV.Text = "MANV";
+                Program.fMain.HOTEN.Text = "HOTEN";
+                Program.fMain.NHOM.Text = "NHOM";
                 frmDangNhap frm = new frmDangNhap();
                 frm.MdiParent = this;
                 frm.Show();
-
+                btnTaoTaiKhoan.Enabled = false;
+                btnDangXuat.Enabled = false;
+                btn_dangNhap.Enabled = true;
         }
 
         private void btn_bangKeVatTu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
