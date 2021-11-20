@@ -1,22 +1,21 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_undothemCTPX]    Script Date: 11/20/2021 04:36:23 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_undothemPN]    Script Date: 11/20/2021 04:33:53 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-CREATE PROC [dbo].[sp_undothemCTPX]
-@MAPX nchar(8), @MAVT NCHAR(4), @SOLUONG INT ,@LOAI CHAR(1)
+CREATE PROC [dbo].[sp_undothemPN]
+@MAPN nchar(8)
 AS
 SET XACT_ABORT ON 
 BEGIN TRANSACTION
 BEGIN TRY
-	delete from CTPX where MAPX= @MAPX AND MAVT= @MAVT
-	EXEC sp_capnhatsoluongton @MAVT, @SOlUONG, @LOAI
+	delete from CTPN where MAPN= @MAPN 
+	delete from PhieuNhap where MAPN= @MAPN
 COMMIT TRANSACTION
 END TRY
 BEGIN CATCH

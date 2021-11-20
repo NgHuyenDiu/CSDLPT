@@ -140,7 +140,7 @@ namespace formDN
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             groupBox1.Enabled = true;
-            khoGridControl.Enabled = false;
+           
             vitri = bdsKho.Position;
             bdsKho.AddNew();
             txtCN.Text = macn;

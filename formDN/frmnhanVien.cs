@@ -132,7 +132,7 @@ namespace formDN
         {
             vitri = bdsNV.Position;// luu lai vi tri
             groupBox1.Enabled = true;
-            nhanVienGridControl.Enabled = false;
+          
             bdsNV.AddNew();
             cmb_MANV.Text = taoMa().ToString();
             cmb_MANV.Enabled = false;
@@ -367,6 +367,28 @@ namespace formDN
             a = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(a.ToLower());
             return a;
         }
+
+        private int kiemTraTonTai(String ho, String ten, String diachi, String ngaysinh)
+        {
+            int result = 1;
+            String lenh = String.Format("EXEC sp_tontainhanvien N'{0}', N'{1}',N'{2}',N'{3}'", ho, ten, diachi, ngaysinh);
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlcmt = new SqlCommand(lenh, connection);
+                sqlcmt.CommandType = CommandType.Text;
+                try
+                {
+                    sqlcmt.ExecuteNonQuery();
+                }
+                catch
+                {
+                    result = 0;
+                }
+
+            }
+            return result;
+        }
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             txtHo.Text = chuanhoa(txtHo.Text);
@@ -402,16 +424,23 @@ namespace formDN
                 txtNgaySinh.Focus();
                 return;
             }
+
             if (txtLuong.Value < 4000000)
             {
                 XtraMessageBox.Show("Vui lòng nhập lương lớn hơn 4.000.000", "", MessageBoxButtons.OK);
                 txtLuong.Focus();
                 return;
             }
+            if(kiemTraTonTai(txtHo.Text, txtTen.Text, txtDiaChi.Text, txtNgaySinh.Text)==1)
+            {
+                XtraMessageBox.Show("Thông tin nhân viên đã tồn tại", "", MessageBoxButtons.OK);
+                txtHo.Focus();
+                return;
+            }
             try
             {
                 //Lưu vô DataSet
-               bdsNV.EndEdit();
+                bdsNV.EndEdit();
                 bdsNV.ResetCurrentItem();
 
                 //Lưu vô CSDl

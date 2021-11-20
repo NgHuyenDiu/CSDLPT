@@ -158,7 +158,7 @@ namespace formDN
             viTri = bdsPX.Position;
             bdsPX.AddNew();
             groupBox1.Enabled = true;
-      
+            cTPXGridControl.Enabled = false;
             disableButton();
             txtMANV.Text = Program.username;
             txtNgay.Text = DateTime.Now.ToString().Substring(0, 10);
@@ -252,7 +252,7 @@ namespace formDN
             EnableButton();
             LoadTable();
             groupBox1.Enabled = false;
-
+            cTPXGridControl.Enabled = true;
         }
 
         private void xoaPX()
@@ -322,6 +322,7 @@ namespace formDN
         private void btnThêmCTPX_Click(object sender, EventArgs e)
         {
             bdsCTPX.AddNew();
+            gridView2.OptionsBehavior.Editable = true;
             btnGhiCTPX.Enabled = true;
             btnThemCTPX.Enabled = btnXoaCTPX.Enabled = false;
         }
@@ -460,5 +461,9 @@ namespace formDN
             LoadTable();
             groupBox1.Enabled = false;
         }
+
+      
+
+        
     }
 }

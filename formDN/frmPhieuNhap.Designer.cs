@@ -64,7 +64,6 @@ namespace formDN
             this.khoTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.KhoTableAdapter();
             this.bdsCTPN = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnThemCTPN = new System.Windows.Forms.ToolStripMenuItem();
             this.btnGhiCTPN = new System.Windows.Forms.ToolStripMenuItem();
             this.btnXoaCTPN = new System.Windows.Forms.ToolStripMenuItem();
             this.bdsDH = new System.Windows.Forms.BindingSource(this.components);
@@ -90,16 +89,10 @@ namespace formDN
             this.colMAVT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSOLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDONGIA = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.sp_vattutrongddhBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.dSVTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.sp_dongiavtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsDDHchuaCoPNTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.dsDDHchuaCoPNTableAdapter();
-            this.sp_vattutrongddhTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.sp_vattutrongddhTableAdapter();
             this.dSVTTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.DSVTTableAdapter();
-            this.sp_dongiavtTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.sp_dongiavtTableAdapter();
             mAPNLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             mANVLabel = new System.Windows.Forms.Label();
@@ -124,12 +117,8 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.txtMAPN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPNGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sp_vattutrongddhBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSVTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sp_dongiavtBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mAPNLabel
@@ -422,30 +411,22 @@ namespace formDN
             // 
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnThemCTPN,
             this.btnGhiCTPN,
             this.btnXoaCTPN});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(119, 76);
-            // 
-            // btnThemCTPN
-            // 
-            this.btnThemCTPN.Name = "btnThemCTPN";
-            this.btnThemCTPN.Size = new System.Drawing.Size(118, 24);
-            this.btnThemCTPN.Text = "THÊM";
-            this.btnThemCTPN.Click += new System.EventHandler(this.btnThemCTPN_Click);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(109, 52);
             // 
             // btnGhiCTPN
             // 
             this.btnGhiCTPN.Name = "btnGhiCTPN";
-            this.btnGhiCTPN.Size = new System.Drawing.Size(118, 24);
+            this.btnGhiCTPN.Size = new System.Drawing.Size(108, 24);
             this.btnGhiCTPN.Text = "GHI";
             this.btnGhiCTPN.Click += new System.EventHandler(this.btnGhiCTPN_Click);
             // 
             // btnXoaCTPN
             // 
             this.btnXoaCTPN.Name = "btnXoaCTPN";
-            this.btnXoaCTPN.Size = new System.Drawing.Size(118, 24);
+            this.btnXoaCTPN.Size = new System.Drawing.Size(108, 24);
             this.btnXoaCTPN.Text = "XOÁ";
             this.btnXoaCTPN.Click += new System.EventHandler(this.btnXoaCTDDH_Click);
             // 
@@ -638,9 +619,7 @@ namespace formDN
             this.cTPNGridControl.MenuManager = this.barManager1;
             this.cTPNGridControl.Name = "cTPNGridControl";
             this.cTPNGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemLookUpEdit1,
-            this.repositoryItemLookUpEdit2,
-            this.repositoryItemLookUpEdit3});
+            this.repositoryItemLookUpEdit2});
             this.cTPNGridControl.Size = new System.Drawing.Size(1055, 354);
             this.cTPNGridControl.TabIndex = 18;
             this.cTPNGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -693,21 +672,6 @@ namespace formDN
             this.colDONGIA.VisibleIndex = 3;
             this.colDONGIA.Width = 146;
             // 
-            // repositoryItemLookUpEdit1
-            // 
-            this.repositoryItemLookUpEdit1.AutoHeight = false;
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit1.DataSource = this.sp_vattutrongddhBindingSource;
-            this.repositoryItemLookUpEdit1.DisplayMember = "MAVT";
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            this.repositoryItemLookUpEdit1.ValueMember = "MAVT";
-            // 
-            // sp_vattutrongddhBindingSource
-            // 
-            this.sp_vattutrongddhBindingSource.DataMember = "sp_vattutrongddh";
-            this.sp_vattutrongddhBindingSource.DataSource = this.qLVT_DATHANGDataSet1;
-            // 
             // repositoryItemLookUpEdit2
             // 
             this.repositoryItemLookUpEdit2.AutoHeight = false;
@@ -723,36 +687,13 @@ namespace formDN
             this.dSVTBindingSource.DataMember = "DSVT";
             this.dSVTBindingSource.DataSource = this.qLVT_DATHANGDataSet1;
             // 
-            // repositoryItemLookUpEdit3
-            // 
-            this.repositoryItemLookUpEdit3.AutoHeight = false;
-            this.repositoryItemLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit3.DataSource = this.sp_dongiavtBindingSource;
-            this.repositoryItemLookUpEdit3.DisplayMember = "DONGIA";
-            this.repositoryItemLookUpEdit3.Name = "repositoryItemLookUpEdit3";
-            this.repositoryItemLookUpEdit3.ValueMember = "DONGIA";
-            // 
-            // sp_dongiavtBindingSource
-            // 
-            this.sp_dongiavtBindingSource.DataMember = "sp_dongiavt";
-            this.sp_dongiavtBindingSource.DataSource = this.qLVT_DATHANGDataSet1;
-            // 
             // dsDDHchuaCoPNTableAdapter
             // 
             this.dsDDHchuaCoPNTableAdapter.ClearBeforeFill = true;
             // 
-            // sp_vattutrongddhTableAdapter
-            // 
-            this.sp_vattutrongddhTableAdapter.ClearBeforeFill = true;
-            // 
             // dSVTTableAdapter
             // 
             this.dSVTTableAdapter.ClearBeforeFill = true;
-            // 
-            // sp_dongiavtTableAdapter
-            // 
-            this.sp_dongiavtTableAdapter.ClearBeforeFill = true;
             // 
             // frmPhieuNhap
             // 
@@ -791,12 +732,8 @@ namespace formDN
             ((System.ComponentModel.ISupportInitialize)(this.txtMAPN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPNGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sp_vattutrongddhBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSVTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sp_dongiavtBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -835,7 +772,6 @@ namespace formDN
         private QLVT_DATHANGDataSet1TableAdapters.KhoTableAdapter khoTableAdapter;
         private System.Windows.Forms.BindingSource bdsK;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem btnThemCTPN;
         private System.Windows.Forms.ToolStripMenuItem btnGhiCTPN;
         private DevExpress.XtraGrid.GridControl cTPNGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
@@ -856,17 +792,11 @@ namespace formDN
         private DevExpress.XtraGrid.Columns.GridColumn colMAKHO;
         private System.Windows.Forms.ComboBox cmbKho;
         private System.Windows.Forms.ComboBox cmbDDH;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
         private System.Windows.Forms.BindingSource dsDDHchuaCoPNBindingSource;
         private QLVT_DATHANGDataSet1TableAdapters.dsDDHchuaCoPNTableAdapter dsDDHchuaCoPNTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem btnXoaCTPN;
-        private System.Windows.Forms.BindingSource sp_vattutrongddhBindingSource;
-        private QLVT_DATHANGDataSet1TableAdapters.sp_vattutrongddhTableAdapter sp_vattutrongddhTableAdapter;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private System.Windows.Forms.BindingSource dSVTBindingSource;
         private QLVT_DATHANGDataSet1TableAdapters.DSVTTableAdapter dSVTTableAdapter;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
-        private System.Windows.Forms.BindingSource sp_dongiavtBindingSource;
-        private QLVT_DATHANGDataSet1TableAdapters.sp_dongiavtTableAdapter sp_dongiavtTableAdapter;
     }
 }

@@ -1,7 +1,7 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_bangkectvt]    Script Date: 11/17/2021 06:26:52 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_bangkectvt]    Script Date: 11/20/2021 04:35:27 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -68,7 +68,6 @@ BEGIN
       GROUP BY  SUBSTRING(CONVERT(VARCHAR, PX.NGAY, 103),4,7), VT.TENVT
 	  ORDER BY SUBSTRING(CONVERT(VARCHAR, PX.NGAY, 103),4,7)
 END
-
 
 GO
 

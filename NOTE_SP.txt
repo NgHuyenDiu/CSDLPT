@@ -1,6 +1,6 @@
 STORED PROCEDURES
 - CẤP QUYỀN EXECCUTE CHO CONGTY CÁC SP SAU
-	[dbo].[NewSelectCommand]
+	sp_hienthivattu
 	[dbo].[SP_DANGNHAP]
 	[dbo].[sp_indanhsachnhanvien]
 	[dbo].[sp_indanhsachvattu]

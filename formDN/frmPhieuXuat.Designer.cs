@@ -90,6 +90,8 @@ namespace formDN
             this.colSOLUONG = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDONGIA = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dSVTTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.DSVTTableAdapter();
+            this.BTNCHINHSUACTPX = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTNGHICHINHSUACTPX = new System.Windows.Forms.ToolStripMenuItem();
             mAPXLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             hOTENKHLabel = new System.Windows.Forms.Label();
@@ -471,28 +473,30 @@ namespace formDN
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnThemCTPX,
             this.btnGhiCTPX,
-            this.btnXoaCTPX});
+            this.btnXoaCTPX,
+            this.BTNCHINHSUACTPX,
+            this.BTNGHICHINHSUACTPX});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 152);
             // 
             // btnThemCTPX
             // 
             this.btnThemCTPX.Name = "btnThemCTPX";
-            this.btnThemCTPX.Size = new System.Drawing.Size(118, 24);
+            this.btnThemCTPX.Size = new System.Drawing.Size(210, 24);
             this.btnThemCTPX.Text = "THÊM";
             this.btnThemCTPX.Click += new System.EventHandler(this.btnThêmCTPX_Click);
             // 
             // btnGhiCTPX
             // 
             this.btnGhiCTPX.Name = "btnGhiCTPX";
-            this.btnGhiCTPX.Size = new System.Drawing.Size(118, 24);
+            this.btnGhiCTPX.Size = new System.Drawing.Size(210, 24);
             this.btnGhiCTPX.Text = "GHI";
             this.btnGhiCTPX.Click += new System.EventHandler(this.btnGhiCTPX_Click);
             // 
             // btnXoaCTPX
             // 
             this.btnXoaCTPX.Name = "btnXoaCTPX";
-            this.btnXoaCTPX.Size = new System.Drawing.Size(118, 24);
+            this.btnXoaCTPX.Size = new System.Drawing.Size(210, 24);
             this.btnXoaCTPX.Text = "XOÁ";
             this.btnXoaCTPX.Click += new System.EventHandler(this.btnXoaCTPX_Click);
             // 
@@ -622,6 +626,7 @@ namespace formDN
             this.gridView2.DetailHeight = 546;
             this.gridView2.GridControl = this.cTPXGridControl;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
             // 
             // colMAPX1
             // 
@@ -678,6 +683,20 @@ namespace formDN
             // dSVTTableAdapter
             // 
             this.dSVTTableAdapter.ClearBeforeFill = true;
+            // 
+            // BTNCHINHSUACTPX
+            // 
+            this.BTNCHINHSUACTPX.Name = "BTNCHINHSUACTPX";
+            this.BTNCHINHSUACTPX.Size = new System.Drawing.Size(210, 24);
+            this.BTNCHINHSUACTPX.Text = "CHỈNH SỬA";
+         
+            // 
+            // BTNGHICHINHSUACTPX
+            // 
+            this.BTNGHICHINHSUACTPX.Name = "BTNGHICHINHSUACTPX";
+            this.BTNGHICHINHSUACTPX.Size = new System.Drawing.Size(210, 24);
+            this.BTNGHICHINHSUACTPX.Text = "GHI CHỈNH SỬA";
+          
             // 
             // frmPhieuXuat
             // 
@@ -778,5 +797,7 @@ namespace formDN
         private System.Windows.Forms.ToolStripMenuItem btnXoaCTPX;
         private System.Windows.Forms.BindingSource dSVTBindingSource;
         private QLVT_DATHANGDataSet1TableAdapters.DSVTTableAdapter dSVTTableAdapter;
+        private System.Windows.Forms.ToolStripMenuItem BTNCHINHSUACTPX;
+        private System.Windows.Forms.ToolStripMenuItem BTNGHICHINHSUACTPX;
     }
 }

@@ -36,7 +36,7 @@ namespace formDN
             {
                 this.qLVT_DATHANGDataSet1.EnforceConstraints = false; // bo qua khoa ngoai
 
-                this.dSVTTableAdapter.Connection.ConnectionString = Program.connstr;            
+                this.dSVTTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.dSVTTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DSVT);
 
                 this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -50,6 +50,9 @@ namespace formDN
 
                 this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet1.Kho);
+
+                this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet1.CTPN);
 
                 if (Program.mGroup == "CONGTY")
                 {
@@ -83,29 +86,32 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                 XtraMessageBox.Show("LOI LOAD DU LIEU "+ex.Message);
+                XtraMessageBox.Show("LOI LOAD DU LIEU " + ex.Message);
             }
         }
 
         private void frmDonDatHang_Load(object sender, EventArgs e)
         {
-            
-          
-  /*          if (Program.mGroup != "CONGTY")
-            {
-                this.datHangBindingSource.Filter = "MANV='" + Program.username + "'";
-            }*/
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet1.CTPN' table. You can move, or remove it, as needed.
+
+
+
+            /*          if (Program.mGroup != "CONGTY")
+                      {
+                          this.datHangBindingSource.Filter = "MANV='" + Program.username + "'";
+                      }*/
             LoadTable();
             cmbCN.DataSource = Program.bds_dspm.DataSource;
             cmbCN.DisplayMember = "TENCN";
             cmbCN.ValueMember = "TENSERVER";
             cmbCN.SelectedIndex = Program.mChinhanh;
             btnGhiCTDDH.Enabled = false;
+            BTNGHICHINHSUACTDDH.Enabled = false;
             groupBox1.Enabled = false;
 
         }
 
-        
+
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -113,7 +119,7 @@ namespace formDN
             vitri = datHangBindingSource.Position;
             txtMANV.Enabled = txtDDH.Enabled = ngay.Enabled = false;
             them = false;
-            query=String.Format("Update DatHang set  NGAY=N'{1}', NhaCC=N'{2}', MANV={3}, MAKHO=N'{4}' Where MasoDDH=N'{0}' ", txtDDH.Text, ngay.Text, txtNCC.Text, Program.username, cmbKho.Text);
+            query = String.Format("Update DatHang set  NGAY=N'{1}', NhaCC=N'{2}', MANV={3}, MAKHO=N'{4}' Where MasoDDH=N'{0}' ", txtDDH.Text, ngay.Text, txtNCC.Text, Program.username, cmbKho.Text);
             disableForm();
         }
         private void disableForm()
@@ -131,7 +137,7 @@ namespace formDN
         {
             if (groupBox1.Enabled)
             {
-                if( XtraMessageBox.Show("Dữ liệu Form Đơn Đặt Hàng vẫn chưa lưu vào Database! Bạn có chắc chắn muốn thoát", "", MessageBoxButtons.OKCancel)== DialogResult.OK)
+                if (XtraMessageBox.Show("Dữ liệu Form Đơn Đặt Hàng vẫn chưa lưu vào Database! Bạn có chắc chắn muốn thoát", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     this.Close();
                 }
@@ -150,18 +156,18 @@ namespace formDN
             txtMANV.Text = Program.username;
             ngay.Text = DateTime.Now.ToString().Substring(0, 10);
             groupBox1.Enabled = true;
-           
+            cTDDHGridControl.Enabled = false;
             txtMANV.Enabled = ngay.Enabled = false;
             txtDDH.Enabled = true;
             them = true;
-           
-           
+
+
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String lenh = stackundo.Pop();
-            using(SqlConnection connection= new SqlConnection(Program.connstr))
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
             {
                 connection.Open();
                 SqlCommand sqlcmt = new SqlCommand(lenh, connection);
@@ -173,7 +179,7 @@ namespace formDN
                 }
                 catch
                 {
-                     XtraMessageBox.Show(lenh);
+                    XtraMessageBox.Show(lenh);
                 }
             }
         }
@@ -206,44 +212,44 @@ namespace formDN
         {
             if (txtDDH.Text.Trim() == string.Empty)
             {
-                 XtraMessageBox.Show("Mã đơn đặt hàng không được thiếu !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Mã đơn đặt hàng không được thiếu !", "", MessageBoxButtons.OK);
                 txtDDH.Focus();
                 return;
             }
 
             if (txtDDH.Text.Length > 8)
             {
-                 XtraMessageBox.Show("Mã đơn đặt hàng không được quá 8 kí tự !", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Mã đơn đặt hàng không được quá 8 kí tự !", "", MessageBoxButtons.OK);
                 txtDDH.Focus();
                 return;
             }
-            if(txtDDH.Enabled == true)
+            if (txtDDH.Enabled == true)
             {
                 try
                 {
-                    if(kiemTraTonTai(txtDDH.Text)==1)
+                    if (kiemTraTonTai(txtDDH.Text) == 1)
                     {
-                         XtraMessageBox.Show("Mã đơn đặt hàng không được trùng !", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Mã đơn đặt hàng không được trùng !", "", MessageBoxButtons.OK);
                         txtDDH.Focus();
                         return;
                     }
-                
+
                 }
                 catch (Exception ex)
                 {
-                     XtraMessageBox.Show(ex.Message);
+                    XtraMessageBox.Show(ex.Message);
                     return;
                 }
             }
             if (txtNCC.Text.Trim() == string.Empty)
             {
-                 XtraMessageBox.Show("Nhà cung cấp không được thiếu!", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Nhà cung cấp không được thiếu!", "", MessageBoxButtons.OK);
                 txtNCC.Focus();
                 return;
             }
             if (cmbKho.Text.Trim() == String.Empty)
             {
-                 XtraMessageBox.Show("Mã kho không được thiếu!", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Mã kho không được thiếu!", "", MessageBoxButtons.OK);
                 cmbKho.Focus();
                 return;
             }
@@ -258,17 +264,18 @@ namespace formDN
                 {
                     query = String.Format("Delete from DatHang where MasoDDH=N'{0}'", txtDDH.Text);
                 }
-               
+
                 stackundo.Push(query);
             }
             catch (Exception ex)
             {
-                 XtraMessageBox.Show("Lỗi ghi Đơn Đặt Hàng .\n" + ex.Message);
+                XtraMessageBox.Show("Lỗi ghi Đơn Đặt Hàng .\n" + ex.Message);
                 return;
             }
             EnableForm();
             LoadTable();
             groupBox1.Enabled = false;
+            cTDDHGridControl.Enabled = true;
         }
         private void xoaDonHang()
         {
@@ -312,11 +319,19 @@ namespace formDN
 
         private void tHÊMToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (phieuNhapBindingSource.Count > 0)
+            {
+                XtraMessageBox.Show("Đơn đặt hàng đã lưu phiếu nhập . Không thêm mới chi tiết", "", MessageBoxButtons.OK);
+                return;
+            }
+            gridView2.OptionsBehavior.Editable = true;
             vitri = cTDDHBindingSource.Position;
             cTDDHBindingSource.AddNew();
             btnGhiCTDDH.Enabled = true;
             btntThemCTDDH.Enabled = false;
-          
+            BTNGHICHINHSUACTDDH.Enabled = false;
+            BTNCHINHSUACTDDH.Enabled = false;
+            btnXoaCTDDH.Enabled = false;
         }
 
         private void cmbCN_SelectedIndexChanged(object sender, EventArgs e)
@@ -338,7 +353,7 @@ namespace formDN
             }
 
             if (Program.KetNoi() == 0)
-                 XtraMessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Lỗi kết nối về chi nhánh mới", string.Empty, MessageBoxButtons.OK);
             else
             {
                 LoadTable();
@@ -364,37 +379,38 @@ namespace formDN
                 return result;
             }
         }
+       
         private void btnGhiCTDDH_Click(object sender, EventArgs e)
         {
             btntThemCTDDH.Enabled = true;
-           String maddh = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["MasoDDH"].ToString();
+            String maddh = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["MasoDDH"].ToString();
             String mavt = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["MAVT"].ToString();
             String soluong = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["SOLUONG"].ToString();
             String dongia = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["DONGIA"].ToString();
             if (mavt == String.Empty)
             {
-                 XtraMessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);                
-                btntThemCTDDH.Enabled = false;            
+                XtraMessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);
+                btntThemCTDDH.Enabled = false;
                 return;
             }
             if (kiemTraTonTaiCT(maddh, mavt) == 1)
             {
-                 XtraMessageBox.Show("Vật tư không được trùng!", "", MessageBoxButtons.OK);           
-                btntThemCTDDH.Enabled = false;             
+                XtraMessageBox.Show("Vật tư không được trùng!", "", MessageBoxButtons.OK);
+                btntThemCTDDH.Enabled = false;
                 return;
             }
 
             if (soluong == string.Empty)
             {
-                 XtraMessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);             
-                btntThemCTDDH.Enabled = false;           
+                XtraMessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);
+                btntThemCTDDH.Enabled = false;
                 return;
             }
 
             if (dongia == string.Empty)
             {
-                 XtraMessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);              
-                btntThemCTDDH.Enabled = false;   
+                XtraMessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);
+                btntThemCTDDH.Enabled = false;
                 return;
             }
             try
@@ -403,22 +419,32 @@ namespace formDN
                 cTDDHBindingSource.ResetCurrentItem();
                 this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.cTDDHTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTDDH);
-                 XtraMessageBox.Show("Ghi thanh cong");
+                
+                XtraMessageBox.Show("Ghi thanh cong");
                 query = String.Format("delete from CTDDH where MasoDDH=N'{0}' AND MAVT=N'{1}'", maddh.Trim(), mavt.Trim());
                 stackundo.Push(query);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi ghi chi tiết đơn đặt hàng " + ex.Message);
             }
             LoadTable();
             btntThemCTDDH.Enabled = true;
             btnGhiCTDDH.Enabled = false;
+            BTNCHINHSUACTDDH.Enabled = true;
+            BTNGHICHINHSUACTDDH.Enabled = false;
+            btnXoaCTDDH.Enabled = true;
         }
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)
         {
-            if( XtraMessageBox.Show("Bạn chắc chắn muốn xoá chi tiết của đơn đặt hàng này ","",MessageBoxButtons.OKCancel)== DialogResult.OK)
+            if (phieuNhapBindingSource.Count > 0)
+            {
+                XtraMessageBox.Show("Đã tồn tại trong chi tiết phiếu nhập. Không thể xoá", "", MessageBoxButtons.OK);
+
+                return;
+            }
+            if (XtraMessageBox.Show("Bạn chắc chắn muốn xoá chi tiết của đơn đặt hàng này ", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -431,26 +457,119 @@ namespace formDN
                     this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.cTDDHTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTDDH);
 
-                    query = String.Format("Insert into CTDDH (MasoDDH, MAVT, SOLUONG, DONGIA) values(N'{0}', N'{1}', {2} , {3} )", maddh,mavt,soluong,dongia);
+                    query = String.Format("Insert into CTDDH (MasoDDH, MAVT, SOLUONG, DONGIA) values(N'{0}', N'{1}', {2} , {3} )", maddh, mavt, soluong, dongia);
                     stackundo.Push(query);
-                    
+
                     if (cTDDHBindingSource.Count == 0)
                     {
-                       if( XtraMessageBox.Show("Đơn hàng không có chi tiết đơn đặt hàng. Bạn muốn xoá không? \n","", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        if (XtraMessageBox.Show("Đơn hàng không có chi tiết đơn đặt hàng. Bạn muốn xoá không? \n", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
                             xoaDonHang();
                         }
                     }
                     LoadTable();
                 }
-                 catch (Exception ex)
+                catch (Exception ex)
                 {
-                     XtraMessageBox.Show("Lỗi xóa chi tiết đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi xóa chi tiết đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.cTDDHTableAdapter.Fill(this.qLVT_DATHANGDataSet1.CTDDH);
                     return;
                 }
                 groupBox1.Enabled = false;
             }
         }
+
+        private void cHỈNHSỬAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (phieuNhapBindingSource.Count > 0)
+            {
+                XtraMessageBox.Show("Đã tồn tại trong chi tiết phiếu nhập. Không thể chỉnh sửa", "", MessageBoxButtons.OK);
+                LoadTable();
+                return;
+            }
+            for (int i = 0; i < cTDDHBindingSource.Count; i++)
+            {
+                String maddh = ((DataRowView)cTDDHBindingSource[i])["MasoDDH"].ToString();
+                String mavt = ((DataRowView)cTDDHBindingSource[i])["MAVT"].ToString();
+                String soluong = ((DataRowView)cTDDHBindingSource[i])["SOLUONG"].ToString();
+                String dongia = ((DataRowView)cTDDHBindingSource[i])["DONGIA"].ToString();
+                String lenhundo = String.Format("UPDATE CTDDH SET SOLUONG = {0} , DONGIA={1} WHERE MasoDDH=N'{2}' AND MAVT=N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
+                Console.WriteLine(lenhundo);
+                stackundo.Push(lenhundo);
+                gridView2.OptionsBehavior.Editable = true;
+            }
+            btnGhiCTDDH.Enabled = false;
+            BTNGHICHINHSUACTDDH.Enabled = true;
+            btnXoaCTDDH.Enabled = false;
+            btntThemCTDDH.Enabled = false;
+            BTNCHINHSUACTDDH.Enabled = false;
+        }
+
+        private void gHICHỈNHSỬAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < cTDDHBindingSource.Count; i++)
+                {
+                    String maddh = ((DataRowView)cTDDHBindingSource[i])["MasoDDH"].ToString();
+                    String mavt = ((DataRowView)cTDDHBindingSource[i])["MAVT"].ToString();
+                    String soluong = ((DataRowView)cTDDHBindingSource[i])["SOLUONG"].ToString();
+                    String dongia = ((DataRowView)cTDDHBindingSource[i])["DONGIA"].ToString();
+                    if (mavt == String.Empty)
+                    {
+                        XtraMessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);
+                        btntThemCTDDH.Enabled = false;
+                        return;
+                    }
+
+                    if (soluong == string.Empty)
+                    {
+                        XtraMessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);
+                        btntThemCTDDH.Enabled = false;
+                        return;
+                    }
+
+                    if (dongia == string.Empty)
+                    {
+                        XtraMessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);
+                        btntThemCTDDH.Enabled = false;
+                        return;
+                    }
+                  
+
+
+                    String lenhUpdate = String.Format("UPDATE CTDDH SET SOLUONG = {0} , DONGIA={1} WHERE MasoDDH=N'{2}' AND MAVT=N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
+                    using (SqlConnection connection = new SqlConnection(Program.connstr))
+                    {
+                        connection.Open();
+                        SqlCommand sqlCommand = new SqlCommand(lenhUpdate, connection);
+                        sqlCommand.CommandType = CommandType.Text;
+                        try
+                        {
+                            sqlCommand.ExecuteNonQuery();
+                        }
+                        catch (Exception ex)
+                        {
+                            XtraMessageBox.Show(ex.Message + " ");
+                            return;
+
+                        }
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi chinh sửa chi tiết đơn đặt hàng " + ex.Message);
+            }
+            LoadTable();
+            btntThemCTDDH.Enabled = true;
+            btnGhiCTDDH.Enabled = false;
+            BTNGHICHINHSUACTDDH.Enabled = false;
+            BTNCHINHSUACTDDH.Enabled = true;
+            btnXoaCTDDH.Enabled = true;
+        }
     }
+
 }
