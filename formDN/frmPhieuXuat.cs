@@ -109,7 +109,7 @@ namespace formDN
             groupBox1.Enabled = true;
             them = false;
             txtMANV.Enabled = txtMAPX.Enabled = false;
-            query = String.Format("Update PhieuXuat Set NGAY=N'{1}', HOTENKH=N'{2}', MANV={3}, MAKHO=N'{4}' Where MAPX=N'{0}' ", txtMAPX.Text, txtNgay.Text, txtTENKH.Text, Program.username, cmbKho.Text);
+            query = String.Format("EXEC sp_undochinhsuaPX N'{0}','{1}', N'{2}', {3}, N'{4}'  ", txtMAPX.Text.Trim(), txtNgay.Text.Trim(), txtTENKH.Text.Trim(), Program.username, cmbKho.Text);
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -239,7 +239,7 @@ namespace formDN
                 this.phieuXuatTableAdapter.Update(this.qLVT_DATHANGDataSet1.PhieuXuat);
                 if (them)
                 {
-                    query = String.Format("delete from PhieuXuat where MAPX=N'{0}'", txtMAPX.Text);
+                    query = String.Format("EXEC sp_undothemPX N'{0}'", txtMAPX.Text);
                 }
                 stackundo.Push(query);
                  XtraMessageBox.Show("Ghi thành công");
@@ -274,7 +274,7 @@ namespace formDN
                     bdsPX.RemoveCurrent();
                     this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.phieuXuatTableAdapter.Update(this.qLVT_DATHANGDataSet1.PhieuXuat);
-                    query = String.Format("Insert into PhieuXuat (MAPX, NGAY, HOTENKH, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}')", mapx, ngay, tenkh, Program.username, makho);
+                    query = String.Format("EXEC sp_undoxoaPX N'{0}', N'{1}', N'{2}',{3},N'{4}' ", mapx, ngay, tenkh, Program.username, makho);
                     stackundo.Push(query);
                     LoadTable();
                 }
@@ -460,10 +460,8 @@ namespace formDN
             btnGhiCTPX.Enabled = false;
             LoadTable();
             groupBox1.Enabled = false;
+            gridView2.OptionsBehavior.Editable = false;
         }
 
-      
-
-        
     }
 }

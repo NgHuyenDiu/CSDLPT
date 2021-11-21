@@ -357,13 +357,13 @@ namespace formDN
             // 
             this.khoGridControl.DataSource = this.bdsKho;
             this.khoGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.khoGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(8);
+            this.khoGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.khoGridControl.Location = new System.Drawing.Point(0, 97);
             this.khoGridControl.MainView = this.gridView1;
-            this.khoGridControl.Margin = new System.Windows.Forms.Padding(8);
+            this.khoGridControl.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.khoGridControl.MenuManager = this.barManager1;
             this.khoGridControl.Name = "khoGridControl";
-            this.khoGridControl.Size = new System.Drawing.Size(1240, 329);
+            this.khoGridControl.Size = new System.Drawing.Size(1240, 411);
             this.khoGridControl.TabIndex = 6;
             this.khoGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -375,7 +375,7 @@ namespace formDN
             this.colTENKHO,
             this.colDIACHI,
             this.colMACN});
-            this.gridView1.DetailHeight = 852;
+            this.gridView1.DetailHeight = 1065;
             this.gridView1.GridControl = this.khoGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -384,38 +384,38 @@ namespace formDN
             // colMAKHO
             // 
             this.colMAKHO.FieldName = "MAKHO";
-            this.colMAKHO.MinWidth = 49;
+            this.colMAKHO.MinWidth = 61;
             this.colMAKHO.Name = "colMAKHO";
             this.colMAKHO.Visible = true;
             this.colMAKHO.VisibleIndex = 0;
-            this.colMAKHO.Width = 182;
+            this.colMAKHO.Width = 227;
             // 
             // colTENKHO
             // 
             this.colTENKHO.FieldName = "TENKHO";
-            this.colTENKHO.MinWidth = 49;
+            this.colTENKHO.MinWidth = 61;
             this.colTENKHO.Name = "colTENKHO";
             this.colTENKHO.Visible = true;
             this.colTENKHO.VisibleIndex = 1;
-            this.colTENKHO.Width = 182;
+            this.colTENKHO.Width = 227;
             // 
             // colDIACHI
             // 
             this.colDIACHI.FieldName = "DIACHI";
-            this.colDIACHI.MinWidth = 49;
+            this.colDIACHI.MinWidth = 61;
             this.colDIACHI.Name = "colDIACHI";
             this.colDIACHI.Visible = true;
             this.colDIACHI.VisibleIndex = 2;
-            this.colDIACHI.Width = 182;
+            this.colDIACHI.Width = 227;
             // 
             // colMACN
             // 
             this.colMACN.FieldName = "MACN";
-            this.colMACN.MinWidth = 49;
+            this.colMACN.MinWidth = 61;
             this.colMACN.Name = "colMACN";
             this.colMACN.Visible = true;
             this.colMACN.VisibleIndex = 3;
-            this.colMACN.Width = 182;
+            this.colMACN.Width = 227;
             // 
             // groupBox1
             // 
@@ -428,9 +428,9 @@ namespace formDN
             this.groupBox1.Controls.Add(mAKHOLabel);
             this.groupBox1.Controls.Add(this.txtMK);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 426);
+            this.groupBox1.Location = new System.Drawing.Point(0, 508);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1240, 260);
+            this.groupBox1.Size = new System.Drawing.Size(1240, 178);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";

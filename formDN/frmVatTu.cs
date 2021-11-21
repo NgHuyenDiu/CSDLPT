@@ -131,7 +131,7 @@ namespace formDN
             txtMAVT.Enabled = false;
             DisableForm();
             isDel = false;
-            query = String.Format("Update Vattu set TENVT=N'{1}', DVT=N'{2}' ,SOLUONGTON = {3} where MAVT=N'{0}'", txtMAVT.Text, txtTenVT.Text, txtDVT.Text, groupbox1.Text);
+            query = String.Format("EXEC sp_undochinhsuaVT N'{0}', N'{1}',N'{2}',{3} ", txtMAVT.Text, txtTenVT.Text, txtDVT.Text, TXTSLT.Text);
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -219,7 +219,7 @@ namespace formDN
             {
                 if (isDel)
                 {
-                    query = String.Format("Delete from Vattu where MAVT=N'{0}'", txtMAVT.Text);
+                    query = String.Format(" EXEC sp_undothemVT N'{0}'", txtMAVT.Text);
                 }
                 //Lưu vô dataset
                 bdsVatTu.EndEdit();
@@ -261,7 +261,7 @@ namespace formDN
                     String soluongton = ((DataRowView)bdsVatTu[bdsVatTu.Position])["SOLUONGTON"].ToString();
                     int slt = int.Parse(soluongton);
 
-                    query = String.Format("Insert into Vattu (MAVT, TENVT, DVT,SOLUONGTON) values(N'{0}', N'{1}', N'{2}',{3} )", mavattu, tenvattu, donvitinh,slt);
+                    query = String.Format("EXEC sp_undoxoaVT N'{0}', N'{1}', N'{2}',{3} ", mavattu, tenvattu, donvitinh,slt);
                     bdsVatTu.RemoveCurrent();
                     this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.vattuTableAdapter.Update(this.qLVT_DATHANGDataSet1.Vattu);

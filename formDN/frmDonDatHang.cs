@@ -92,14 +92,6 @@ namespace formDN
 
         private void frmDonDatHang_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet1.CTPN' table. You can move, or remove it, as needed.
-
-
-
-            /*          if (Program.mGroup != "CONGTY")
-                      {
-                          this.datHangBindingSource.Filter = "MANV='" + Program.username + "'";
-                      }*/
             LoadTable();
             cmbCN.DataSource = Program.bds_dspm.DataSource;
             cmbCN.DisplayMember = "TENCN";
@@ -119,8 +111,9 @@ namespace formDN
             vitri = datHangBindingSource.Position;
             txtMANV.Enabled = txtDDH.Enabled = ngay.Enabled = false;
             them = false;
-            query = String.Format("Update DatHang set  NGAY=N'{1}', NhaCC=N'{2}', MANV={3}, MAKHO=N'{4}' Where MasoDDH=N'{0}' ", txtDDH.Text, ngay.Text, txtNCC.Text, Program.username, cmbKho.Text);
-            disableForm();
+          
+            query = String.Format("EXEC sp_undoSuaDDH {0} ,N'{1}',N'{2}',{3},N'{4}'", txtDDH.Text, ngay.Text, txtNCC.Text, Program.username, cmbKho.Text);
+             disableForm();
         }
         private void disableForm()
         {
@@ -261,8 +254,9 @@ namespace formDN
                 this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.datHangTableAdapter.Update(this.qLVT_DATHANGDataSet1.DatHang);
                 if (them)
-                {
-                    query = String.Format("Delete from DatHang where MasoDDH=N'{0}'", txtDDH.Text);
+                { 
+                   
+                    query = String.Format("EXEC sp_undothemDDH N'{0}'", txtDDH.Text);
                 }
 
                 stackundo.Push(query);
@@ -297,8 +291,8 @@ namespace formDN
 
                     this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.datHangTableAdapter.Update(this.qLVT_DATHANGDataSet1.DatHang);
-
-                    query = String.Format("Insert into DatHang (MasoDDH, NGAY, NHACC, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}' )", ddh, ngay, nhacc, Program.username, makho);
+                    query = String.Format(" EXEC sp_undoxoaDDH N'{0}', N'{1}', N'{2}',{3},N'{4}' ", ddh, ngay, nhacc, Program.username, makho);
+                    
                     stackundo.Push(query);
                     LoadTable();
                 }
@@ -383,6 +377,7 @@ namespace formDN
         private void btnGhiCTDDH_Click(object sender, EventArgs e)
         {
             btntThemCTDDH.Enabled = true;
+            gridView2.OptionsBehavior.Editable = false;
             String maddh = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["MasoDDH"].ToString();
             String mavt = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["MAVT"].ToString();
             String soluong = ((DataRowView)cTDDHBindingSource[cTDDHBindingSource.Count - 1])["SOLUONG"].ToString();
@@ -456,8 +451,8 @@ namespace formDN
                     cTDDHBindingSource.RemoveCurrent();
                     this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.cTDDHTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTDDH);
-
-                    query = String.Format("Insert into CTDDH (MasoDDH, MAVT, SOLUONG, DONGIA) values(N'{0}', N'{1}', {2} , {3} )", maddh, mavt, soluong, dongia);
+                    query = String.Format("EXEC sp_undoxoaCTDDH N'{0}', N'{1}', {2} , {3} ", maddh, mavt, soluong, dongia);
+                   
                     stackundo.Push(query);
 
                     if (cTDDHBindingSource.Count == 0)
@@ -487,16 +482,17 @@ namespace formDN
                 LoadTable();
                 return;
             }
+            gridView2.OptionsBehavior.Editable = true;
             for (int i = 0; i < cTDDHBindingSource.Count; i++)
             {
                 String maddh = ((DataRowView)cTDDHBindingSource[i])["MasoDDH"].ToString();
                 String mavt = ((DataRowView)cTDDHBindingSource[i])["MAVT"].ToString();
                 String soluong = ((DataRowView)cTDDHBindingSource[i])["SOLUONG"].ToString();
                 String dongia = ((DataRowView)cTDDHBindingSource[i])["DONGIA"].ToString();
-                String lenhundo = String.Format("UPDATE CTDDH SET SOLUONG = {0} , DONGIA={1} WHERE MasoDDH=N'{2}' AND MAVT=N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
+                String lenhundo = String.Format("EXEC sp_undochinhsuaCTDDH {0} , {1} ,N'{2}', N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
                 Console.WriteLine(lenhundo);
                 stackundo.Push(lenhundo);
-                gridView2.OptionsBehavior.Editable = true;
+               
             }
             btnGhiCTDDH.Enabled = false;
             BTNGHICHINHSUACTDDH.Enabled = true;
@@ -538,7 +534,7 @@ namespace formDN
                   
 
 
-                    String lenhUpdate = String.Format("UPDATE CTDDH SET SOLUONG = {0} , DONGIA={1} WHERE MasoDDH=N'{2}' AND MAVT=N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
+                    String lenhUpdate = String.Format("EXEC sp_ghichinhsuaCTDDH {0} , {1} ,N'{2}', N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
                     using (SqlConnection connection = new SqlConnection(Program.connstr))
                     {
                         connection.Open();
@@ -569,6 +565,7 @@ namespace formDN
             BTNGHICHINHSUACTDDH.Enabled = false;
             BTNCHINHSUACTDDH.Enabled = true;
             btnXoaCTDDH.Enabled = true;
+            gridView2.OptionsBehavior.Editable = false;
         }
     }
 

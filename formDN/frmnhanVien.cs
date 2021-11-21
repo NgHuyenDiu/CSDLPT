@@ -18,6 +18,7 @@ namespace formDN
         private string macn="";
         private Stack<String> stackundo = new Stack<string>(16);
         String query = "";
+        Boolean them = false;
         public frmNhanVien()
         {
             InitializeComponent();
@@ -113,7 +114,7 @@ namespace formDN
         {
             int maxMa = 0;
             // mo ket noi
-            String lenh = String.Format("SELECT MAX(MANV) AS MAXNV FROM LINK2.QLVT_DATHANG.dbo.NhanVien");
+            String lenh = String.Format("EXEC sp_timmaxMANV ");
             using(SqlConnection connection = new SqlConnection(Program.connstr))
             {
                 connection.Open();
@@ -123,7 +124,9 @@ namespace formDN
                 {
                     maxMa = (Int32)sqlcmt.ExecuteScalar();
                 }
-                catch { }
+                catch {
+                    XtraMessageBox.Show(lenh );
+                }
             }
             return maxMa + 1;
         }
@@ -140,13 +143,14 @@ namespace formDN
             txtNgaySinh.EditValue = "";
             trangThaiXoa.Text = "0";
             trangThaiXoa.Enabled= false;
-            query = String.Format("delete from NhanVien where MANV = {0}", cmb_MANV.Text);
+            query = String.Format("EXEC sp_undothemNV {0}", cmb_MANV.Text);
             btnUndo.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled= false;
             btnGhi.Enabled  = btnThoat.Enabled= true;
             txtCN.Enabled = cmbCN.Enabled = false;
             btnCCN.Enabled = false;
             nhanVienGridControl.Enabled = false;
+            them = true;
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -177,7 +181,7 @@ namespace formDN
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnUndo.Enabled=btnCCN.Enabled= btnReload.Enabled = false;
             btnGhi.Enabled = btnThoat.Enabled = true;
             nhanVienGridControl.Enabled = false;
-            query = String.Format("Update NhanVien Set HO=N'{1}',TEN=N'{2}',DIACHI=N'{3}',NGAYSINH=N'{4}',LUONG={5},MACN=N'{6}',TrangThaiXoa={7} where MANV={0}", cmb_MANV.Text, txtHo.Text, txtTen.Text, txtDiaChi.Text, txtNgaySinh.Text, txtLuong.Text, txtCN.Text, trangThaiXoa.Text);
+            query = String.Format("EXEC sp_undochinhsuaNV {0}, N'{1}',N'{2}',N'{3}',N'{4}',{5},N'{6}',{7} ", cmb_MANV.Text, txtHo.Text, txtTen.Text, txtDiaChi.Text, txtNgaySinh.Text, txtLuong.Text, txtCN.Text, trangThaiXoa.Text);
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -333,7 +337,7 @@ namespace formDN
                     }
                     else
                     {
-                        query = String.Format("insert into NhanVien (MANV, HO, TEN, DIACHI, NGAYSINH, LUONG, MACN, TrangThaiXoa) Values ({0},N'{1}',N'{2}',N'{3}','{4}',{5},'{6}',0)", manv, ho, ten, diaChi, ngaySinh, luong, macn);
+                        query = String.Format("sp_undoxoaNVkhongtaikhoan {0},N'{1}',N'{2}',N'{3}','{4}',{5},'{6}', {7}", manv, ho, ten, diaChi, ngaySinh, luong, macn,0);
                     }
                     bdsNV.RemoveCurrent();
                     this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -431,12 +435,16 @@ namespace formDN
                 txtLuong.Focus();
                 return;
             }
-            if(kiemTraTonTai(txtHo.Text, txtTen.Text, txtDiaChi.Text, txtNgaySinh.Text)==1)
+            if (them)
             {
-                XtraMessageBox.Show("Thông tin nhân viên đã tồn tại", "", MessageBoxButtons.OK);
-                txtHo.Focus();
-                return;
+                if (kiemTraTonTai(txtHo.Text, txtTen.Text, txtDiaChi.Text, txtNgaySinh.Text) == 1)
+                {
+                    XtraMessageBox.Show("Thông tin nhân viên đã tồn tại", "", MessageBoxButtons.OK);
+                    txtHo.Focus();
+                    return;
+                }
             }
+           
             try
             {
                 //Lưu vô DataSet

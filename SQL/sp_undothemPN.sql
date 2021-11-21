@@ -1,7 +1,7 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_undothemPN]    Script Date: 11/20/2021 04:33:53 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_undothemPN]    Script Date: 11/21/2021 09:11:53 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -24,5 +24,6 @@ BEGIN CATCH
 	SELECT @ErrorMessage = 'Lỗi: ' + ERROR_MESSAGE()
 	RAISERROR( @ErrorMessage, 16, 1)
 END CATCH
+
 GO
 

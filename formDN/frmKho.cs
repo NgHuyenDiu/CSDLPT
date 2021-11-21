@@ -111,7 +111,7 @@ namespace formDN
             groupBox1.Enabled = true;
             txtMK.Enabled = false;
             them = false;
-            query = String.Format("update Kho set TENKHO=N'{1}', DIACHI=N'{2}',MACN=N'{3}' where MAKHO=N'{0}'", txtMK.Text.Trim(), txtTenKho.Text, txtDiaChi.Text, txtCN.Text);
+            query = String.Format("EXEC sp_undosuakho N'{0}', N'{1}', N'{2}', N'{3}' ", txtMK.Text.Trim(), txtTenKho.Text, txtDiaChi.Text, txtCN.Text);
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnReload.Enabled = false;
             btnGhi.Enabled = btnThoat.Enabled = true;
             txtCN.Enabled = cmbCN.Enabled = false;
@@ -238,7 +238,7 @@ namespace formDN
                 this.khoTableAdapter.Update(this.qLVT_DATHANGDataSet1.Kho);
                 if(them)
                 {
-                    query = String.Format("Delete from Kho where MAKHO = N'{0}' ", txtMK.Text.Trim());
+                    query = String.Format("EXEC sp_undothemkho N'{0}' ", txtMK.Text.Trim());
                 }
                 
                 stackundo.Push(query);
@@ -313,7 +313,7 @@ namespace formDN
                     bdsKho.RemoveCurrent();
                     this.khoTableAdapter.Connection.ConnectionString= Program.connstr;
                     this.khoTableAdapter.Update(this.qLVT_DATHANGDataSet1.Kho);
-                    query = String.Format("INSERT INTO KHO (MAKHO, TENKHO,DIACHI,MACN) VALUES(N'{0}', N'{1}', N'{2}',N'{3}')", maKho, tenKho, diaChi, macn);
+                    query = String.Format(" EXEC sp_undoxoakho N'{0}', N'{1}', N'{2}',N'{3}' ", maKho, tenKho, diaChi, macn);
                     stackundo.Push(query);
                     LoadTable();
                 }catch(Exception ex)

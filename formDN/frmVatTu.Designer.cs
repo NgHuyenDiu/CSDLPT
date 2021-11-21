@@ -319,13 +319,13 @@ namespace formDN
             // 
             this.vattuGridControl.DataSource = this.bdsVatTu;
             this.vattuGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vattuGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(8);
+            this.vattuGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.vattuGridControl.Location = new System.Drawing.Point(0, 30);
             this.vattuGridControl.MainView = this.gridView1;
-            this.vattuGridControl.Margin = new System.Windows.Forms.Padding(8);
+            this.vattuGridControl.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.vattuGridControl.MenuManager = this.barManager1;
             this.vattuGridControl.Name = "vattuGridControl";
-            this.vattuGridControl.Size = new System.Drawing.Size(1247, 387);
+            this.vattuGridControl.Size = new System.Drawing.Size(1247, 303);
             this.vattuGridControl.TabIndex = 5;
             this.vattuGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -336,7 +336,7 @@ namespace formDN
             this.colMAVT,
             this.colTENVT,
             this.colDVT});
-            this.gridView1.DetailHeight = 852;
+            this.gridView1.DetailHeight = 1331;
             this.gridView1.GridControl = this.vattuGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -345,29 +345,29 @@ namespace formDN
             // colMAVT
             // 
             this.colMAVT.FieldName = "MAVT";
-            this.colMAVT.MinWidth = 49;
+            this.colMAVT.MinWidth = 76;
             this.colMAVT.Name = "colMAVT";
             this.colMAVT.Visible = true;
             this.colMAVT.VisibleIndex = 0;
-            this.colMAVT.Width = 182;
+            this.colMAVT.Width = 284;
             // 
             // colTENVT
             // 
             this.colTENVT.FieldName = "TENVT";
-            this.colTENVT.MinWidth = 49;
+            this.colTENVT.MinWidth = 76;
             this.colTENVT.Name = "colTENVT";
             this.colTENVT.Visible = true;
             this.colTENVT.VisibleIndex = 1;
-            this.colTENVT.Width = 182;
+            this.colTENVT.Width = 284;
             // 
             // colDVT
             // 
             this.colDVT.FieldName = "DVT";
-            this.colDVT.MinWidth = 49;
+            this.colDVT.MinWidth = 76;
             this.colDVT.Name = "colDVT";
             this.colDVT.Visible = true;
             this.colDVT.VisibleIndex = 2;
-            this.colDVT.Width = 182;
+            this.colDVT.Width = 284;
             // 
             // txtMAVT
             // 
@@ -437,9 +437,9 @@ namespace formDN
             this.groupbox1.Controls.Add(tENVTLabel);
             this.groupbox1.Controls.Add(this.txtTenVT);
             this.groupbox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupbox1.Location = new System.Drawing.Point(0, 417);
+            this.groupbox1.Location = new System.Drawing.Point(0, 333);
             this.groupbox1.Name = "groupbox1";
-            this.groupbox1.Size = new System.Drawing.Size(1247, 345);
+            this.groupbox1.Size = new System.Drawing.Size(1247, 429);
             this.groupbox1.TabIndex = 21;
             this.groupbox1.TabStop = false;
             this.groupbox1.Text = "groupBox1";

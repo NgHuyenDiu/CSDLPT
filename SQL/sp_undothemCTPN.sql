@@ -1,15 +1,14 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_undothemCTPN]    Script Date: 11/20/2021 04:36:07 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_undothemCTPN]    Script Date: 11/21/2021 09:10:33 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROC [dbo].[sp_undothemCTPN]
-@MAPN nchar(8), @MAVT NCHAR(4),@SOLUONG INT,  @LOAI CHAR(1)
+CREATE PROCEDURE [dbo].[sp_undothemCTPN] @MAPN nchar(8), @MAVT NCHAR(4),@SOLUONG INT,  @LOAI CHAR(1)
 AS
 SET XACT_ABORT ON 
 BEGIN TRANSACTION

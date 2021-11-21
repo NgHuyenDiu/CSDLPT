@@ -105,7 +105,7 @@ namespace formDN
             cmbDDH.Enabled = false;
                 cmbKho.Enabled = true;
             txtMAPN.Enabled = txtMANV.Enabled = ngay.Enabled = false;
-            query = String.Format("Update PhieuNhap Set NGAY=N'{1}', MasoDDH=N'{2}', MANV={3}, MAKHO=N'{4}' Where MAPN=N'{0}' ", txtMAPN.Text, ngay.Text, cmbDDH.Text, Program.username, cmbKho.Text);
+            query = String.Format("EXEC sp_undosuaPN N'{0}', N'{1}', N'{2}',{3}, N'{4}' ", txtMAPN.Text, ngay.Text, cmbDDH.Text, Program.username, cmbKho.Text);
             DisEnableButton();
             them = false;
         }
@@ -206,7 +206,7 @@ namespace formDN
                     bdsPN.RemoveCurrent();
                     this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.phieuNhapTableAdapter.Update(this.qLVT_DATHANGDataSet1.PhieuNhap);
-                    query = String.Format("Insert into PhieuNhap (MAPN, NGAY, MasoDDH, MANV, MAKHO) values(N'{0}', N'{1}', N'{2}',{3},N'{4}' )", mapn, ngay, masoddh, Program.username, makho);
+                    query = String.Format("sp_undoxoaPN N'{0}', N'{1}', N'{2}',{3},N'{4}' ", mapn, ngay, masoddh, Program.username, makho);
                     stackundo.Push(query);
                     LoadTable();
                 }
@@ -310,13 +310,14 @@ namespace formDN
                 bdsPN.ResetCurrentItem();
                 this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.phieuNhapTableAdapter.Update(this.qLVT_DATHANGDataSet1.PhieuNhap);
-                if (themctpn(txtMAPN.Text)==0)
-                {
-                    XtraMessageBox.Show("loi them ctddh vao ctpn", "", MessageBoxButtons.OK);
-                    return;
-                }
+               
                 if (them)
                 {
+                    if (themctpn(txtMAPN.Text) == 0)
+                    {
+                        XtraMessageBox.Show("loi them ctddh vao ctpn", "", MessageBoxButtons.OK);
+                        return;
+                    }
                     query = String.Format("EXEC sp_undothemPN N'{0}'", txtMAPN.Text );
                 }
                 stackundo.Push(query);
@@ -433,12 +434,7 @@ namespace formDN
                        
                         return;
                     }
-                    /*if (ktraVattutrenView(mavt) == false)
-                    {
-                        XtraMessageBox.Show("Vật tư đã được nhập ! ", "", MessageBoxButtons.OK);
-                        btnThemCTPN.Enabled = false;
-                        return;
-                    }*/
+                   
                     int soLuong = int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString());
                     if (ktctddh(maDDH, mavt) == 0)
                     {
@@ -483,7 +479,7 @@ namespace formDN
                     bdsCTPN.EndEdit();
                     bdsCTPN.ResetCurrentItem();
                     
-                String lenhUpdate = String.Format("UPDATE CTPN SET SOLUONG = {0} , DONGIA={1} WHERE MAPN=N'{2}' AND MAVT=N'{3}' ", int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString()) , int.Parse(((DataRowView)bdsCTPN[i])["DONGIA"].ToString()),txtMAPN.Text ,((DataRowView)bdsCTPN[i])["MAVT"]);
+                String lenhUpdate = String.Format("EXEC sp_undochinhsuaCTPN  {0} , {1} N'{2}', N'{3}' ", int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString()) , int.Parse(((DataRowView)bdsCTPN[i])["DONGIA"].ToString()),txtMAPN.Text ,((DataRowView)bdsCTPN[i])["MAVT"]);
                 using (SqlConnection connection = new SqlConnection(Program.connstr))
                 {
                     connection.Open();
@@ -534,8 +530,8 @@ namespace formDN
                  groupBox1.Enabled = false;
                  this.colMAVT.ColumnEdit = repositoryItemLookUpEdit2;
                  this.colDONGIA.ColumnEdit = null ;
-
-            }
+            gridView2.OptionsBehavior.Editable = false;
+        }
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)
         {
