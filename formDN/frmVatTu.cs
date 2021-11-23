@@ -48,8 +48,8 @@ namespace formDN
             
             if (Program.mGroup == "CONGTY")
             {
-                btnThem.Enabled = btnSua.Enabled = btnGhi.Enabled = btnXoa.Enabled = false;
-                btnReload.Enabled = btnThoat.Enabled = true;
+                btnReload.Enabled = btnThem.Enabled = btnSua.Enabled = btnGhi.Enabled = btnXoa.Enabled = false;
+                btnThoat.Enabled = true;
                 groupbox1.Enabled = false;
             }
             else

@@ -154,6 +154,7 @@ namespace formDN
             this.Controls.Add(this.label1);
             this.Name = "Frpt_bangkectvt";
             this.Text = "Frpt_bangkectvt";
+            this.Load += new System.EventHandler(this.Frpt_bangkectvt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

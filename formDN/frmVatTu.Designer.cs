@@ -92,7 +92,7 @@ namespace formDN
             // mAVTLabel
             // 
             mAVTLabel.AutoSize = true;
-            mAVTLabel.Location = new System.Drawing.Point(371, 80);
+            mAVTLabel.Location = new System.Drawing.Point(375, 32);
             mAVTLabel.Name = "mAVTLabel";
             mAVTLabel.Size = new System.Drawing.Size(90, 17);
             mAVTLabel.TabIndex = 14;
@@ -101,7 +101,7 @@ namespace formDN
             // tENVTLabel
             // 
             tENVTLabel.AutoSize = true;
-            tENVTLabel.Location = new System.Drawing.Point(358, 135);
+            tENVTLabel.Location = new System.Drawing.Point(362, 87);
             tENVTLabel.Name = "tENVTLabel";
             tENVTLabel.Size = new System.Drawing.Size(94, 17);
             tENVTLabel.TabIndex = 15;
@@ -110,7 +110,7 @@ namespace formDN
             // dVTLabel
             // 
             dVTLabel.AutoSize = true;
-            dVTLabel.Location = new System.Drawing.Point(357, 189);
+            dVTLabel.Location = new System.Drawing.Point(361, 141);
             dVTLabel.Name = "dVTLabel";
             dVTLabel.Size = new System.Drawing.Size(95, 17);
             dVTLabel.TabIndex = 16;
@@ -119,7 +119,7 @@ namespace formDN
             // sOLUONGTONLabel
             // 
             sOLUONGTONLabel.AutoSize = true;
-            sOLUONGTONLabel.Location = new System.Drawing.Point(349, 251);
+            sOLUONGTONLabel.Location = new System.Drawing.Point(353, 203);
             sOLUONGTONLabel.Name = "sOLUONGTONLabel";
             sOLUONGTONLabel.Size = new System.Drawing.Size(112, 17);
             sOLUONGTONLabel.TabIndex = 16;
@@ -319,13 +319,13 @@ namespace formDN
             // 
             this.vattuGridControl.DataSource = this.bdsVatTu;
             this.vattuGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vattuGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.vattuGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(19, 19, 19, 19);
             this.vattuGridControl.Location = new System.Drawing.Point(0, 30);
             this.vattuGridControl.MainView = this.gridView1;
-            this.vattuGridControl.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.vattuGridControl.Margin = new System.Windows.Forms.Padding(19, 19, 19, 19);
             this.vattuGridControl.MenuManager = this.barManager1;
             this.vattuGridControl.Name = "vattuGridControl";
-            this.vattuGridControl.Size = new System.Drawing.Size(1247, 303);
+            this.vattuGridControl.Size = new System.Drawing.Size(1247, 452);
             this.vattuGridControl.TabIndex = 5;
             this.vattuGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -336,7 +336,7 @@ namespace formDN
             this.colMAVT,
             this.colTENVT,
             this.colDVT});
-            this.gridView1.DetailHeight = 1331;
+            this.gridView1.DetailHeight = 2080;
             this.gridView1.GridControl = this.vattuGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -345,34 +345,34 @@ namespace formDN
             // colMAVT
             // 
             this.colMAVT.FieldName = "MAVT";
-            this.colMAVT.MinWidth = 76;
+            this.colMAVT.MinWidth = 119;
             this.colMAVT.Name = "colMAVT";
             this.colMAVT.Visible = true;
             this.colMAVT.VisibleIndex = 0;
-            this.colMAVT.Width = 284;
+            this.colMAVT.Width = 444;
             // 
             // colTENVT
             // 
             this.colTENVT.FieldName = "TENVT";
-            this.colTENVT.MinWidth = 76;
+            this.colTENVT.MinWidth = 119;
             this.colTENVT.Name = "colTENVT";
             this.colTENVT.Visible = true;
             this.colTENVT.VisibleIndex = 1;
-            this.colTENVT.Width = 284;
+            this.colTENVT.Width = 444;
             // 
             // colDVT
             // 
             this.colDVT.FieldName = "DVT";
-            this.colDVT.MinWidth = 76;
+            this.colDVT.MinWidth = 119;
             this.colDVT.Name = "colDVT";
             this.colDVT.Visible = true;
             this.colDVT.VisibleIndex = 2;
-            this.colDVT.Width = 284;
+            this.colDVT.Width = 444;
             // 
             // txtMAVT
             // 
             this.txtMAVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "MAVT", true));
-            this.txtMAVT.Location = new System.Drawing.Point(463, 75);
+            this.txtMAVT.Location = new System.Drawing.Point(467, 27);
             this.txtMAVT.Margin = new System.Windows.Forms.Padding(8);
             this.txtMAVT.MenuManager = this.barManager1;
             this.txtMAVT.Name = "txtMAVT";
@@ -382,7 +382,7 @@ namespace formDN
             // txtTenVT
             // 
             this.txtTenVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "TENVT", true));
-            this.txtTenVT.Location = new System.Drawing.Point(463, 132);
+            this.txtTenVT.Location = new System.Drawing.Point(467, 84);
             this.txtTenVT.Margin = new System.Windows.Forms.Padding(8);
             this.txtTenVT.MenuManager = this.barManager1;
             this.txtTenVT.Name = "txtTenVT";
@@ -392,7 +392,7 @@ namespace formDN
             // txtDVT
             // 
             this.txtDVT.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsVatTu, "DVT", true));
-            this.txtDVT.Location = new System.Drawing.Point(463, 186);
+            this.txtDVT.Location = new System.Drawing.Point(467, 138);
             this.txtDVT.Margin = new System.Windows.Forms.Padding(8);
             this.txtDVT.MenuManager = this.barManager1;
             this.txtDVT.Name = "txtDVT";
@@ -437,9 +437,9 @@ namespace formDN
             this.groupbox1.Controls.Add(tENVTLabel);
             this.groupbox1.Controls.Add(this.txtTenVT);
             this.groupbox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupbox1.Location = new System.Drawing.Point(0, 333);
+            this.groupbox1.Location = new System.Drawing.Point(0, 482);
             this.groupbox1.Name = "groupbox1";
-            this.groupbox1.Size = new System.Drawing.Size(1247, 429);
+            this.groupbox1.Size = new System.Drawing.Size(1247, 280);
             this.groupbox1.TabIndex = 21;
             this.groupbox1.TabStop = false;
             this.groupbox1.Text = "groupBox1";
@@ -452,7 +452,7 @@ namespace formDN
             0,
             0,
             0});
-            this.TXTSLT.Location = new System.Drawing.Point(467, 248);
+            this.TXTSLT.Location = new System.Drawing.Point(471, 200);
             this.TXTSLT.MenuManager = this.barManager1;
             this.TXTSLT.Name = "TXTSLT";
             this.TXTSLT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {

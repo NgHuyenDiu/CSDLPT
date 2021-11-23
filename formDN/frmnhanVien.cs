@@ -178,6 +178,7 @@ namespace formDN
         {
             vitri = bdsNV.Position;
             groupBox1.Enabled = true;
+            cmb_MANV.Enabled = txtCN.Enabled = trangThaiXoa.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnUndo.Enabled=btnCCN.Enabled= btnReload.Enabled = false;
             btnGhi.Enabled = btnThoat.Enabled = true;
             nhanVienGridControl.Enabled = false;

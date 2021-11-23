@@ -100,7 +100,7 @@ namespace formDN
             this.barButtonItem1,
             this.btnTaoTaiKhoan});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(30, 38, 30, 38);
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(38, 48, 38, 48);
             this.ribbonControl1.MaxItemId = 43;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -431,10 +431,8 @@ namespace formDN
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonPage heThong;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageQuanLy;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup14;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
@@ -469,6 +467,8 @@ namespace formDN
         public DevExpress.XtraBars.BarButtonItem btnDangXuat;
         public DevExpress.XtraBars.BarButtonItem btnTaoTaiKhoan;
         public DevExpress.XtraBars.BarButtonItem btn_dangNhap;
+        public DevExpress.XtraBars.Ribbon.RibbonPage ribbonPageQuanLy;
+        public DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
     }
 }
 

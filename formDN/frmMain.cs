@@ -39,7 +39,10 @@ namespace formDN
         {
              skins();
             btnDangXuat.Enabled = btnTaoTaiKhoan.Enabled = false;
-          
+            ribbonPageQuanLy.Visible= false;
+            ribbonPage1.Visible= false;
+
+
         }
 
         private void btn_nhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

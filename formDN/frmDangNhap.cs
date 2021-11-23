@@ -137,6 +137,8 @@ namespace formDN
             
             Program.fMain.btnDangXuat.Enabled = true;
             Program.fMain.btn_dangNhap.Enabled = false;
+            Program.fMain.ribbonPageQuanLy.Visible= true;
+            Program.fMain.ribbonPage1.Visible= true;
 
         }
 

@@ -116,6 +116,7 @@ namespace formDN
             this.cmbUsername.Size = new System.Drawing.Size(160, 27);
             this.cmbUsername.TabIndex = 7;
             this.cmbUsername.ValueMember = "MANV";
+           
             // 
             // hOTENNVBindingSource
             // 

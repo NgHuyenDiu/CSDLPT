@@ -50,5 +50,11 @@ namespace formDN
             ReportPrintTool print = new ReportPrintTool(rp);
             print.ShowPreviewDialog();
         }
+
+        private void Frpt_bangkectvt_Load(object sender, EventArgs e)
+        {
+
+            comboBox1.SelectedIndex = 0;
+        }
     }
 }

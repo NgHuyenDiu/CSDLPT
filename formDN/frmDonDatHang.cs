@@ -18,6 +18,8 @@ namespace formDN
         Stack<String> stackundo = new Stack<string>(16);
         String query = "";
         private Boolean them = false;
+        private Boolean chinhsua = false;
+        private String ddh;
         public frmDonDatHang()
         {
             InitializeComponent();
@@ -273,6 +275,7 @@ namespace formDN
         }
         private void xoaDonHang()
         {
+           
             if (cTDDHBindingSource.Count + phieuNhapBindingSource.Count > 0)
             {
                 XtraMessageBox.Show("Đơn đặt hàng đã có phiếu nhập hoặc đã có chi tiết đơn đặt hàng. Không xoá được", "", MessageBoxButtons.OK);
@@ -280,9 +283,10 @@ namespace formDN
             }
             else if (XtraMessageBox.Show("Bạn có thực sụ muốn xoá đơn hàng.", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+               
                 try
                 {
-                    String ddh = ((DataRowView)datHangBindingSource[datHangBindingSource.Position])["MasoDDH"].ToString();
+                    ddh= ((DataRowView)datHangBindingSource[datHangBindingSource.Position])["MasoDDH"].ToString();
                     String ngay = ((DataRowView)datHangBindingSource[datHangBindingSource.Position])["NGAY"].ToString();
                     String nhacc = ((DataRowView)datHangBindingSource[datHangBindingSource.Position])["NhaCC"].ToString();
                     String makho = ((DataRowView)datHangBindingSource[datHangBindingSource.Position])["MAKHO"].ToString();
@@ -300,6 +304,7 @@ namespace formDN
                 {
                     XtraMessageBox.Show("Lỗi xóa đơn đặt hàng. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DatHang);
+                    datHangBindingSource.Position = datHangBindingSource.Find("MasoDDH", ddh);
                     return;
                 }
                 groupBox1.Enabled = false;
@@ -429,6 +434,7 @@ namespace formDN
             BTNCHINHSUACTDDH.Enabled = true;
             BTNGHICHINHSUACTDDH.Enabled = false;
             btnXoaCTDDH.Enabled = true;
+            chinhsua = false;
         }
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)
@@ -482,18 +488,10 @@ namespace formDN
                 LoadTable();
                 return;
             }
+
             gridView2.OptionsBehavior.Editable = true;
-            for (int i = 0; i < cTDDHBindingSource.Count; i++)
-            {
-                String maddh = ((DataRowView)cTDDHBindingSource[i])["MasoDDH"].ToString();
-                String mavt = ((DataRowView)cTDDHBindingSource[i])["MAVT"].ToString();
-                String soluong = ((DataRowView)cTDDHBindingSource[i])["SOLUONG"].ToString();
-                String dongia = ((DataRowView)cTDDHBindingSource[i])["DONGIA"].ToString();
-                String lenhundo = String.Format("EXEC sp_undochinhsuaCTDDH {0} , {1} ,N'{2}', N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
-                Console.WriteLine(lenhundo);
-                stackundo.Push(lenhundo);
-               
-            }
+            
+            chinhsua = true;
             btnGhiCTDDH.Enabled = false;
             BTNGHICHINHSUACTDDH.Enabled = true;
             btnXoaCTDDH.Enabled = false;
@@ -557,7 +555,7 @@ namespace formDN
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi chinh sửa chi tiết đơn đặt hàng " + ex.Message);
+                XtraMessageBox.Show("Lỗi chinh sửa chi tiết đơn đặt hàng " + ex.Message);
             }
             LoadTable();
             btntThemCTDDH.Enabled = true;
@@ -566,7 +564,26 @@ namespace formDN
             BTNCHINHSUACTDDH.Enabled = true;
             btnXoaCTDDH.Enabled = true;
             gridView2.OptionsBehavior.Editable = false;
+            chinhsua = false;
         }
+
+
+        private void gridView2_DoubleClick(object sender, EventArgs e)
+        {
+            if (chinhsua)
+            {
+
+                String maddh = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "MasoDDH").ToString();
+                String mavt = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "MAVT").ToString();
+                String soluong = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "SOLUONG").ToString();
+                String dongia = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "DONGIA").ToString();
+                String lenhundo = String.Format("EXEC sp_undochinhsuaCTDDH {0} , {1} ,N'{2}', N'{3}' ", int.Parse(soluong), int.Parse(dongia), maddh, mavt);
+
+                stackundo.Push(lenhundo);
+            }
+        }
+
+      
     }
 
 }

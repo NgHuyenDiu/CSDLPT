@@ -390,13 +390,13 @@ namespace formDN
             // 
             this.phieuXuatGridControl.DataSource = this.bdsPX;
             this.phieuXuatGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.phieuXuatGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(19, 19, 19, 19);
+            this.phieuXuatGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(60, 60, 60, 60);
             this.phieuXuatGridControl.Location = new System.Drawing.Point(0, 97);
             this.phieuXuatGridControl.MainView = this.gridView1;
-            this.phieuXuatGridControl.Margin = new System.Windows.Forms.Padding(19, 19, 19, 19);
+            this.phieuXuatGridControl.Margin = new System.Windows.Forms.Padding(60, 60, 60, 60);
             this.phieuXuatGridControl.MenuManager = this.barManager1;
             this.phieuXuatGridControl.Name = "phieuXuatGridControl";
-            this.phieuXuatGridControl.Size = new System.Drawing.Size(1488, 291);
+            this.phieuXuatGridControl.Size = new System.Drawing.Size(1488, 364);
             this.phieuXuatGridControl.TabIndex = 8;
             this.phieuXuatGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -409,7 +409,7 @@ namespace formDN
             this.colHOTENKH,
             this.colMANV,
             this.colMAKHO});
-            this.gridView1.DetailHeight = 2080;
+            this.gridView1.DetailHeight = 6346;
             this.gridView1.GridControl = this.phieuXuatGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
@@ -418,47 +418,47 @@ namespace formDN
             // colMAPX
             // 
             this.colMAPX.FieldName = "MAPX";
-            this.colMAPX.MinWidth = 119;
+            this.colMAPX.MinWidth = 362;
             this.colMAPX.Name = "colMAPX";
             this.colMAPX.Visible = true;
             this.colMAPX.VisibleIndex = 0;
-            this.colMAPX.Width = 444;
+            this.colMAPX.Width = 1355;
             // 
             // colNGAY
             // 
             this.colNGAY.FieldName = "NGAY";
-            this.colNGAY.MinWidth = 119;
+            this.colNGAY.MinWidth = 362;
             this.colNGAY.Name = "colNGAY";
             this.colNGAY.Visible = true;
             this.colNGAY.VisibleIndex = 1;
-            this.colNGAY.Width = 444;
+            this.colNGAY.Width = 1355;
             // 
             // colHOTENKH
             // 
             this.colHOTENKH.FieldName = "HOTENKH";
-            this.colHOTENKH.MinWidth = 119;
+            this.colHOTENKH.MinWidth = 362;
             this.colHOTENKH.Name = "colHOTENKH";
             this.colHOTENKH.Visible = true;
             this.colHOTENKH.VisibleIndex = 2;
-            this.colHOTENKH.Width = 444;
+            this.colHOTENKH.Width = 1355;
             // 
             // colMANV
             // 
             this.colMANV.FieldName = "MANV";
-            this.colMANV.MinWidth = 119;
+            this.colMANV.MinWidth = 362;
             this.colMANV.Name = "colMANV";
             this.colMANV.Visible = true;
             this.colMANV.VisibleIndex = 3;
-            this.colMANV.Width = 444;
+            this.colMANV.Width = 1355;
             // 
             // colMAKHO
             // 
             this.colMAKHO.FieldName = "MAKHO";
-            this.colMAKHO.MinWidth = 119;
+            this.colMAKHO.MinWidth = 362;
             this.colMAKHO.Name = "colMAKHO";
             this.colMAKHO.Visible = true;
             this.colMAKHO.VisibleIndex = 4;
-            this.colMAKHO.Width = 444;
+            this.colMAKHO.Width = 1355;
             // 
             // bdsCTPX
             // 
@@ -473,26 +473,26 @@ namespace formDN
             this.btnGhiCTPX,
             this.btnXoaCTPX});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 104);
             // 
             // btnThemCTPX
             // 
             this.btnThemCTPX.Name = "btnThemCTPX";
-            this.btnThemCTPX.Size = new System.Drawing.Size(118, 24);
+            this.btnThemCTPX.Size = new System.Drawing.Size(210, 24);
             this.btnThemCTPX.Text = "THÊM";
             this.btnThemCTPX.Click += new System.EventHandler(this.btnThêmCTPX_Click);
             // 
             // btnGhiCTPX
             // 
             this.btnGhiCTPX.Name = "btnGhiCTPX";
-            this.btnGhiCTPX.Size = new System.Drawing.Size(118, 24);
+            this.btnGhiCTPX.Size = new System.Drawing.Size(210, 24);
             this.btnGhiCTPX.Text = "GHI";
             this.btnGhiCTPX.Click += new System.EventHandler(this.btnGhiCTPX_Click);
             // 
             // btnXoaCTPX
             // 
             this.btnXoaCTPX.Name = "btnXoaCTPX";
-            this.btnXoaCTPX.Size = new System.Drawing.Size(118, 24);
+            this.btnXoaCTPX.Size = new System.Drawing.Size(210, 24);
             this.btnXoaCTPX.Text = "XOÁ";
             this.btnXoaCTPX.Click += new System.EventHandler(this.btnXoaCTPX_Click);
             // 
@@ -527,9 +527,9 @@ namespace formDN
             this.groupBox1.Controls.Add(mAPXLabel);
             this.groupBox1.Controls.Add(this.txtMAPX);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 388);
+            this.groupBox1.Location = new System.Drawing.Point(0, 461);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 353);
+            this.groupBox1.Size = new System.Drawing.Size(502, 280);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PHIẾU XUẤT";
@@ -599,15 +599,15 @@ namespace formDN
             this.cTPXGridControl.ContextMenuStrip = this.contextMenuStrip1;
             this.cTPXGridControl.DataSource = this.bdsCTPX;
             this.cTPXGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTPXGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
-            this.cTPXGridControl.Location = new System.Drawing.Point(502, 388);
+            this.cTPXGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(30, 30, 30, 30);
+            this.cTPXGridControl.Location = new System.Drawing.Point(502, 461);
             this.cTPXGridControl.MainView = this.gridView2;
-            this.cTPXGridControl.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.cTPXGridControl.Margin = new System.Windows.Forms.Padding(30, 30, 30, 30);
             this.cTPXGridControl.MenuManager = this.barManager1;
             this.cTPXGridControl.Name = "cTPXGridControl";
             this.cTPXGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
-            this.cTPXGridControl.Size = new System.Drawing.Size(986, 353);
+            this.cTPXGridControl.Size = new System.Drawing.Size(986, 280);
             this.cTPXGridControl.TabIndex = 14;
             this.cTPXGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -619,7 +619,7 @@ namespace formDN
             this.colMAVT,
             this.colSOLUONG,
             this.colDONGIA});
-            this.gridView2.DetailHeight = 1065;
+            this.gridView2.DetailHeight = 3250;
             this.gridView2.GridControl = this.cTPXGridControl;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.Editable = false;
@@ -627,21 +627,21 @@ namespace formDN
             // colMAPX1
             // 
             this.colMAPX1.FieldName = "MAPX";
-            this.colMAPX1.MinWidth = 76;
+            this.colMAPX1.MinWidth = 232;
             this.colMAPX1.Name = "colMAPX1";
             this.colMAPX1.Visible = true;
             this.colMAPX1.VisibleIndex = 0;
-            this.colMAPX1.Width = 284;
+            this.colMAPX1.Width = 867;
             // 
             // colMAVT
             // 
             this.colMAVT.ColumnEdit = this.repositoryItemLookUpEdit1;
             this.colMAVT.FieldName = "MAVT";
-            this.colMAVT.MinWidth = 76;
+            this.colMAVT.MinWidth = 232;
             this.colMAVT.Name = "colMAVT";
             this.colMAVT.Visible = true;
             this.colMAVT.VisibleIndex = 1;
-            this.colMAVT.Width = 284;
+            this.colMAVT.Width = 867;
             // 
             // repositoryItemLookUpEdit1
             // 
@@ -661,20 +661,22 @@ namespace formDN
             // colSOLUONG
             // 
             this.colSOLUONG.FieldName = "SOLUONG";
-            this.colSOLUONG.MinWidth = 76;
+            this.colSOLUONG.MinWidth = 232;
             this.colSOLUONG.Name = "colSOLUONG";
             this.colSOLUONG.Visible = true;
             this.colSOLUONG.VisibleIndex = 2;
-            this.colSOLUONG.Width = 284;
+            this.colSOLUONG.Width = 867;
             // 
             // colDONGIA
             // 
+            this.colDONGIA.DisplayFormat.FormatString = "{0:#,#}";
+            this.colDONGIA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colDONGIA.FieldName = "DONGIA";
-            this.colDONGIA.MinWidth = 76;
+            this.colDONGIA.MinWidth = 232;
             this.colDONGIA.Name = "colDONGIA";
             this.colDONGIA.Visible = true;
             this.colDONGIA.VisibleIndex = 3;
-            this.colDONGIA.Width = 284;
+            this.colDONGIA.Width = 867;
             // 
             // dSVTTableAdapter
             // 

@@ -1,5 +1,6 @@
 ﻿using DevExpress.Skins;
 using DevExpress.UserSkins;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -50,7 +51,7 @@ namespace formDN
 
             catch (Exception e)
             {
-                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nSai tài khoản hoặc Sai mật khẩu.\n ", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nSai tài khoản hoặc Sai mật khẩu.\n ", "", MessageBoxButtons.OK);
                 return 0;
             }
         }
@@ -85,9 +86,8 @@ namespace formDN
                 return 0;
             }catch(SqlException e)
             {
-                if (e.Message.Contains("Error converting data type to int"))
-                    MessageBox.Show("Bạn format cell lại cột ngày ");
-                else MessageBox.Show(e.Message);
+             
+              MessageBox.Show(e.Message);
                 Program.conn.Close();
                 return e.State;// trạng thái lỗi gởi từ raiseError trogn sql server qua
             }

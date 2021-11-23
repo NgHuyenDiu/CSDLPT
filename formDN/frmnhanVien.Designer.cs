@@ -431,13 +431,13 @@ namespace formDN
             // 
             this.nhanVienGridControl.DataSource = this.bdsNV;
             this.nhanVienGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nhanVienGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(19, 19, 19, 19);
+            this.nhanVienGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(24, 24, 24, 24);
             this.nhanVienGridControl.Location = new System.Drawing.Point(0, 125);
             this.nhanVienGridControl.MainView = this.gridView1;
-            this.nhanVienGridControl.Margin = new System.Windows.Forms.Padding(19, 19, 19, 19);
+            this.nhanVienGridControl.Margin = new System.Windows.Forms.Padding(24, 24, 24, 24);
             this.nhanVienGridControl.MenuManager = this.barManager1;
             this.nhanVienGridControl.Name = "nhanVienGridControl";
-            this.nhanVienGridControl.Size = new System.Drawing.Size(1381, 240);
+            this.nhanVienGridControl.Size = new System.Drawing.Size(1381, 300);
             this.nhanVienGridControl.TabIndex = 6;
             this.nhanVienGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -550,9 +550,9 @@ namespace formDN
             this.groupBox1.Controls.Add(this.cmb_MANV);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 365);
+            this.groupBox1.Location = new System.Drawing.Point(0, 425);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1381, 253);
+            this.groupBox1.Size = new System.Drawing.Size(1381, 193);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nhân viên";
