@@ -174,6 +174,28 @@ namespace formDN
             }
             return result;
         }
+
+        private int kiemTraTenKhoTonTai(String tenKho)
+        {
+            int result = 1;
+            String lenh = String.Format("EXEC sp_timtenkho N'{0}'", tenKho);
+            using (SqlConnection connection = new SqlConnection(Program.connstr))
+            {
+                connection.Open();
+                SqlCommand sqlcmt = new SqlCommand(lenh, connection);
+                sqlcmt.CommandType = CommandType.Text;
+                try
+                {
+                    sqlcmt.ExecuteNonQuery();
+                }
+                catch
+                {
+                    result = 0;
+                }
+
+            }
+            return result;
+        }
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // KIEM TRA DAU VAO
@@ -221,6 +243,14 @@ namespace formDN
                 txtTenKho.Focus();
                 return;
             }
+           
+            if (kiemTraTenKhoTonTai(txtTenKho.Text.Trim()) == 1)
+            {
+                XtraMessageBox.Show("Tên kho đã tồn tại!", "", MessageBoxButtons.OK);
+                txtTenKho.Focus();
+                return;
+             }
+            
             if (txtDiaChi.Text.Trim() == string.Empty)
             {
                  XtraMessageBox.Show("Địa chỉ không được thiếu!", "", MessageBoxButtons.OK);
