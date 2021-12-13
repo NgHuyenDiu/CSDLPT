@@ -1,7 +1,7 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_undothemPN]    Script Date: 11/21/2021 09:11:53 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_undothemPN]    Script Date: 12/13/2021 03:45:14 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,16 +14,15 @@ AS
 SET XACT_ABORT ON 
 BEGIN TRANSACTION
 BEGIN TRY
-	delete from CTPN where MAPN= @MAPN 
-	delete from PhieuNhap where MAPN= @MAPN
+	DELETE FROM CTPN WHERE MAPN= @MAPN 
+	DELETE FROM PhieuNhap WHERE MAPN= @MAPN
 COMMIT TRANSACTION
 END TRY
 BEGIN CATCH
    ROLLBACK
-	DECLARE @ErrorMessage VARCHAR(2000)
-	SELECT @ErrorMessage = 'Lỗi: ' + ERROR_MESSAGE()
-	RAISERROR( @ErrorMessage, 16, 1)
+	DECLARE @ERRORMESSAGE VARCHAR(2000)
+	SELECT @ERRORMESSAGE = 'LỖI: ' + ERROR_MESSAGE()
+	RAISERROR( @ERRORMESSAGE, 16, 1)
 END CATCH
-
 GO
 

@@ -18,6 +18,7 @@ namespace formDN
         Stack<String> stackundo = new Stack<string>();
         String query = "";
         Boolean them;
+        Boolean sua;
         public frmPhieuNhap()
         {
             InitializeComponent();
@@ -83,8 +84,8 @@ namespace formDN
         }
         private void frmPhieuNhap_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet1.DSVT' table. You can move, or remove it, as needed.
-            this.dSVTTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DSVT);
+            //// TODO: This line of code loads data into the 'qLVT_DATHANGDataSet1.DSVT' table. You can move, or remove it, as needed.
+            //this.dSVTTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DSVT);
             LoadTable();    
             cmbCN.DataSource = Program.bds_dspm.DataSource;
             cmbCN.DisplayMember = "TENCN";
@@ -103,7 +104,7 @@ namespace formDN
             groupBox1.Enabled = true;
             vitri = bdsPN.Position;
             cmbDDH.Enabled = false;
-                cmbKho.Enabled = true;
+            cmbKho.Enabled = true;
             txtMAPN.Enabled = txtMANV.Enabled = ngay.Enabled = false;
             query = String.Format("EXEC sp_undosuaPN N'{0}', N'{1}', N'{2}',{3}, N'{4}' ", txtMAPN.Text, ngay.Text, cmbDDH.Text, Program.username, cmbKho.Text);
             DisEnableButton();
@@ -133,7 +134,18 @@ namespace formDN
                     this.Close();
                 }
             }
-            this.Close();
+            else if (them == true && btnGhiCTPN.Enabled)
+            {
+                if (XtraMessageBox.Show("Chưa lưu chi tiết phiếu nhập vào dataset. Thoát sẽ không chỉnh sửa được chi tiết phiếu nhập, không cập nhật số lượng sản phẩm trong vật tư", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+        
         }
 
         private void btnReload_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -143,6 +155,8 @@ namespace formDN
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            gridView2.OptionsBehavior.Editable = false;
+            BTNCHINHSUACTPN.Enabled = true;
             String lenh = stackundo.Pop();
             using(SqlConnection connection= new SqlConnection(Program.connstr))
             {
@@ -335,19 +349,7 @@ namespace formDN
         }
         
 
-      
-
-        private Boolean ktraVattutrenView ( String maVT)
-        {
-            for(int index= 0; index< bdsCTPN.Count-1; index++)
-            {
-                if(((DataRowView)bdsCTPN[index])["MAVT"].ToString().Equals(maVT) )
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+ 
 
         private int ktctddh(String maddh, String mavt)
         {
@@ -479,21 +481,6 @@ namespace formDN
                     bdsCTPN.EndEdit();
                     bdsCTPN.ResetCurrentItem();
                     
-                String lenhUpdate = String.Format("EXEC sp_undochinhsuaCTPN  {0} , {1} N'{2}', N'{3}' ", int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString()) , int.Parse(((DataRowView)bdsCTPN[i])["DONGIA"].ToString()),txtMAPN.Text ,((DataRowView)bdsCTPN[i])["MAVT"]);
-                using (SqlConnection connection = new SqlConnection(Program.connstr))
-                {
-                    connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand(lenhUpdate, connection);
-                    sqlCommand.CommandType = CommandType.Text;
-                    try
-                    {
-                        sqlCommand.ExecuteNonQuery();
-                    }
-                    catch (Exception ex)
-                    {
-                        XtraMessageBox.Show(ex.Message + " ");
-                    }
-                }
 
                    String lenh = String.Format("EXEC sp_capnhatsoluongton  N'{0}' , {1}, N'{2}'", ((DataRowView)bdsCTPN[i])["MAVT"].ToString(), int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString()), "N");
                     using (SqlConnection connection = new SqlConnection(Program.connstr))
@@ -507,7 +494,7 @@ namespace formDN
                         }
                         catch (Exception ex)
                         {
-                            XtraMessageBox.Show(ex.Message + " ");
+                            XtraMessageBox.Show(lenh+ ex.Message + " ");
                         }
                     }
                     query = String.Format("EXEC sp_undothemCTPN N'{0}', N'{1}',{2}, N'{3}'", mapn.Trim(), mavt.Trim(), soLuong, "X");
@@ -585,6 +572,34 @@ namespace formDN
             }
         }
 
-       
+        private void cTPNGridControl_DoubleClick(object sender, EventArgs e)
+        {
+            if (sua)
+            {
+                String mapn = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "MAPN").ToString();
+                String mavt = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "MAVT").ToString();
+                String soluong = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "SOLUONG").ToString();
+                String dongia = gridView2.GetRowCellValue(gridView2.FocusedRowHandle, "DONGIA").ToString();
+                String lenhUpdate = String.Format("EXEC sp_undochinhsuaCTPN  N'{0}', N'{1}',{2} , {3} ", mapn, mavt, int.Parse(soluong), int.Parse(dongia));
+
+                stackundo.Push(lenhUpdate);
+            }
+           
+        }
+
+        private void cHỈNHSỬAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (them)
+            {
+                sua = true;
+                gridView2.OptionsBehavior.Editable = true;
+            }
+            else
+            {
+                XtraMessageBox.Show("chi tiết phiếu nhập chỉ được chỉnh sửa khi thêm mới phiếu nhập \n", "", MessageBoxButtons.OK);
+                return;
+            }
+           
+        }
     }
 }

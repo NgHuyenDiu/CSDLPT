@@ -38,8 +38,8 @@ namespace formDN
             {
                 this.qLVT_DATHANGDataSet1.EnforceConstraints = false; // bo qua khoa ngoai
 
-                this.dSVTTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.dSVTTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DSVT);
+                this.dSVTTableAdapter.Connection.ConnectionString = Program.connstr;// load dữ liệu vào phải kết nối lại vì sql có thể đóng kết nối
+                this.dSVTTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DSVT);// tableAdapter nằm giữa csdl và dataset , đẩy csdl lên bằn fill()
 
                 this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet1.DatHang);
@@ -56,7 +56,7 @@ namespace formDN
                 this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet1.CTPN);
 
-                if (Program.mGroup == "CONGTY")
+                if (Program.mGroup == "CONGTY")// thiết lập các quyền
                 {
                     btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnGhi.Enabled = btnUndo.Enabled = false;
                     btnReload.Enabled = btnThoat.Enabled = true;
@@ -95,7 +95,7 @@ namespace formDN
         private void frmDonDatHang_Load(object sender, EventArgs e)
         {
             LoadTable();
-            cmbCN.DataSource = Program.bds_dspm.DataSource;
+            cmbCN.DataSource = Program.bds_dspm.DataSource;// load dữ liệu vào combobox
             cmbCN.DisplayMember = "TENCN";
             cmbCN.ValueMember = "TENSERVER";
             cmbCN.SelectedIndex = Program.mChinhanh;
@@ -161,6 +161,8 @@ namespace formDN
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            gridView2.OptionsBehavior.Editable = false;
+            BTNCHINHSUACTDDH.Enabled = true;
             String lenh = stackundo.Pop();
             using (SqlConnection connection = new SqlConnection(Program.connstr))
             {
@@ -324,6 +326,7 @@ namespace formDN
                 return;
             }
             gridView2.OptionsBehavior.Editable = true;
+            gridView2.OptionsBehavior.EditingMode = default;
             vitri = cTDDHBindingSource.Position;
             cTDDHBindingSource.AddNew();
             btnGhiCTDDH.Enabled = true;
@@ -391,12 +394,14 @@ namespace formDN
             {
                 XtraMessageBox.Show("Vật tư không được thiếu!", "", MessageBoxButtons.OK);
                 btntThemCTDDH.Enabled = false;
+                gridView2.OptionsBehavior.Editable = true;
                 return;
             }
             if (kiemTraTonTaiCT(maddh, mavt) == 1)
             {
                 XtraMessageBox.Show("Vật tư không được trùng!", "", MessageBoxButtons.OK);
                 btntThemCTDDH.Enabled = false;
+                gridView2.OptionsBehavior.Editable = true;
                 return;
             }
 
@@ -404,6 +409,7 @@ namespace formDN
             {
                 XtraMessageBox.Show("Số lượng không được thiếu!", "", MessageBoxButtons.OK);
                 btntThemCTDDH.Enabled = false;
+                gridView2.OptionsBehavior.Editable = true;
                 return;
             }
 
@@ -411,6 +417,7 @@ namespace formDN
             {
                 XtraMessageBox.Show("Đơn giá không được thiếu!", "", MessageBoxButtons.OK);
                 btntThemCTDDH.Enabled = false;
+                gridView2.OptionsBehavior.Editable = true;
                 return;
             }
             try
@@ -435,6 +442,7 @@ namespace formDN
             BTNGHICHINHSUACTDDH.Enabled = false;
             btnXoaCTDDH.Enabled = true;
             chinhsua = false;
+            gridView2.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplaceHideCurrentRow;
         }
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)

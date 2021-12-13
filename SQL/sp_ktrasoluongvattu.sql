@@ -1,7 +1,7 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_ktrasoluongvattu]    Script Date: 11/17/2021 06:30:18 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_ktrasoluongvattu]    Script Date: 12/13/2021 03:35:47 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,12 +14,10 @@ CREATE proc [dbo].[sp_ktrasoluongvattu]
 @SOLUONG INT
 AS
 BEGIN
-IF(@SOLUONG<=(SELECT SOLUONG FROM CTDDH WHERE MASODDH= @MAPHIEU AND MAVT= @MAVT))
-		--SELECT SOLUONG FROM CTDDH WHERE MASODDH= @MAPHIEU AND MAVT= @MAVT
+	IF(@SOLUONG<=(SELECT SOLUONG FROM CTDDH WHERE MASODDH= @MAPHIEU AND MAVT= @MAVT))
 		return 1;
-ELSE
-	RAISERROR(N'SỐ LƯỢNG VẬT TƯ KHÔNG HỢP LỆ !',16,1)
+	ELSE
+		RAISERROR(N'SỐ LƯỢNG VẬT TƯ VƯỢT QUÁ SỐ LƯỢNG ĐẶT HÀNG !',16,1)
 END
-
 GO
 

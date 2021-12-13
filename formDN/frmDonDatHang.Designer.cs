@@ -418,10 +418,10 @@ namespace formDN
             // 
             this.datHangGridControl.DataSource = this.datHangBindingSource;
             this.datHangGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.datHangGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(231, 231, 231, 231);
+            this.datHangGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(231);
             this.datHangGridControl.Location = new System.Drawing.Point(0, 95);
             this.datHangGridControl.MainView = this.gridView1;
-            this.datHangGridControl.Margin = new System.Windows.Forms.Padding(231, 231, 231, 231);
+            this.datHangGridControl.Margin = new System.Windows.Forms.Padding(231);
             this.datHangGridControl.MenuManager = this.barManager1;
             this.datHangGridControl.Name = "datHangGridControl";
             this.datHangGridControl.Size = new System.Drawing.Size(1346, 368);
@@ -573,10 +573,10 @@ namespace formDN
             this.cTDDHGridControl.ContextMenuStrip = this.contextMenuStrip2;
             this.cTDDHGridControl.DataSource = this.cTDDHBindingSource;
             this.cTDDHGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTDDHGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(231, 231, 231, 231);
+            this.cTDDHGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(231);
             this.cTDDHGridControl.Location = new System.Drawing.Point(412, 463);
             this.cTDDHGridControl.MainView = this.gridView2;
-            this.cTDDHGridControl.Margin = new System.Windows.Forms.Padding(231, 231, 231, 231);
+            this.cTDDHGridControl.Margin = new System.Windows.Forms.Padding(231);
             this.cTDDHGridControl.MenuManager = this.barManager1;
             this.cTDDHGridControl.Name = "cTDDHGridControl";
             this.cTDDHGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -596,40 +596,40 @@ namespace formDN
             this.BTNCHINHSUACTDDH,
             this.BTNGHICHINHSUACTDDH});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(187, 124);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(211, 152);
             // 
             // btntThemCTDDH
             // 
             this.btntThemCTDDH.Name = "btntThemCTDDH";
-            this.btntThemCTDDH.Size = new System.Drawing.Size(186, 24);
+            this.btntThemCTDDH.Size = new System.Drawing.Size(210, 24);
             this.btntThemCTDDH.Text = "THÊM";
             this.btntThemCTDDH.Click += new System.EventHandler(this.tHÊMToolStripMenuItem_Click);
             // 
             // btnGhiCTDDH
             // 
             this.btnGhiCTDDH.Name = "btnGhiCTDDH";
-            this.btnGhiCTDDH.Size = new System.Drawing.Size(186, 24);
+            this.btnGhiCTDDH.Size = new System.Drawing.Size(210, 24);
             this.btnGhiCTDDH.Text = "GHI MOI";
             this.btnGhiCTDDH.Click += new System.EventHandler(this.btnGhiCTDDH_Click);
             // 
             // btnXoaCTDDH
             // 
             this.btnXoaCTDDH.Name = "btnXoaCTDDH";
-            this.btnXoaCTDDH.Size = new System.Drawing.Size(186, 24);
+            this.btnXoaCTDDH.Size = new System.Drawing.Size(210, 24);
             this.btnXoaCTDDH.Text = "XOÁ";
             this.btnXoaCTDDH.Click += new System.EventHandler(this.btnXoaCTDDH_Click);
             // 
             // BTNCHINHSUACTDDH
             // 
             this.BTNCHINHSUACTDDH.Name = "BTNCHINHSUACTDDH";
-            this.BTNCHINHSUACTDDH.Size = new System.Drawing.Size(186, 24);
+            this.BTNCHINHSUACTDDH.Size = new System.Drawing.Size(210, 24);
             this.BTNCHINHSUACTDDH.Text = "CHỈNH SỬA";
             this.BTNCHINHSUACTDDH.Click += new System.EventHandler(this.cHỈNHSỬAToolStripMenuItem_Click);
             // 
             // BTNGHICHINHSUACTDDH
             // 
             this.BTNGHICHINHSUACTDDH.Name = "BTNGHICHINHSUACTDDH";
-            this.BTNGHICHINHSUACTDDH.Size = new System.Drawing.Size(186, 24);
+            this.BTNGHICHINHSUACTDDH.Size = new System.Drawing.Size(210, 24);
             this.BTNGHICHINHSUACTDDH.Text = "GHI CHỈNH SỬA";
             this.BTNGHICHINHSUACTDDH.Click += new System.EventHandler(this.gHICHỈNHSỬAToolStripMenuItem_Click);
             // 

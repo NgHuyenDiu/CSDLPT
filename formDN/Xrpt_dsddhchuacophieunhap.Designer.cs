@@ -341,6 +341,7 @@ namespace formDN
             this.tableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Mã số DDH]")});
             this.tableCell8.Name = "tableCell8";
+            this.tableCell8.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Merge;
             this.tableCell8.StyleName = "DetailData1";
             this.tableCell8.StylePriority.UseBorderColor = false;
             this.tableCell8.StylePriority.UseBorders = false;
@@ -355,6 +356,7 @@ namespace formDN
             this.tableCell9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Ngày Đặt]")});
             this.tableCell9.Name = "tableCell9";
+            this.tableCell9.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Merge;
             this.tableCell9.StyleName = "DetailData1";
             this.tableCell9.StylePriority.UseBorderColor = false;
             this.tableCell9.StylePriority.UseBorders = false;

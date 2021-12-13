@@ -66,6 +66,7 @@ namespace formDN
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnGhiCTPN = new System.Windows.Forms.ToolStripMenuItem();
             this.btnXoaCTPN = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTNCHINHSUACTPN = new System.Windows.Forms.ToolStripMenuItem();
             this.bdsDH = new System.Windows.Forms.BindingSource(this.components);
             this.bdsCTDDH = new System.Windows.Forms.BindingSource(this.components);
             this.bdsK = new System.Windows.Forms.BindingSource(this.components);
@@ -412,23 +413,31 @@ namespace formDN
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnGhiCTPN,
-            this.btnXoaCTPN});
+            this.btnXoaCTPN,
+            this.BTNCHINHSUACTPN});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(109, 52);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(211, 104);
             // 
             // btnGhiCTPN
             // 
             this.btnGhiCTPN.Name = "btnGhiCTPN";
-            this.btnGhiCTPN.Size = new System.Drawing.Size(108, 24);
+            this.btnGhiCTPN.Size = new System.Drawing.Size(210, 24);
             this.btnGhiCTPN.Text = "GHI";
             this.btnGhiCTPN.Click += new System.EventHandler(this.btnGhiCTPN_Click);
             // 
             // btnXoaCTPN
             // 
             this.btnXoaCTPN.Name = "btnXoaCTPN";
-            this.btnXoaCTPN.Size = new System.Drawing.Size(108, 24);
+            this.btnXoaCTPN.Size = new System.Drawing.Size(210, 24);
             this.btnXoaCTPN.Text = "XOÁ";
             this.btnXoaCTPN.Click += new System.EventHandler(this.btnXoaCTDDH_Click);
+            // 
+            // BTNCHINHSUACTPN
+            // 
+            this.BTNCHINHSUACTPN.Name = "BTNCHINHSUACTPN";
+            this.BTNCHINHSUACTPN.Size = new System.Drawing.Size(210, 24);
+            this.BTNCHINHSUACTPN.Text = "CHỈNH SỬA";
+            this.BTNCHINHSUACTPN.Click += new System.EventHandler(this.cHỈNHSỬAToolStripMenuItem_Click);
             // 
             // bdsDH
             // 
@@ -449,10 +458,10 @@ namespace formDN
             // 
             this.phieuNhapGridControl.DataSource = this.bdsPN;
             this.phieuNhapGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.phieuNhapGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.phieuNhapGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(15);
             this.phieuNhapGridControl.Location = new System.Drawing.Point(0, 100);
             this.phieuNhapGridControl.MainView = this.gridView1;
-            this.phieuNhapGridControl.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.phieuNhapGridControl.Margin = new System.Windows.Forms.Padding(15);
             this.phieuNhapGridControl.MenuManager = this.barManager1;
             this.phieuNhapGridControl.Name = "phieuNhapGridControl";
             this.phieuNhapGridControl.Size = new System.Drawing.Size(1471, 375);
@@ -612,10 +621,10 @@ namespace formDN
             this.cTPNGridControl.ContextMenuStrip = this.contextMenuStrip2;
             this.cTPNGridControl.DataSource = this.bdsCTPN;
             this.cTPNGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTPNGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.cTPNGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(15);
             this.cTPNGridControl.Location = new System.Drawing.Point(416, 475);
             this.cTPNGridControl.MainView = this.gridView2;
-            this.cTPNGridControl.Margin = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.cTPNGridControl.Margin = new System.Windows.Forms.Padding(15);
             this.cTPNGridControl.MenuManager = this.barManager1;
             this.cTPNGridControl.Name = "cTPNGridControl";
             this.cTPNGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -624,6 +633,7 @@ namespace formDN
             this.cTPNGridControl.TabIndex = 18;
             this.cTPNGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
+            this.cTPNGridControl.DoubleClick += new System.EventHandler(this.cTPNGridControl_DoubleClick);
             // 
             // gridView2
             // 
@@ -636,12 +646,14 @@ namespace formDN
             this.gridView2.GridControl = this.cTPNGridControl;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplaceHideCurrentRow;
             // 
             // colMAPN1
             // 
             this.colMAPN1.FieldName = "MAPN";
             this.colMAPN1.MinWidth = 119;
             this.colMAPN1.Name = "colMAPN1";
+            this.colMAPN1.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
             this.colMAPN1.Visible = true;
             this.colMAPN1.VisibleIndex = 0;
             this.colMAPN1.Width = 444;
@@ -651,6 +663,7 @@ namespace formDN
             this.colMAVT.FieldName = "MAVT";
             this.colMAVT.MinWidth = 119;
             this.colMAVT.Name = "colMAVT";
+            this.colMAVT.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
             this.colMAVT.Visible = true;
             this.colMAVT.VisibleIndex = 1;
             this.colMAVT.Width = 444;
@@ -801,5 +814,6 @@ namespace formDN
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit2;
         private System.Windows.Forms.BindingSource dSVTBindingSource;
         private QLVT_DATHANGDataSet1TableAdapters.DSVTTableAdapter dSVTTableAdapter;
+        private System.Windows.Forms.ToolStripMenuItem BTNCHINHSUACTPN;
     }
 }

@@ -1,12 +1,13 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_undothemCTPX]    Script Date: 11/21/2021 09:10:46 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_undothemCTPX]    Script Date: 12/13/2021 03:43:22 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 CREATE PROC [dbo].[sp_undothemCTPX]
 @MAPX nchar(8), @MAVT NCHAR(4), @SOLUONG INT ,@LOAI CHAR(1)
@@ -20,10 +21,9 @@ COMMIT TRANSACTION
 END TRY
 BEGIN CATCH
    ROLLBACK
-	DECLARE @ErrorMessage VARCHAR(2000)
-	SELECT @ErrorMessage = 'Lỗi: ' + ERROR_MESSAGE()
-	RAISERROR( @ErrorMessage, 16, 1)
+	DECLARE @ERRORMESSAGE VARCHAR(2000)
+	SELECT @ERRORMESSAGE = 'LỖI: ' + ERROR_MESSAGE()
+	RAISERROR( @ERRORMESSAGE, 16, 1)
 END CATCH
-
 GO
 

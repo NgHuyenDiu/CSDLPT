@@ -1,7 +1,7 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_dsnvcohoadon]    Script Date: 11/17/2021 06:28:40 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_dsnvcohoadon]    Script Date: 12/13/2021 03:12:58 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,9 +12,8 @@ CREATE PROC [dbo].[sp_dsnvcohoadon]
 AS
 BEGIN
 SELECT DISTINCT NV.MANV, NV.HO + ' ' + NV.TEN AS HOTEN
-FROM  NHANVIEN AS NV, PHIEUNHAP AS PN  , PHIEUXUAT AS PX
+FROM (SELECT MANV, HO, TEN FROM NhanVien) AS NV, (SELECT MANV FROM PHIEUNHAP ) AS PN  , (SELECT MANV FROM PHIEUXUAT) AS PX
 WHERE NV.MANV = PN.MANV OR  NV.MANV = PX.MANV
 END
-
 GO
 

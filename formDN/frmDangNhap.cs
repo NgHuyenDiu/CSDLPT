@@ -20,6 +20,7 @@ namespace formDN
 
           
         }
+        /* tạo đường dẫn đến csdl gốc,nếu đã mở, return, nếu chưa mở : open được, return 1, ngược lại thông báo lỗi*/
          private int KetNoi_CSDLGoc()
           {
               if (Program.conn != null && Program.conn.State == ConnectionState.Open)
@@ -38,7 +39,8 @@ namespace formDN
                   return 0;
               }
           }
-
+        /*tạo datatable để chứa danh sách phân mảnh, sử dụng sqlDataAdapter để lấy dữ liệu từ csdl lên 
+         lấy dữ liệu từ csdl lên datassource bằng lệnh fill */
           private void LayDSPM(String cmd)
           {
               DataTable dt = new DataTable();
@@ -59,7 +61,7 @@ namespace formDN
             LayDSPM("SELECT * FROM dbo.V_DS_PHANMANH");
             comboBox_CN.SelectedIndex = -1;
             comboBox_CN.SelectedIndex = 0;
-            textBox_matKhau.UseSystemPasswordChar = true;
+            textBox_matKhau.UseSystemPasswordChar = true;// hien thi mat khau dạng dấu *
         }
 
         // su kien click chon cn 
@@ -78,7 +80,7 @@ namespace formDN
             this.Close();
         }
 
-        private void checkBox_matKhau_CheckedChanged(object sender, EventArgs e)
+        private void checkBox_matKhau_CheckedChanged(object sender, EventArgs e)// checkBox hiển thị mật khẩu
         {
             textBox_matKhau.UseSystemPasswordChar = (checkBox_matKhau.Checked) ? false : true;
         }
@@ -95,7 +97,7 @@ namespace formDN
             Program.mlogin = textBox_taiKhoan.Text;
             Program.password = textBox_matKhau.Text;
 
-            if (Program.KetNoi() == 0) return;
+            if (Program.KetNoi() == 0) return; // kiem tra tên đăng nhập, mật khẩu có đúng hay không
 
             Program.mChinhanh = comboBox_CN.SelectedIndex;
             Program.mloginDN = Program.mlogin;

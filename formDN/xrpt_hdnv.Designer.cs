@@ -714,6 +714,7 @@ namespace formDN
             this.tableCell13.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NGAY]")});
             this.tableCell13.Name = "tableCell13";
+            this.tableCell13.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Merge;
             this.tableCell13.StyleName = "DetailData1";
             this.tableCell13.StylePriority.UseBorderColor = false;
             this.tableCell13.StylePriority.UseBorders = false;

@@ -29,11 +29,11 @@ namespace formDN
             String quyen;
             if (Program.mGroup == "CONGTY")
             {
-                quyen = "F";
+                quyen = "C";
             }
             else
             {
-                quyen = "C";
+                quyen = "K";
             }
             string loai1 = comboBox1.Text;
             String loai = comboBox1.Text.Substring(0, 1);

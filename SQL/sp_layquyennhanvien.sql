@@ -1,7 +1,7 @@
 USE [QLVT_DATHANG]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_layquyennhanvien]    Script Date: 11/17/2021 06:30:39 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_layquyennhanvien]    Script Date: 12/13/2021 03:38:00 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,7 +13,7 @@ CREATE proc [dbo].[sp_layquyennhanvien]
 AS
 BEGIN
 DECLARE @USERID INT, @ROLE NVARCHAR(50) 
-	SELECT @USERID = UID FROM SYS.SYSUSERS WHERE NAME = @TENLOGIN
+SELECT @USERID = UID FROM SYS.SYSUSERS WHERE NAME = @TENLOGIN
 IF EXISTS(SELECT HO+ ' '+ TEN FROM DBO.NHANVIEN WHERE MANV = @TENLOGIN AND TRANGTHAIXOA=0)
 BEGIN
 	SELECT 
@@ -21,16 +21,15 @@ BEGIN
    FROM SYS.SYSUSERS 
    WHERE UID = (SELECT GROUPUID 
                  FROM SYS.SYSMEMBERS 
-                   WHERE MEMBERUID= @USERID
-               )
+                 WHERE MEMBERUID= @USERID
+                )
 IF(@ROLE IS NOT NULL)
 	BEGIN
 	SELECT @ROLE
 	END
 ELSE
-	RAISERROR('KHONG CO QUYEN HAN',16,1)
+	RAISERROR('NHÂN VIÊN KHÔNG CÓ QUYỀN',16,1)
 END
 END
-
 GO
 

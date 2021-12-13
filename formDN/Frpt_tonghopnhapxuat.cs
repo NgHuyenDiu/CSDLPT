@@ -27,11 +27,11 @@ namespace formDN
             Console.WriteLine(bd + kt);
             if (Program.mGroup == "CONGTY")
             {
-                quyen = "F";
+                quyen = "C";
             }
             else
             {
-                quyen = "C";
+                quyen = "K";
             }
            
 
