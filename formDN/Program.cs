@@ -23,7 +23,7 @@ namespace formDN
         public static String username = "";
         public static String mlogin = "";
         public static String password = "";
-
+        public static String servernameDN = "";
         public static String database = "QLVT_DATHANG";
         public static String remotelogin = "HTKN";
         public static String remotepassword = "123456";

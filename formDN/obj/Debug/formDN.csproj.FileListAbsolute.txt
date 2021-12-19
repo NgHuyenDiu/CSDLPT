@@ -288,8 +288,6 @@ D:\formDN\formDN\bin\Debug\de\DevExpress.Diagram.v19.2.Core.resources.dll
 D:\formDN\formDN\bin\Debug\es\DevExpress.Diagram.v19.2.Core.resources.dll
 D:\formDN\formDN\bin\Debug\ja\DevExpress.Diagram.v19.2.Core.resources.dll
 D:\formDN\formDN\bin\Debug\ru\DevExpress.Diagram.v19.2.Core.resources.dll
-D:\formDN\formDN\obj\Debug\formDN.Frpt_phieunvlaptrongnamtheoloai.resources
-D:\formDN\formDN\obj\Debug\formDN.Xrpt_phieunvlaptrongnamtheoloai.resources
 D:\formDN\formDN\obj\Debug\formDN.Frpt_indanhsachnhanvien.resources
 D:\formDN\formDN\obj\Debug\formDN.Xrpt_indanhsachnhanvien.resources
 D:\formDN\formDN\obj\Debug\formDN.Frpt_indanhsachvattu.resources

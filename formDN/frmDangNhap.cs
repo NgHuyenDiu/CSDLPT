@@ -96,7 +96,7 @@ namespace formDN
 
             Program.mlogin = textBox_taiKhoan.Text;
             Program.password = textBox_matKhau.Text;
-
+            Program.servernameDN = comboBox_CN.SelectedValue.ToString();
             if (Program.KetNoi() == 0) return; // kiem tra tên đăng nhập, mật khẩu có đúng hay không
 
             Program.mChinhanh = comboBox_CN.SelectedIndex;

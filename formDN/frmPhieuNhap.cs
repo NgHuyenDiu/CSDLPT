@@ -173,6 +173,8 @@ namespace formDN
                      XtraMessageBox.Show(lenh);
                 }
             }
+            them = true;
+            btnGhiCTPN.Enabled = true;
         }
 
         private void cmbCN_SelectedIndexChanged(object sender, EventArgs e)
@@ -283,6 +285,7 @@ namespace formDN
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            String mapn = txtMAPN.Text.Trim();
             if (txtMAPN.Enabled)
             {
                
@@ -346,6 +349,8 @@ namespace formDN
             LoadTable();
             groupBox1.Enabled = false;
             cTPNGridControl.Enabled = true;
+            cmbDDH.Enabled = true;
+            bdsPN.Position = bdsPN.Find("MAPN", mapn);
         }
         
 
@@ -388,7 +393,7 @@ namespace formDN
                 catch (Exception ex)
                 {
                     result = 0;
-                     XtraMessageBox.Show(ex.Message + " ");
+                     //XtraMessageBox.Show(ex.Message + " ");
                 }
             }
             return result;
@@ -419,105 +424,112 @@ namespace formDN
 
         private void btnGhiCTPN_Click(object sender, EventArgs e)
         {
-          
+            query = "";
 
-            try
+            if (XtraMessageBox.Show("Bạn chắc chắn muốn lưu chi tiết của phiếu nhập này. Khi lưu bạn sẽ không được chỉnh sửa chi tiết ", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                for (int i=0; i< bdsCTPN.Count; i++)
+
+                try
                 {
-                    String mapn = ((DataRowView)bdsPN[bdsPN.Position])["MAPN"].ToString();
-                    String mavt = ((DataRowView)bdsCTPN[i])["MAVT"].ToString();
-                    String maDDH = ((DataRowView)bdsPN[bdsPN.Position])["MasoDDH"].ToString();
-                   
-                
-                    if (mavt == string.Empty)
+                    for (int i = 0; i < bdsCTPN.Count; i++)
                     {
-                        XtraMessageBox.Show("Vật tư không thể thiếu ! ", "", MessageBoxButtons.OK);
-                       
-                        return;
-                    }
-                   
-                    int soLuong = int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString());
-                    if (ktctddh(maDDH, mavt) == 0)
-                    {
-                        XtraMessageBox.Show("Vật tư không có trong đơn đặt hàng ! ", "", MessageBoxButtons.OK);
-                        
-                        return;
-                    }
-                    if (((DataRowView)bdsCTPN[i])["SOLUONG"].ToString() == String.Empty)
-                    {
-                        XtraMessageBox.Show("Số lượng không thể thiếu! ", "", MessageBoxButtons.OK);
-                       
-                        return;
-                    }
-                  
-                    if (soLuong < 0)
-                    {
-                        XtraMessageBox.Show("Số lượng không thể âm ! ", "", MessageBoxButtons.OK);
-                       
-                        return;
-                    }
-                    if (ktSoLuongDatHang(maDDH, mavt, soLuong) == 0)
-                    {
-                        XtraMessageBox.Show("Số lượng nhập không được hơn số lượng đã đặt !", "", MessageBoxButtons.OK);
-                        
-                        return;
-                    }
-                    int dongia = int.Parse(((DataRowView)bdsCTPN[i])["DONGIA"].ToString());
-                    if (((DataRowView)bdsCTPN[i])["DONGIA"].ToString() == string.Empty)
-                    {
-                        XtraMessageBox.Show("Đơn giá không được thiếu !", "", MessageBoxButtons.OK);
-                        
-                        return;
-                    }
-                    if (ktDonGia(maDDH, mavt, dongia) == 0)
-                    {
-                        XtraMessageBox.Show("Đơn giá khác lúc đặt hàng!", "", MessageBoxButtons.OK);
-                        
-                        return;
-                    }
+                        String mapn = ((DataRowView)bdsPN[bdsPN.Position])["MAPN"].ToString();
+                        String mavt = ((DataRowView)bdsCTPN[i])["MAVT"].ToString();
+                        String maDDH = ((DataRowView)bdsPN[bdsPN.Position])["MasoDDH"].ToString();
 
-               
-                    bdsCTPN.EndEdit();
-                    bdsCTPN.ResetCurrentItem();
-                    
 
-                   String lenh = String.Format("EXEC sp_capnhatsoluongton  N'{0}' , {1}, N'{2}'", ((DataRowView)bdsCTPN[i])["MAVT"].ToString(), int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString()), "N");
-                    using (SqlConnection connection = new SqlConnection(Program.connstr))
-                    {
-                        connection.Open();
-                        SqlCommand sqlCommand = new SqlCommand(lenh, connection);
-                        sqlCommand.CommandType = CommandType.Text;
-                        try
+                        if (mavt == string.Empty)
                         {
-                            sqlCommand.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            XtraMessageBox.Show(lenh+ ex.Message + " ");
-                        }
-                    }
-                    query = String.Format("EXEC sp_undothemCTPN N'{0}', N'{1}',{2}, N'{3}'", mapn.Trim(), mavt.Trim(), soLuong, "X");
-                    Console.WriteLine(mapn.Trim());
+                            XtraMessageBox.Show("Vật tư không thể thiếu ! ", "", MessageBoxButtons.OK);
 
+                            return;
+                        }
+
+                        int soLuong = int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString());
+                        if (ktctddh(maDDH, mavt) == 0)
+                        {
+                            XtraMessageBox.Show("Vật tư không có trong đơn đặt hàng ! ", "", MessageBoxButtons.OK);
+
+                            return;
+                        }
+                        if (((DataRowView)bdsCTPN[i])["SOLUONG"].ToString() == String.Empty)
+                        {
+                            XtraMessageBox.Show("Số lượng không thể thiếu! ", "", MessageBoxButtons.OK);
+
+                            return;
+                        }
+
+                        if (soLuong < 0)
+                        {
+                            XtraMessageBox.Show("Số lượng không thể âm ! ", "", MessageBoxButtons.OK);
+
+                            return;
+                        }
+                        if (ktSoLuongDatHang(maDDH, mavt, soLuong) == 0)
+                        {
+                            XtraMessageBox.Show("Số lượng nhập không được hơn số lượng đã đặt !", "", MessageBoxButtons.OK);
+
+                            return;
+                        }
+                        int dongia = int.Parse(((DataRowView)bdsCTPN[i])["DONGIA"].ToString());
+                        if (((DataRowView)bdsCTPN[i])["DONGIA"].ToString() == string.Empty)
+                        {
+                            XtraMessageBox.Show("Đơn giá không được thiếu !", "", MessageBoxButtons.OK);
+
+                            return;
+                        }
+                        if (ktDonGia(maDDH, mavt, dongia) == 0)
+                        {
+                            XtraMessageBox.Show("Đơn giá khác lúc đặt hàng!", "", MessageBoxButtons.OK);
+
+                            return;
+                        }
+
+
+                        bdsCTPN.EndEdit();
+                        bdsCTPN.ResetCurrentItem();
+
+
+                        String lenh = String.Format("EXEC sp_capnhatsoluongton  N'{0}' , {1}, N'{2}'", ((DataRowView)bdsCTPN[i])["MAVT"].ToString(), int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString()), "N");
+                        using (SqlConnection connection = new SqlConnection(Program.connstr))
+                        {
+                            connection.Open();
+                            SqlCommand sqlCommand = new SqlCommand(lenh, connection);
+                            sqlCommand.CommandType = CommandType.Text;
+                            try
+                            {
+                                sqlCommand.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                XtraMessageBox.Show(lenh + ex.Message + " ");
+                            }
+                        }
+                        
+                        query += String.Format("EXEC sp_capnhatsoluongton  N'{0}' , {1}, N'{2}'", ((DataRowView)bdsCTPN[i])["MAVT"].ToString(), int.Parse(((DataRowView)bdsCTPN[i])["SOLUONG"].ToString()), "X");
+                        Console.WriteLine(mapn.Trim());
+
+                       
+
+                    }
                     stackundo.Push(query);
+                    XtraMessageBox.Show("Ghi thành công !!!");
+
+                    this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.cTPNTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPN);
+
 
                 }
-                XtraMessageBox.Show("Ghi thành công !!!");
-
-                this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.cTPNTableAdapter.Update(this.qLVT_DATHANGDataSet1.CTPN);
-
-               
-                 }
-                 catch (Exception) { }
-                 btnXoaCTPN.Enabled = true;
-                 btnGhiCTPN.Enabled = false;
-                 LoadTable();
-                 groupBox1.Enabled = false;
-                 this.colMAVT.ColumnEdit = repositoryItemLookUpEdit2;
-                 this.colDONGIA.ColumnEdit = null ;
-            gridView2.OptionsBehavior.Editable = false;
+                catch (Exception) { }
+                btnXoaCTPN.Enabled = true;
+                btnGhiCTPN.Enabled = false;
+                LoadTable();
+                groupBox1.Enabled = false;
+                this.colMAVT.ColumnEdit = repositoryItemLookUpEdit2;
+                this.colDONGIA.ColumnEdit = null;
+                gridView2.OptionsBehavior.Editable = false;
+                them= false;
+            }
         }
 
         private void btnXoaCTDDH_Click(object sender, EventArgs e)
@@ -555,7 +567,7 @@ namespace formDN
                     stackundo.Push(query);
                     if (bdsCTPN.Count == 0)
                     {
-                        if (XtraMessageBox.Show("Đơn hàng không có chi tiết đơn đặt hàng. Bạn muốn xoá không? \n", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                        if (XtraMessageBox.Show("Phiếu nhập không có chi tiết phiếu nhập. Bạn muốn xoá không? \n", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                         {
                             xoaPN();
                         }
@@ -596,7 +608,7 @@ namespace formDN
             }
             else
             {
-                XtraMessageBox.Show("chi tiết phiếu nhập chỉ được chỉnh sửa khi thêm mới phiếu nhập \n", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Chi tiết phiếu đã lưu vào database, Không sửa được chi tiết phiếu nhập \n", "", MessageBoxButtons.OK);
                 return;
             }
            

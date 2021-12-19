@@ -45,7 +45,7 @@ namespace formDN
                  XtraMessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày bắt đầu", string.Empty, MessageBoxButtons.OK);
                 return;
             }
-             Xrpt_bangkectvt rp = new Xrpt_bangkectvt(quyen, loai, bd, kt);
+            Xrpt_bangkectvt rp = new Xrpt_bangkectvt(quyen, loai, bd, kt);
             rp.lblTieuDe.Text = "BẢNG KÊ CHI TIẾT SỐ LƯỢNG - TRỊ GIÁ PHIẾU " + loai1.ToUpper() + " " + "TỪ NGÀY " + bd + " ĐẾN NGÀY: " + kt;
             ReportPrintTool print = new ReportPrintTool(rp);
             print.ShowPreviewDialog();

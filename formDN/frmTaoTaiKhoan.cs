@@ -21,12 +21,16 @@ namespace formDN
         private void loadData()
         {
             this.qLVT_DATHANGDataSet1.EnforceConstraints = false;
-            this.hOTENNV.Connection.ConnectionString = Program.connstr;
-            this.hOTENNV.Fill(this.qLVT_DATHANGDataSet1.HOTENNV);
+            String connstr = "Data Source=" + Program.servernameDN + ";Initial Catalog=" +
+                     Program.database + ";User ID=" +
+                     Program.mloginDN + ";password=" + Program.passwordDN;
+            this.sp_hotennvTableAdapter.Connection.ConnectionString = connstr;
+            this.sp_hotennvTableAdapter.Fill(this.qLVT_DATHANGDataSet1.sp_hotennv);
 
         }
         private void frmTaoTaiKhoan_Load(object sender, EventArgs e)
         {
+           
             loadData();
             txtPassword.UseSystemPasswordChar = true;
             cmbUsername.Enabled = true;
@@ -105,7 +109,7 @@ namespace formDN
         private bool CreateLogin(string loginName, string password, string username, string role)
         {
             bool result = true;
-            string strLenh = string.Format("EXEC SP_TAOTAIKHOAN {0},{1},{2},{3}", loginName, password, username, role);
+            string strLenh = string.Format("EXEC SP_TAOTAIKHOAN N'{0}',N'{1}',N'{2}',N'{3}'", loginName, password, username, role);
             using (SqlConnection connection = new SqlConnection(Program.connstr))
             {
 
@@ -119,7 +123,7 @@ namespace formDN
                 catch (Exception ex)
                 {
                     result = false;
-                     XtraMessageBox.Show(ex.Message );
+                     XtraMessageBox.Show(strLenh+ ex.Message );
                 }
             }
             return result;
@@ -189,6 +193,9 @@ namespace formDN
                 return;
             }
             loadData();
+            txtloginname.Text = "";
+            txtPassword.Text = "";
+            congTy.Checked= chiNhanh.Checked= user.Checked = false;
         }
 
         private void buttonThoat_Click(object sender, EventArgs e)

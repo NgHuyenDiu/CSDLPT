@@ -154,21 +154,6 @@ namespace formDN
         }
 
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Form f = this.checkExist(typeof(Frpt_phieunvlaptrongnamtheoloai));
-            if (f != null)
-            {
-                f.Activate();
-            }
-            else
-            {
-                Frpt_phieunvlaptrongnamtheoloai frm = new Frpt_phieunvlaptrongnamtheoloai();
-                frm.MdiParent = this;
-                frm.Show();
-            }
-        }
-
         private void btn_inDSNV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Form f = this.checkExist(typeof(Frpt_indanhsachnhanvien));

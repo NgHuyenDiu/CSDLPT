@@ -104,12 +104,6 @@
     <Compile Include="Frpt_indanhsachvattu.Designer.cs">
       <DependentUpon>Frpt_indanhsachvattu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frpt_phieunvlaptrongnamtheoloai.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frpt_phieunvlaptrongnamtheoloai.Designer.cs">
-      <DependentUpon>Frpt_phieunvlaptrongnamtheoloai.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmPhieuXuat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,12 +185,6 @@
     <Compile Include="Xrpt_indanhsachvattu.Designer.cs">
       <DependentUpon>Xrpt_indanhsachvattu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Xrpt_phieunvlaptrongnamtheoloai.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Xrpt_phieunvlaptrongnamtheoloai.Designer.cs">
-      <DependentUpon>Xrpt_phieunvlaptrongnamtheoloai.cs</DependentUpon>
-    </Compile>
     <Compile Include="Xrpt_indanhsachnhanvien.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -238,9 +226,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frpt_indanhsachvattu.resx">
       <DependentUpon>Frpt_indanhsachvattu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frpt_phieunvlaptrongnamtheoloai.resx">
-      <DependentUpon>Frpt_phieunvlaptrongnamtheoloai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPhieuXuat.resx">
       <DependentUpon>frmPhieuXuat.cs</DependentUpon>
@@ -285,9 +270,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Xrpt_indanhsachvattu.resx">
       <DependentUpon>Xrpt_indanhsachvattu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Xrpt_phieunvlaptrongnamtheoloai.resx">
-      <DependentUpon>Xrpt_phieunvlaptrongnamtheoloai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Xrpt_indanhsachnhanvien.resx">
       <DependentUpon>Xrpt_indanhsachnhanvien.cs</DependentUpon>

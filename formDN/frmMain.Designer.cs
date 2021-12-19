@@ -66,7 +66,6 @@ namespace formDN
             this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup16 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.MANV = new System.Windows.Forms.ToolStripStatusLabel();
             this.HOTEN = new System.Windows.Forms.ToolStripStatusLabel();
@@ -242,7 +241,6 @@ namespace formDN
             this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
             this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
             this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // btnTaoTaiKhoan
             // 
@@ -327,8 +325,7 @@ namespace formDN
             this.ribbonPageGroup7,
             this.ribbonPageGroup8,
             this.ribbonPageGroup9,
-            this.ribbonPageGroup10,
-            this.ribbonPageGroup16});
+            this.ribbonPageGroup10});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Tạo báo cáo";
             // 
@@ -361,11 +358,6 @@ namespace formDN
             // 
             this.ribbonPageGroup10.ItemLinks.Add(this.btn_inDSHDNV);
             this.ribbonPageGroup10.Name = "ribbonPageGroup10";
-            // 
-            // ribbonPageGroup16
-            // 
-            this.ribbonPageGroup16.ItemLinks.Add(this.barButtonItem1);
-            this.ribbonPageGroup16.Name = "ribbonPageGroup16";
             // 
             // statusStrip1
             // 
@@ -463,7 +455,6 @@ namespace formDN
         private DevExpress.XtraBars.BarButtonItem btn_inDSHDNV;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup15;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup16;
         public DevExpress.XtraBars.BarButtonItem btnDangXuat;
         public DevExpress.XtraBars.BarButtonItem btnTaoTaiKhoan;
         public DevExpress.XtraBars.BarButtonItem btn_dangNhap;

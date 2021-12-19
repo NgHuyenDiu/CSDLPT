@@ -29,7 +29,7 @@ namespace formDN
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String ngaysinh, luong, diachi, machinhanh;
+            String  hoten, ngaysinh, luong, diachi, machinhanh;
             int manv = int.Parse(txtMaNV.Text);
             String bd = dateTimePicker1.Text;
             String kt = dateTimePicker2.Text;
@@ -63,11 +63,11 @@ namespace formDN
                 dataReader.Read();
 
                 // Gán giá trị cho các label bên report
-
-                 ngaysinh = dataReader.GetValue(2).ToString();
-                 diachi = dataReader.GetValue(3).ToString();
-                 luong = dataReader.GetValue(4).ToString();
-                 machinhanh = dataReader.GetValue(5).ToString();
+                 hoten = dataReader.GetValue(0).ToString();
+                ngaysinh = dataReader.GetValue(1).ToString();
+                 diachi = dataReader.GetValue(2).ToString();
+                 luong = dataReader.GetValue(3).ToString();
+                 machinhanh = dataReader.GetValue(4).ToString();
 
                 dataReader.Close();
             }
@@ -77,6 +77,8 @@ namespace formDN
             //xrpt_hdnv rp = new xrpt_hdnv(manv, bd, kt);
             Xrpt_hdnv rp = new Xrpt_hdnv(manv, bd, kt);
             rp.label1.Text = "HOẠT ĐỘNG NHÂN VIÊN  TỪ NGÀY " + bd + " ĐẾN NGÀY " + kt;
+            rp.manv.Text = manv.ToString();
+            rp.hoten.Text = hoten;
             rp.ngaysinh.Text = ngaysinh;
             rp.diachi.Text = diachi;
             rp.luong.Text= luong;

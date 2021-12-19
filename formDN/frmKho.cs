@@ -278,6 +278,7 @@ namespace formDN
                 return;
             }
             LoadTable();
+            
         }
 
         private void btnUndo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

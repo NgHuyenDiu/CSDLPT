@@ -255,7 +255,7 @@ namespace formDN
                         }
                         catch
                         {
-                            MessageBox.Show(lenh2);
+                            XtraMessageBox.Show(lenh2);
                         }
                     }
 
@@ -275,7 +275,7 @@ namespace formDN
                             }
                             catch (SqlException ex)
                             {
-                                MessageBox.Show(lenh3+ex.Message);
+                                XtraMessageBox.Show(ex.Message);
                                 return;
                             }
                         }
@@ -293,7 +293,7 @@ namespace formDN
                             }
                             catch(SqlException E)
                             {
-                                MessageBox.Show(lenh1 + E.Message);
+                                XtraMessageBox.Show( E.Message);
                                 return;
                             }
                         }
@@ -312,12 +312,13 @@ namespace formDN
                             }
                             catch (SqlException E)
                             {
-                                MessageBox.Show(lenh4 + E.Message);
+                                XtraMessageBox.Show( E.Message);
                                 return;
                             }
                         }
                         Console.WriteLine(role);
                         query = String.Format("EXEC sp_undoxoanhanvien '{0}',{1},N'{2}',N'{3}',N'{4}','{5}', {6},'{7}','{8}'", Loginname, manv, ho, ten, diaChi, ngaySinh, luong, macn,role);
+                        
                         String lenh = String.Format("EXEC sp_xoatkdangnhap {0} ", manv);
                         using (SqlConnection connection = new SqlConnection(Program.connstr))
                         {
@@ -331,7 +332,7 @@ namespace formDN
                             }
                             catch(SqlException EX)
                             {
-                                MessageBox.Show(lenh+EX.Message);
+                                XtraMessageBox.Show( EX.Message);
                                 return;
                             }
                         }
@@ -351,7 +352,7 @@ namespace formDN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi xóa nhân viên. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi xóa nhân viên. Bạn hãy xóa lại \n", ex.Message, MessageBoxButtons.OK);
                     this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet1.NhanVien);
                     bdsNV.Position = bdsNV.Find("MANV", manv);
                     return;
@@ -423,9 +424,9 @@ namespace formDN
                 txtNgaySinh.Focus();
                 return;
             }
-            if (DateTime.Now.Year - txtNgaySinh.DateTime.Year < 20)
+            if (DateTime.Now.Year - txtNgaySinh.DateTime.Year < 19)
             {
-                XtraMessageBox.Show("Ngày sinh không hợp lệ !", string.Empty, MessageBoxButtons.OK);
+                XtraMessageBox.Show("Vui lòng thêm nhân viên từ 18 tuổi trở lên !", string.Empty, MessageBoxButtons.OK);
                 txtNgaySinh.Focus();
                 return;
             }
@@ -533,7 +534,7 @@ namespace formDN
                 try
                 {
                     sqlcmt.ExecuteNonQuery();
-                    query = string.Format("EXEC sp_undochuyencn {0}, {1} ", maHT, maMoi);
+                    query = string.Format("EXEC sp_undochuyencn {0} ", maHT);
                     stackundo.Push(query);
                 }
                 catch

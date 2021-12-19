@@ -424,7 +424,7 @@ namespace formDN
             this.datHangGridControl.Margin = new System.Windows.Forms.Padding(231);
             this.datHangGridControl.MenuManager = this.barManager1;
             this.datHangGridControl.Name = "datHangGridControl";
-            this.datHangGridControl.Size = new System.Drawing.Size(1346, 368);
+            this.datHangGridControl.Size = new System.Drawing.Size(1346, 267);
             this.datHangGridControl.TabIndex = 12;
             this.datHangGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -501,9 +501,9 @@ namespace formDN
             this.groupBox1.Controls.Add(masoDDHLabel);
             this.groupBox1.Controls.Add(this.txtDDH);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 463);
+            this.groupBox1.Location = new System.Drawing.Point(0, 362);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 251);
+            this.groupBox1.Size = new System.Drawing.Size(412, 352);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ĐƠN ĐẶT HÀNG";
@@ -574,14 +574,14 @@ namespace formDN
             this.cTDDHGridControl.DataSource = this.cTDDHBindingSource;
             this.cTDDHGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cTDDHGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(231);
-            this.cTDDHGridControl.Location = new System.Drawing.Point(412, 463);
+            this.cTDDHGridControl.Location = new System.Drawing.Point(412, 362);
             this.cTDDHGridControl.MainView = this.gridView2;
             this.cTDDHGridControl.Margin = new System.Windows.Forms.Padding(231);
             this.cTDDHGridControl.MenuManager = this.barManager1;
             this.cTDDHGridControl.Name = "cTDDHGridControl";
             this.cTDDHGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1});
-            this.cTDDHGridControl.Size = new System.Drawing.Size(934, 251);
+            this.cTDDHGridControl.Size = new System.Drawing.Size(934, 352);
             this.cTDDHGridControl.TabIndex = 13;
             this.cTDDHGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -596,40 +596,40 @@ namespace formDN
             this.BTNCHINHSUACTDDH,
             this.BTNGHICHINHSUACTDDH});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(211, 152);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(187, 124);
             // 
             // btntThemCTDDH
             // 
             this.btntThemCTDDH.Name = "btntThemCTDDH";
-            this.btntThemCTDDH.Size = new System.Drawing.Size(210, 24);
+            this.btntThemCTDDH.Size = new System.Drawing.Size(186, 24);
             this.btntThemCTDDH.Text = "THÊM";
             this.btntThemCTDDH.Click += new System.EventHandler(this.tHÊMToolStripMenuItem_Click);
             // 
             // btnGhiCTDDH
             // 
             this.btnGhiCTDDH.Name = "btnGhiCTDDH";
-            this.btnGhiCTDDH.Size = new System.Drawing.Size(210, 24);
+            this.btnGhiCTDDH.Size = new System.Drawing.Size(186, 24);
             this.btnGhiCTDDH.Text = "GHI MOI";
             this.btnGhiCTDDH.Click += new System.EventHandler(this.btnGhiCTDDH_Click);
             // 
             // btnXoaCTDDH
             // 
             this.btnXoaCTDDH.Name = "btnXoaCTDDH";
-            this.btnXoaCTDDH.Size = new System.Drawing.Size(210, 24);
+            this.btnXoaCTDDH.Size = new System.Drawing.Size(186, 24);
             this.btnXoaCTDDH.Text = "XOÁ";
             this.btnXoaCTDDH.Click += new System.EventHandler(this.btnXoaCTDDH_Click);
             // 
             // BTNCHINHSUACTDDH
             // 
             this.BTNCHINHSUACTDDH.Name = "BTNCHINHSUACTDDH";
-            this.BTNCHINHSUACTDDH.Size = new System.Drawing.Size(210, 24);
+            this.BTNCHINHSUACTDDH.Size = new System.Drawing.Size(186, 24);
             this.BTNCHINHSUACTDDH.Text = "CHỈNH SỬA";
             this.BTNCHINHSUACTDDH.Click += new System.EventHandler(this.cHỈNHSỬAToolStripMenuItem_Click);
             // 
             // BTNGHICHINHSUACTDDH
             // 
             this.BTNGHICHINHSUACTDDH.Name = "BTNGHICHINHSUACTDDH";
-            this.BTNGHICHINHSUACTDDH.Size = new System.Drawing.Size(210, 24);
+            this.BTNGHICHINHSUACTDDH.Size = new System.Drawing.Size(186, 24);
             this.BTNGHICHINHSUACTDDH.Text = "GHI CHỈNH SỬA";
             this.BTNGHICHINHSUACTDDH.Click += new System.EventHandler(this.gHICHỈNHSỬAToolStripMenuItem_Click);
             // 

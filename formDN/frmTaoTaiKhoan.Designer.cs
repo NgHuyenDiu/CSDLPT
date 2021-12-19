@@ -36,7 +36,7 @@ namespace formDN
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbUsername = new System.Windows.Forms.ComboBox();
-            this.hOTENNVBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sp_hotennvBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.qLVT_DATHANGDataSet1 = new formDN.QLVT_DATHANGDataSet1();
             this.label5 = new System.Windows.Forms.Label();
             this.congTy = new System.Windows.Forms.RadioButton();
@@ -44,11 +44,11 @@ namespace formDN
             this.user = new System.Windows.Forms.RadioButton();
             this.buttonThoat = new System.Windows.Forms.Button();
             this.buttonTaoTaiKhoan = new System.Windows.Forms.Button();
-            this.hOTENNV = new formDN.QLVT_DATHANGDataSet1TableAdapters.HOTENNV();
             this.tableAdapterManager = new formDN.QLVT_DATHANGDataSet1TableAdapters.TableAdapterManager();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.hOTENNVBindingSource)).BeginInit();
+            this.sp_hotennvTableAdapter = new formDN.QLVT_DATHANGDataSet1TableAdapters.sp_hotennvTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.sp_hotennvBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,7 +105,7 @@ namespace formDN
             // 
             // cmbUsername
             // 
-            this.cmbUsername.DataSource = this.hOTENNVBindingSource;
+            this.cmbUsername.DataSource = this.sp_hotennvBindingSource;
             this.cmbUsername.DisplayMember = "MANV";
             this.cmbUsername.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUsername.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,12 +116,11 @@ namespace formDN
             this.cmbUsername.Size = new System.Drawing.Size(160, 27);
             this.cmbUsername.TabIndex = 7;
             this.cmbUsername.ValueMember = "MANV";
-           
             // 
-            // hOTENNVBindingSource
+            // sp_hotennvBindingSource
             // 
-            this.hOTENNVBindingSource.DataMember = "HOTENNV";
-            this.hOTENNVBindingSource.DataSource = this.qLVT_DATHANGDataSet1;
+            this.sp_hotennvBindingSource.DataMember = "sp_hotennv";
+            this.sp_hotennvBindingSource.DataSource = this.qLVT_DATHANGDataSet1;
             // 
             // qLVT_DATHANGDataSet1
             // 
@@ -202,10 +201,6 @@ namespace formDN
             this.buttonTaoTaiKhoan.UseVisualStyleBackColor = true;
             this.buttonTaoTaiKhoan.Click += new System.EventHandler(this.buttonTaoTaiKhoan_Click);
             // 
-            // hOTENNV
-            // 
-            this.hOTENNV.ClearBeforeFill = true;
-            // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
@@ -215,6 +210,7 @@ namespace formDN
             this.tableAdapterManager.CTPNTableAdapter = null;
             this.tableAdapterManager.CTPXTableAdapter = null;
             this.tableAdapterManager.DatHangTableAdapter = null;
+           
             this.tableAdapterManager.KhoTableAdapter = null;
             this.tableAdapterManager.NhanVienTableAdapter = null;
             this.tableAdapterManager.PhieuNhapTableAdapter = null;
@@ -246,11 +242,15 @@ namespace formDN
             this.label4.TabIndex = 15;
             this.label4.Text = "TẠO TÀI KHOẢN NHÂN VIÊN";
             // 
+            // sp_hotennvTableAdapter
+            // 
+            this.sp_hotennvTableAdapter.ClearBeforeFill = true;
+            // 
             // frmTaoTaiKhoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 501);
+            this.ClientSize = new System.Drawing.Size(1014, 542);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.buttonTaoTaiKhoan);
@@ -268,9 +268,9 @@ namespace formDN
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTaoTaiKhoan";
-            this.Text = "Form1";
+            this.Text = "TẠO TÀI KHOẢN";
             this.Load += new System.EventHandler(this.frmTaoTaiKhoan_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.hOTENNVBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sp_hotennvBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -292,10 +292,10 @@ namespace formDN
         private System.Windows.Forms.Button buttonThoat;
         private System.Windows.Forms.Button buttonTaoTaiKhoan;
         private QLVT_DATHANGDataSet1 qLVT_DATHANGDataSet1;
-        private System.Windows.Forms.BindingSource hOTENNVBindingSource;
-        private QLVT_DATHANGDataSet1TableAdapters.HOTENNV hOTENNV;
         private QLVT_DATHANGDataSet1TableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.BindingSource sp_hotennvBindingSource;
+        private QLVT_DATHANGDataSet1TableAdapters.sp_hotennvTableAdapter sp_hotennvTableAdapter;
     }
 }

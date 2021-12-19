@@ -416,26 +416,26 @@ namespace formDN
             this.btnXoaCTPN,
             this.BTNCHINHSUACTPN});
             this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(211, 104);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(158, 76);
             // 
             // btnGhiCTPN
             // 
             this.btnGhiCTPN.Name = "btnGhiCTPN";
-            this.btnGhiCTPN.Size = new System.Drawing.Size(210, 24);
+            this.btnGhiCTPN.Size = new System.Drawing.Size(157, 24);
             this.btnGhiCTPN.Text = "GHI";
             this.btnGhiCTPN.Click += new System.EventHandler(this.btnGhiCTPN_Click);
             // 
             // btnXoaCTPN
             // 
             this.btnXoaCTPN.Name = "btnXoaCTPN";
-            this.btnXoaCTPN.Size = new System.Drawing.Size(210, 24);
+            this.btnXoaCTPN.Size = new System.Drawing.Size(157, 24);
             this.btnXoaCTPN.Text = "XOÁ";
             this.btnXoaCTPN.Click += new System.EventHandler(this.btnXoaCTDDH_Click);
             // 
             // BTNCHINHSUACTPN
             // 
             this.BTNCHINHSUACTPN.Name = "BTNCHINHSUACTPN";
-            this.BTNCHINHSUACTPN.Size = new System.Drawing.Size(210, 24);
+            this.BTNCHINHSUACTPN.Size = new System.Drawing.Size(157, 24);
             this.BTNCHINHSUACTPN.Text = "CHỈNH SỬA";
             this.BTNCHINHSUACTPN.Click += new System.EventHandler(this.cHỈNHSỬAToolStripMenuItem_Click);
             // 
@@ -684,8 +684,6 @@ namespace formDN
             this.colDONGIA.FieldName = "DONGIA";
             this.colDONGIA.MinWidth = 119;
             this.colDONGIA.Name = "colDONGIA";
-            this.colDONGIA.Visible = true;
-            this.colDONGIA.VisibleIndex = 3;
             this.colDONGIA.Width = 444;
             // 
             // repositoryItemLookUpEdit2
